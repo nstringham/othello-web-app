@@ -22,6 +22,8 @@ html {
 body {
   width: 100vw;
   height: 100vh;
+  width: 100dvw;
+  height: 100dvh;
   margin: 0;
   display: grid;
   place-content: center;
@@ -29,8 +31,9 @@ body {
 
 #board {
   box-sizing: border-box;
-  width: calc(100vmin - 4 * var(--gutter-width));
-  height: calc(100vmin - 4 * var(--gutter-width));
+  --size: calc(100dvmin - 4 * var(--gutter-width));
+  width: var(--size);
+  height: var(--size);
   contain: strict;
   background-color: green;
   padding: var(--gutter-width);
@@ -39,6 +42,12 @@ body {
   grid-template: repeat(8, 1fr) / repeat(8, 1fr);
   place-content: stretch;
   border-radius: var(--gutter-width);
+}
+
+@supports not (height: 100dvmin) {
+  #board {
+    --size: calc(100vmin - 4 * var(--gutter-width));
+  }
 }
 
 .cell {
