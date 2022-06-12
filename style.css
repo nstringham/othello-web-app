@@ -104,8 +104,6 @@ dialog {
   max-width: 560px;
   border-radius: 28px;
   border: none;
-  display: grid;
-  gap: 24px;
   padding: 24px;
   background-color: var(--surface);
   color: var(--on-surface);
@@ -121,6 +119,7 @@ dialog #text {
 }
 
 dialog .buttons {
+  margin-top: 24px;
   display: flex;
   justify-content: flex-end;
 }
