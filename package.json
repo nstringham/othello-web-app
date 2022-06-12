@@ -1,0 +1,24 @@
+{
+  "name": "othello-web-app",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "npm run wasm-dev && vite",
+    "dev:host": "npm run wasm-dev && vite --host",
+    "build": "npm run wasm-release && tsc && vite build",
+    "preview": "vite preview",
+    "preview:host": "vite preview --host",
+    "wasm-dev": "wasm-pack build ./rust-othello --target web --dev --debug",
+    "wasm-release": "wasm-pack build ./rust-othello --target web --release"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.41",
+    "typescript": "^4.5.4",
+    "vite": "^2.9.10",
+    "vite-plugin-html": "^3.2.0"
+  },
+  "dependencies": {
+    "comlink": "^4.3.1",
+    "rust-othello": "file:rust-othello/pkg"
+  }
+}

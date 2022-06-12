@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="board">
+      <% for( let i = 0; i < 64; i++ ) { %>
+      <div class="cell"></div>
+      <% } %>
+    </div>
+    <span id="waiting" class="hidden" role="status">waiting for opponent...</span>
+    <script type="module" src="/src/main.ts"></script>
+    <template id="cell-template">
+      <div class="disk"></div>
+    </template>
+    <template id="alert-template">
+      <dialog>
+        <p id="text"></p>
+        <div class="buttons">
+          <button id="ok">Ok</button>
+        </div>
+      </dialog>
+    </template>
+  </body>
+</html>
