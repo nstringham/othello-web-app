@@ -11,10 +11,14 @@ export default defineConfig({
     VitePWA({
       includeAssets: ["favicon.ico"],
       manifest,
+      workbox: {
+        sourcemap: true,
+      },
     }),
   ],
   build: {
     target: "esnext",
     polyfillModulePreload: false,
+    sourcemap: true,
   },
 });
