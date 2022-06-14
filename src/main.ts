@@ -3,15 +3,7 @@ import { htmlPlayer } from "./game/html-player";
 import type { PlayFunction } from "./worker";
 import { registerSW } from "virtual:pwa-register";
 
-const updateSW = registerSW({
-  onNeedRefresh() {
-    updateSW(false);
-    console.log("will update");
-  },
-  onOfflineReady() {
-    console.log("offline ready");
-  },
-});
+registerSW();
 
 const worker = new Worker(new URL("./worker.ts", import.meta.url), { type: "module" });
 
