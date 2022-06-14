@@ -15,7 +15,7 @@ export default defineConfig({
       registerType: "autoUpdate",
       workbox: {
         sourcemap: true,
-        globPatterns: ["**/*.{html,js,css,wasm}"],
+        globPatterns: ["**/*.{html,js,css,wasm,woff2}"],
       },
     }),
   ],

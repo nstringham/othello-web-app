@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(roboto.woff2) format("woff2");
+}
+
 :root {
   --gutter-width: 2vmin;
   --cell-border-radius: 1vmin;
