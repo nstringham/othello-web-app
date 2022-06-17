@@ -27,6 +27,10 @@ html {
   background-color: var(--surface);
 }
 
+input {
+  accent-color: green;
+}
+
 body {
   width: 100vw;
   height: 100vh;
@@ -131,7 +135,12 @@ dialog.closing {
   animation: shrink 0.2s ease-in forwards;
 }
 
-dialog #text {
+dialog .title {
+  margin: 0;
+  margin-bottom: 16px;
+}
+
+dialog .body {
   margin: 0;
 }
 

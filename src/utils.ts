@@ -37,7 +37,7 @@ const alertTemplate = document.getElementById("alert-template") as HTMLTemplateE
 export async function showAlert(message: string): Promise<void> {
   const fragment = alertTemplate.content.cloneNode(true) as DocumentFragment;
   const dialog = fragment.querySelector("dialog") as HTMLDialogElement;
-  const text = fragment.querySelector("#text") as HTMLParagraphElement;
+  const text = fragment.querySelector(".body") as HTMLParagraphElement;
 
   text.textContent = message;
 

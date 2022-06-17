@@ -1,26 +1,34 @@
 import { alphaBeta } from "rust-othello";
 import { Board, Color, Player, WHITE } from "./game";
 
-export const alphaBetaPlayer: Player = {
+export type Depth = 0 | 1 | 2 | 3 | 4;
+
+export class AlphaBetaPlayer implements Player {
+  depth: Depth;
+
+  constructor(depth: Depth) {
+    this.depth = depth;
+  }
+
   setColor(color: Color) {
     if (color != WHITE) {
       throw new Error(`unsupported color: ${color}`);
     }
-  },
+  }
 
   getTurn(board: Board) {
-    return alphaBeta(board);
-  },
+    return alphaBeta(board, this.depth);
+  }
 
-  notifyBeforeOpponentTurn() {},
+  notifyBeforeOpponentTurn() {}
 
-  notifyOpponentTurn() {},
+  notifyOpponentTurn() {}
 
-  notifySkippedTurn() {},
+  notifySkippedTurn() {}
 
-  notifyOpponentSkipped() {},
+  notifyOpponentSkipped() {}
 
-  notifyBoardChanged() {},
+  notifyBoardChanged() {}
 
-  notifyGameOver() {},
-};
+  notifyGameOver() {}
+}

@@ -19,14 +19,24 @@
     </div>
     <span id="waiting" class="hidden" role="status">waiting for opponent...</span>
     <script type="module" src="/src/main.ts"></script>
+    <dialog id="new-game-dialog">
+      <h1 class="title">Othello</h1>
+      <p class="body">
+        <label for="difficulty-input">Difficulty:</label>
+        <input id="difficulty-input" type="range" name="difficulty" min="0" max="4" step="1" />
+      </p>
+      <div class="buttons">
+        <button id="ok">Play</button>
+      </div>
+    </dialog>
     <template id="cell-template">
       <div class="disk"></div>
     </template>
     <template id="alert-template">
       <dialog>
-        <p id="text"></p>
+        <p class="body"></p>
         <div class="buttons">
-          <button id="ok">Ok</button>
+          <button class="ok">Ok</button>
         </div>
       </dialog>
     </template>

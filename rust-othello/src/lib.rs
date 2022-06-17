@@ -37,7 +37,7 @@ pub fn moveExists(board: &[i8], color: i8) -> bool {
 
 #[allow(non_snake_case)]
 #[wasm_bindgen]
-pub fn alphaBeta(input_board: &[i8]) -> usize {
+pub fn alphaBeta(input_board: &[i8], depth: u8) -> usize {
     let board = convert_board(input_board);
 
     let mut best_location = 0;
@@ -45,7 +45,7 @@ pub fn alphaBeta(input_board: &[i8]) -> usize {
 
     for location in 0..64 {
         if let Ok(new_board) = do_move(&board, location, 1) {
-            let heuristic = ab_min(new_board, 4, false, i8::MIN, i8::MAX);
+            let heuristic = ab_min(new_board, depth, false, i8::MIN, i8::MAX);
 
             if heuristic > best_heuristic {
                 best_heuristic = heuristic;
