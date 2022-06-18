@@ -37,24 +37,25 @@ pub fn moveExists(board: &[i8], color: i8) -> bool {
 
 #[allow(non_snake_case)]
 #[wasm_bindgen]
-pub fn alphaBeta(input_board: &[i8], depth: u8) -> usize {
+pub fn getValidMoves(input_board: &[i8]) -> Vec<usize> {
     let board = convert_board(input_board);
-
-    let mut best_location = 0;
-    let mut best_heuristic = i8::MIN;
-
+    let mut valid_moves = Vec::with_capacity(64);
     for location in 0..64 {
-        if let Ok(new_board) = do_move(&board, location, 1) {
-            let heuristic = ab_min(new_board, depth, false, i8::MIN, i8::MAX);
-
-            if heuristic > best_heuristic {
-                best_heuristic = heuristic;
-                best_location = location;
-            }
+        if do_move(&board, location, 1).is_ok() {
+            valid_moves.push(location);
         }
     }
+    valid_moves
+}
 
-    best_location
+#[allow(non_snake_case)]
+#[wasm_bindgen]
+pub fn alphaBeta(input_board: &[i8], location: usize, depth: u8) -> i8 {
+    let board = convert_board(input_board);
+
+    let new_board = do_move(&board, location, 1).unwrap();
+
+    ab_min(new_board, depth, false, i8::MIN, i8::MAX)
 }
 
 fn ab_min(board: Board, depth: u8, was_skip: bool, alpha: i8, mut beta: i8) -> i8 {
