@@ -7,10 +7,18 @@ export type Depth = 0 | 1 | 2 | 3 | 4;
 
 const workers: AlphaBetaFunction[] = [];
 
-for (let i = 0; i < navigator.hardwareConcurrency; i++) {
-  const worker = new Worker(new URL("./alpha-beta-worker.ts", import.meta.url), { type: "module" });
-  const alphaBeta = Comlink.wrap<AlphaBetaFunction>(Comlink.proxy(worker));
-  workers.push(alphaBeta);
+if (typeof Worker !== "undefined") {
+  for (let i = 0; i < navigator.hardwareConcurrency; i++) {
+    const worker = new Worker(new URL("./alpha-beta-worker.ts", import.meta.url), { type: "module" });
+    const alphaBeta = Comlink.wrap<AlphaBetaFunction>(Comlink.proxy(worker));
+    workers.push(alphaBeta);
+  }
+} else {
+  const importPromise = import("rust-othello");
+  workers.push(async (...args) => {
+    const { alphaBeta } = await importPromise;
+    return alphaBeta(...args);
+  });
 }
 
 export class AlphaBetaPlayer implements Player {
