@@ -1,4 +1,4 @@
-import { getValidMoves } from "rust-othello";
+import { getValidMoves, alphaBeta } from "rust-othello";
 import * as Comlink from "comlink";
 import { Board, Color, Player, WHITE } from "./game";
 import type { AlphaBetaFunction } from "./alpha-beta-worker";
@@ -14,11 +14,7 @@ if (typeof Worker !== "undefined") {
     workers.push(alphaBeta);
   }
 } else {
-  const importPromise = import("rust-othello");
-  workers.push(async (...args) => {
-    const { alphaBeta } = await importPromise;
-    return alphaBeta(...args);
-  });
+  workers.push(async (...args) => alphaBeta(...args));
 }
 
 export class AlphaBetaPlayer implements Player {
