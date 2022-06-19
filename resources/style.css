@@ -10,16 +10,21 @@
   --gutter-width: 2vmin;
   --cell-border-radius: 1vmin;
 
-  --surface: #121212;
-  --on-surface: #ffffff;
+  --surface-rgb: 18 18 18;
+  --surface: rgb(var(--surface-rgb));
+  --on-surface-rgb: 255 255 255;
+  --on-surface: rgb(var(--on-surface-rgb));
+
+  --accent-rgb: 0 128 0;
+  --accent: rgb(var(--accent-rgb));
 
   font-family: "Roboto";
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --surface: #ffffff;
-    --on-surface: #000000;
+    --surface-rgb: 255 255 255;
+    --on-surface-rgb: 0 0 0;
   }
 }
 
@@ -28,7 +33,36 @@ html {
 }
 
 input {
-  accent-color: green;
+  accent-color: var(--accent);
+}
+
+button {
+  --button-rgb: var(--accent-rgb);
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  font: inherit;
+  color: rgb(var(--button-rgb));
+  height: 40px;
+  padding-inline: 12px;
+  border-radius: 100vmax;
+}
+
+button:hover {
+  background-color: rgb(var(--button-rgb) / 0.08);
+}
+
+button:focus-visible,
+button:active {
+  background-color: rgb(var(--button-rgb) / 0.12);
+  outline: none;
+}
+
+.icon-button {
+  height: 48px;
+  width: 48px;
+  display: inline-grid;
+  place-content: center;
 }
 
 body {
@@ -104,6 +138,13 @@ body {
   transform: scaleY(-1);
 }
 
+#settings-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  --button-rgb: var(--on-surface-rgb);
+}
+
 #waiting {
   color: var(--on-surface);
   padding: 1em;
@@ -148,25 +189,4 @@ dialog .buttons {
   margin-top: 24px;
   display: flex;
   justify-content: flex-end;
-}
-
-button {
-  appearance: none;
-  border: none;
-  background-color: transparent;
-  font: inherit;
-  color: green;
-  height: 40px;
-  padding-inline: 12px;
-  border-radius: 100vmax;
-}
-
-button:hover {
-  background-color: rgba(0, 128, 0, 0.08);
-}
-
-button:focus-visible,
-button:active {
-  background-color: rgba(0, 128, 0, 0.12);
-  outline: none;
 }
