@@ -30,6 +30,7 @@
 
 html {
   background-color: var(--surface);
+  color: var(--on-surface);
 }
 
 input {
@@ -145,6 +146,13 @@ body {
   --button-rgb: var(--on-surface-rgb);
 }
 
+#close-settings {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  --button-rgb: var(--on-surface-rgb);
+}
+
 #waiting {
   color: var(--on-surface);
   padding: 1em;
@@ -189,4 +197,9 @@ dialog .buttons {
   margin-top: 24px;
   display: flex;
   justify-content: flex-end;
+}
+
+dialog h1 {
+  margin: 0;
+  margin-bottom: 16px;
 }

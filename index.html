@@ -23,17 +23,17 @@
         <path fill="currentcolor" d="<%- mdiCog %>" />
       </svg>
     </button>
-    <span id="waiting" class="hidden" role="status">waiting for opponent...</span>
-    <dialog id="new-game-dialog">
-      <h1 class="title">Othello</h1>
-      <p class="body">
-        <label for="difficulty-input">Difficulty:</label>
-        <input id="difficulty-input" type="range" name="difficulty" min="0" max="5" step="1" />
-      </p>
-      <div class="buttons">
-        <button id="ok">Play</button>
-      </div>
+    <dialog id="settings-dialog">
+      <h1>Settings</h1>
+      <label for="difficulty-input">Difficulty:</label>
+      <input id="difficulty-input" type="range" name="difficulty" min="0" max="5" step="1" />
+      <button id="close-settings" class="icon-button">
+        <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
+          <path fill="currentcolor" d="<%- mdiClose %>" />
+        </svg>
+      </button>
     </dialog>
+    <span id="waiting" class="hidden" role="status">waiting for opponent...</span>
     <template id="cell-template">
       <div class="disk"></div>
     </template>

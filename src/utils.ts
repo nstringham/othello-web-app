@@ -14,21 +14,37 @@ export function waitForEvent(emitter: EventTarget, event: string, options?: AddE
 
 export function waitForDialogToBeClosed(dialog: HTMLDialogElement): Promise<void> {
   return new Promise((resolve) => {
+    dialog.querySelector("button")!.addEventListener(
+      "click",
+      () => {
+        close();
+      },
+      { once: true }
+    );
     dialog.addEventListener(
       "cancel",
       (event) => {
         event.preventDefault();
-        resolve();
+        close();
       },
       { once: true }
     );
-    dialog.querySelector("button")!.addEventListener(
-      "click",
-      () => {
-        resolve();
-      },
-      { once: true }
-    );
+    function dialogClickListener(event: MouseEvent) {
+      const rect = dialog.getBoundingClientRect();
+      if (
+        event.clientY < rect.top ||
+        event.clientY > rect.bottom ||
+        event.clientX < rect.left ||
+        event.clientX > rect.right
+      ) {
+        close();
+      }
+    }
+    dialog.addEventListener("click", dialogClickListener);
+    function close() {
+      dialog.removeEventListener("click", dialogClickListener);
+      resolve();
+    }
   });
 }
 
@@ -43,6 +59,12 @@ export async function showAlert(message: string): Promise<void> {
 
   document.body.appendChild(fragment);
 
+  await showDialog(dialog);
+
+  dialog.remove();
+}
+
+export async function showDialog(dialog: HTMLDialogElement): Promise<void> {
   dialog.showModal();
 
   await waitForDialogToBeClosed(dialog);
@@ -51,5 +73,5 @@ export async function showAlert(message: string): Promise<void> {
 
   await waitForEvent(dialog, "animationend");
 
-  dialog.remove();
+  dialog.classList.remove("closing");
 }

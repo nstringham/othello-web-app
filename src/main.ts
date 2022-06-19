@@ -1,5 +1,6 @@
 import * as Comlink from "comlink";
 import { htmlPlayer } from "./game/html-player";
+import "./settings";
 import type { PlayFunction } from "./worker";
 import type { Depth } from "./game/alpha-beta";
 
@@ -9,19 +10,9 @@ const play = Comlink.wrap<PlayFunction>(Comlink.proxy(worker));
 
 const player = Comlink.proxy(htmlPlayer);
 
-const newGameDialog = document.getElementById("new-game-dialog") as HTMLDialogElement;
+const difficulty = parseInt(localStorage.getItem("difficulty") || "2") as Depth;
 
-const difficultySelector = newGameDialog.querySelector('input[name="difficulty"]') as HTMLInputElement;
-
-const playButton = newGameDialog.querySelector("button") as HTMLButtonElement;
-
-playButton.addEventListener("click", () => {
-  const difficulty = parseInt(difficultySelector.value) as Depth;
-  play(player, difficulty);
-  newGameDialog.close();
-});
-
-newGameDialog.showModal();
+play(player, difficulty);
 
 import { registerSW } from "virtual:pwa-register";
 
