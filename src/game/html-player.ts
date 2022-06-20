@@ -36,6 +36,7 @@ export const htmlPlayer: Player = {
         resolver(move);
         doTurn = undefined;
         document.documentElement.classList.remove("player-turn");
+        gameInProgress = true;
       } else {
         showAlert("Invalid move!");
       }
@@ -74,6 +75,7 @@ export const htmlPlayer: Player = {
   },
 
   notifyGameOver(winner?: Color) {
+    gameInProgress = false;
     if (winner == BLACK) {
       return showAlert("You won!");
     } else if (winner == WHITE) {
@@ -126,3 +128,12 @@ function checkMove(board: Board, move: number): boolean {
 
   return false;
 }
+
+let gameInProgress = false;
+
+addEventListener("beforeunload", (event) => {
+  if (gameInProgress) {
+    event.preventDefault();
+    event.returnValue = "Are you sure you want to exit? Your game will be lost.";
+  }
+});
