@@ -37,12 +37,12 @@ pub fn moveExists(board: &[i8], color: i8) -> bool {
 
 #[allow(non_snake_case)]
 #[wasm_bindgen]
-pub fn getValidMoves(input_board: &[i8]) -> Vec<usize> {
+pub fn getValidMoves(input_board: &[i8]) -> Vec<u8> {
     let board = convert_board(input_board);
     let mut valid_moves = Vec::with_capacity(64);
     for location in 0..64 {
         if do_move(&board, location, 1).is_ok() {
-            valid_moves.push(location);
+            valid_moves.push(location as u8);
         }
     }
     valid_moves

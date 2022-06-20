@@ -3,14 +3,11 @@ import { Board, Color, Player, BLACK, WHITE, EMPTY } from "./game";
 
 const waitingElement = document.getElementById("waiting");
 
-const board = document.getElementById("board") as HTMLDivElement;
+const boardElement = document.getElementById("board") as HTMLDivElement;
 
-const cells: HTMLDivElement[] = [];
-const disks: (HTMLDivElement | undefined)[] = [];
+const cells: HTMLButtonElement[] = [];
 
-const cellTemplate = document.getElementById("cell-template") as HTMLTemplateElement;
-
-board.querySelectorAll<HTMLDivElement>(".cell").forEach((cell) => {
+boardElement.querySelectorAll<HTMLButtonElement>(".cell").forEach((cell) => {
   cells.push(cell);
 });
 
@@ -32,11 +29,13 @@ export const htmlPlayer: Player = {
   },
 
   getTurn(board: Board): Promise<number> {
+    document.documentElement.classList.add("player-turn");
     let resolver: (move: number) => void;
     doTurn = (move: number) => {
       if (checkMove(board, move)) {
         resolver(move);
         doTurn = undefined;
+        document.documentElement.classList.remove("player-turn");
       } else {
         showAlert("Invalid move!");
       }
@@ -66,18 +65,9 @@ export const htmlPlayer: Player = {
     await animationDone;
     requestAnimationFrame(() => {
       for (let i = 0; i < 64; i++) {
-        if (board[i] !== EMPTY && disks[i] === undefined) {
-          const clone = cellTemplate.content.cloneNode(true);
-          cells[i].appendChild(clone);
-          disks[i] = cells[i].querySelector(".disk") as HTMLDivElement;
-        } else if (board[i] === EMPTY && disks[i] !== undefined) {
-          disks[i]?.remove();
-          disks[i] = undefined;
-        }
-
-        if (board[i] !== EMPTY && disks[i] !== undefined) {
-          disks[i]?.classList?.toggle("flipped", board[i] === BLACK);
-        }
+        cells[i].classList.toggle("black", board[i] === BLACK);
+        cells[i].classList.toggle("white", board[i] === WHITE);
+        cells[i].setAttribute("tabindex", checkMove(board, i) ? "0" : "-1");
       }
       animationDone = waitForMilliseconds(500);
     });

@@ -37,7 +37,6 @@ export class AlphaBetaPlayer implements Player {
 
     for (const [i, move] of validMoves.entries()) {
       const alphaBeta = workers[i % workers.length];
-      console.log(`alphaBeta(${board}, ${move}, ${this.depth})`);
       const heuristicPromise = alphaBeta(board, move, this.depth);
       heuristics.set(move, heuristicPromise);
     }
