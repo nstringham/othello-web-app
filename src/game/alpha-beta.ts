@@ -17,18 +17,24 @@ if (typeof Worker !== "undefined") {
   workers.push(async (...args) => alphaBeta(...args));
 }
 
-export class AlphaBetaPlayer implements Player {
-  depth: Depth;
+let depth: Depth = 0;
 
-  constructor(depth: Depth) {
-    this.depth = depth;
+const difficultyBroadcastChannel = new BroadcastChannel("difficulty");
+
+difficultyBroadcastChannel.onmessage = (event) => {
+  if (typeof event.data == "number") {
+    depth = event.data as Depth;
   }
+};
 
+difficultyBroadcastChannel.postMessage(null);
+
+export const alphaBetaPlayer: Player = {
   setColor(color: Color) {
     if (color != WHITE) {
       throw new Error(`unsupported color: ${color}`);
     }
-  }
+  },
 
   async getTurn(board: Board) {
     const validMoves = getValidMoves(board);
@@ -37,7 +43,7 @@ export class AlphaBetaPlayer implements Player {
 
     for (const [i, move] of validMoves.entries()) {
       const alphaBeta = workers[i % workers.length];
-      const heuristicPromise = alphaBeta(board, move, this.depth);
+      const heuristicPromise = alphaBeta(board, move, depth);
       heuristics.set(move, heuristicPromise);
     }
 
@@ -60,17 +66,17 @@ export class AlphaBetaPlayer implements Player {
     }
 
     return bestMove;
-  }
+  },
 
-  notifyBeforeOpponentTurn() {}
+  notifyBeforeOpponentTurn() {},
 
-  notifyOpponentTurn() {}
+  notifyOpponentTurn() {},
 
-  notifySkippedTurn() {}
+  notifySkippedTurn() {},
 
-  notifyOpponentSkipped() {}
+  notifyOpponentSkipped() {},
 
-  notifyBoardChanged() {}
+  notifyBoardChanged() {},
 
-  notifyGameOver() {}
-}
+  notifyGameOver() {},
+};

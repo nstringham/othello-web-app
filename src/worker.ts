@@ -1,13 +1,13 @@
 import init from "rust-othello";
 import * as Comlink from "comlink";
-import { AlphaBetaPlayer, Depth } from "./game/alpha-beta";
+import { alphaBetaPlayer } from "./game/alpha-beta";
 import { Game, Player } from "./game/game";
 
 const wasmPromise = init();
 
-async function play(player: Player, difficulty: Depth) {
+async function play(player: Player) {
   await wasmPromise;
-  const game = new Game(player, new AlphaBetaPlayer(difficulty));
+  const game = new Game(player, alphaBetaPlayer);
   await game.play();
 }
 
