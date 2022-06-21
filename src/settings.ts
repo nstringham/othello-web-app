@@ -1,4 +1,3 @@
-import { type } from "os";
 import { showDialog } from "./utils";
 
 const settingsButton = document.getElementById("settings-button") as HTMLButtonElement;
