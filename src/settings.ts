@@ -6,9 +6,7 @@ const settingsDialog = document.getElementById("settings-dialog") as HTMLDialogE
 const difficultySelector = settingsDialog.querySelector("#difficulty-input") as HTMLInputElement;
 const difficultyString = localStorage.getItem("difficulty");
 
-if (difficultyString == null) {
-  difficultySelector.value = "2";
-}
+difficultySelector.value = difficultyString ?? "2";
 
 const difficultyBroadcastChannel = new BroadcastChannel("difficulty");
 
