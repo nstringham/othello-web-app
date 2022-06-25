@@ -7,6 +7,12 @@ const boardElement = document.getElementById("board") as HTMLDivElement;
 
 const cells: HTMLButtonElement[] = [];
 
+const ariaLabels: { [key: number]: string } = {
+  [BLACK]: "black",
+  [WHITE]: "white",
+  [EMPTY]: "empty",
+};
+
 boardElement.querySelectorAll<HTMLButtonElement>(".cell").forEach((cell) => {
   cells.push(cell);
 });
@@ -69,6 +75,7 @@ export const htmlPlayer: Player = {
         cells[i].classList.toggle("black", board[i] === BLACK);
         cells[i].classList.toggle("white", board[i] === WHITE);
         cells[i].setAttribute("tabindex", checkMove(board, i) ? "0" : "-1");
+        cells[i].setAttribute("aria-label", ariaLabels[board[i]]);
       }
       animationDone = waitForMilliseconds(500);
     });
