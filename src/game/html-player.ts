@@ -81,15 +81,23 @@ export const htmlPlayer: Player = {
     });
   },
 
-  notifyGameOver(winner?: Color) {
+  notifyGameOver(board: Board) {
     gameInProgress = false;
-    if (winner == BLACK) {
-      return showAlert("You won!");
-    } else if (winner == WHITE) {
-      return showAlert("You lost!");
+
+    const { black, white } = countBoard(board);
+
+    let title: string;
+    if (black > white) {
+      title = "You won!";
+    } else if (white > black) {
+      title = "You lost!";
     } else {
-      return showAlert("Draw!");
+      title = "Draw!";
     }
+
+    const body = /*html*/ `black: ${black}<br>white: ${white}`;
+
+    return showAlert({ title, body });
   },
 };
 
@@ -134,6 +142,19 @@ function checkMove(board: Board, move: number): boolean {
   }
 
   return false;
+}
+
+function countBoard(board: Board): { black: number; white: number } {
+  let black = 0;
+  let white = 0;
+  for (let i = 0; i < 64; i++) {
+    if (board[i] === BLACK) {
+      black++;
+    } else if (board[i] === WHITE) {
+      white++;
+    }
+  }
+  return { black, white };
 }
 
 let gameInProgress = false;

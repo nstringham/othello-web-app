@@ -25,7 +25,7 @@ export interface Player {
 
   notifyBoardChanged(board: Board): void | Promise<void>;
 
-  notifyGameOver(winner?: Color): void | Promise<void>;
+  notifyGameOver(board: Board): void | Promise<void>;
 }
 
 export class Game {
@@ -50,7 +50,7 @@ export class Game {
   }
 
   async play() {
-    this.notify_board_changed();
+    this.notifyBoardChanged();
 
     while (true) {
       if (this.gameOver) {
@@ -71,46 +71,25 @@ export class Game {
       const move = await player.getTurn(this.board);
       await otherPlayer.notifyOpponentTurn(move);
       if (doMove(this.board, move, color)) {
-        await this.notify_board_changed();
+        await this.notifyBoardChanged();
       } else {
-        await this.end_game(otherColor);
+        await this.endGame();
         return;
       }
     } else if (!moveExists(this.board, otherColor)) {
-      await this.end_game(findWinner(this.board));
+      await this.endGame();
       return;
     } else {
       await Promise.all([player.notifySkippedTurn(), otherPlayer.notifyOpponentSkipped()]);
     }
   }
 
-  async notify_board_changed() {
+  async notifyBoardChanged() {
     await Promise.all([this.player1.notifyBoardChanged(this.board), this.player2.notifyBoardChanged(this.board)]);
   }
 
-  async end_game(winner?: Color) {
+  async endGame() {
     this.gameOver = true;
-    await Promise.all([this.player1.notifyGameOver(winner), this.player2.notifyGameOver(winner)]);
-  }
-}
-
-function findWinner(board: Board): Color | undefined {
-  let black = 0;
-  let white = 0;
-
-  for (let i = 0; i < 64; i++) {
-    if (board[i] == BLACK) {
-      black++;
-    } else if (board[i] == WHITE) {
-      white++;
-    }
-  }
-
-  if (black > white) {
-    return BLACK;
-  } else if (white > black) {
-    return WHITE;
-  } else {
-    return undefined;
+    await Promise.all([this.player1.notifyGameOver(this.board), this.player2.notifyGameOver(this.board)]);
   }
 }

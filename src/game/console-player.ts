@@ -31,11 +31,11 @@ export const consolePlayer: Player = {
     console.log("notifyOpponentSkipped");
   },
 
-  notifyBoardChanged(board: Int8Array) {
+  notifyBoardChanged(board: Board) {
     console.log("notifyBoardChanged", board);
   },
 
-  notifyGameOver(winner?: Color) {
-    console.log("notifyGameOver", winner);
+  notifyGameOver(board: Board) {
+    console.log("notifyGameOver", board);
   },
 };

@@ -50,12 +50,23 @@ export function waitForDialogToBeClosed(dialog: HTMLDialogElement): Promise<void
 
 const alertTemplate = document.getElementById("alert-template") as HTMLTemplateElement;
 
-export async function showAlert(message: string): Promise<void> {
+export async function showAlert(options: string | { title?: string; body: string }): Promise<void> {
+  if (typeof options === "string") {
+    options = { body: options };
+  }
+
   const fragment = alertTemplate.content.cloneNode(true) as DocumentFragment;
   const dialog = fragment.querySelector("dialog") as HTMLDialogElement;
   const text = fragment.querySelector(".body") as HTMLParagraphElement;
 
-  text.textContent = message;
+  text.innerHTML = options.body;
+
+  if (options.title != undefined) {
+    const title = document.createElement("h1");
+    title.className = "title";
+    title.textContent = options.title;
+    dialog.insertBefore(title, text);
+  }
 
   document.body.appendChild(fragment);
 
