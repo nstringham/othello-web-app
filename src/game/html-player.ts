@@ -57,11 +57,15 @@ export const htmlPlayer: Player = {
   },
 
   notifyBeforeOpponentTurn() {
-    const turnOver = new Promise<void>((resolve) => {
-      doneWaiting = resolve;
-    });
+    const timeoutID = setTimeout(() => {
+      const turnOver = new Promise<void>((resolve) => {
+        doneWaiting = resolve;
+      });
 
-    showToast("waiting for opponent...", turnOver);
+      showToast("Waiting for opponent...", Promise.all([turnOver, waitForMilliseconds(500)]));
+    }, 1_000);
+
+    doneWaiting = () => clearTimeout(timeoutID);
   },
 
   notifyOpponentTurn() {
@@ -89,8 +93,11 @@ export const htmlPlayer: Player = {
     });
   },
 
-  notifyGameOver(board: Board) {
+  async notifyGameOver(board: Board) {
     gameInProgress = false;
+
+    await animationDone;
+    await waitForMilliseconds(250);
 
     const { black, white } = countBoard(board);
 
