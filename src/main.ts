@@ -1,10 +1,11 @@
 import * as Comlink from "comlink";
 import { htmlPlayer } from "./game/html-player";
 import "./settings";
-import Worker from "./worker?worker";
 import type { PlayFunction } from "./worker";
 
-const play = Comlink.wrap<PlayFunction>(Comlink.proxy(new Worker()));
+const worker = new Worker(new URL("./worker", import.meta.url), { type: "module" });
+
+const play = Comlink.wrap<PlayFunction>(Comlink.proxy(worker));
 
 const player = Comlink.proxy(htmlPlayer);
 
