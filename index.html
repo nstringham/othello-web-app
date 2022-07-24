@@ -41,14 +41,18 @@
         </svg>
       </button>
     </dialog>
-    <span id="waiting" class="hidden" role="status">waiting for opponent...</span>
-    <template id="alert-template">
-      <dialog>
-        <p class="body"></p>
-        <div class="buttons">
-          <button class="ok">Ok</button>
-        </div>
-      </dialog>
+    <dialog id="game-over-dialog">
+      <h1 class="title"></h1>
+      <p class="body"></p>
+      <div class="buttons">
+        <button class="ok">Ok</button>
+      </div>
+    </dialog>
+    <div id="toast-container"></div>
+    <template id="toast-template">
+      <div role="alert" class="toast">
+        <snap class="text"></snap>
+      </div>
     </template>
   </body>
 </html>

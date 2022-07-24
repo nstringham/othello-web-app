@@ -223,3 +223,27 @@ dialog h1 {
   margin: 0;
   margin-bottom: 16px;
 }
+
+#toast-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  padding: 12px;
+  gap: 12px;
+  justify-items: start;
+}
+
+.toast {
+  border-radius: 28px;
+  padding: 0 24px;
+  height: 48px;
+  border: solid 1px rgb(var(--on-surface-rgb) / 0.25);
+  box-sizing: border-box;
+  background-color: var(--surface);
+  color: var(--on-surface);
+}
+
+.toast > .text {
+  line-height: 48px;
+}

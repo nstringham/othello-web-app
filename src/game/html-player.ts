@@ -1,7 +1,5 @@
-import { showAlert, waitForMilliseconds } from "../utils";
+import { showDialog, showToast, waitForMilliseconds } from "../utils";
 import { Board, Color, Player, BLACK, WHITE, EMPTY } from "./game";
-
-const waitingElement = document.getElementById("waiting");
 
 const boardElement = document.getElementById("board") as HTMLDivElement;
 
@@ -25,7 +23,13 @@ for (let i = 0; i < 64; i++) {
   });
 }
 
+let doneWaiting = () => {};
+
 let animationDone: Promise<void> | undefined;
+
+const gameOverDialog = document.querySelector("#game-over-dialog") as HTMLDialogElement;
+const gameOverDialogTitle = gameOverDialog.querySelector(".title") as HTMLHeadingElement;
+const gameOverDialogBody = gameOverDialog.querySelector(".body") as HTMLParagraphElement;
 
 export const htmlPlayer: Player = {
   setColor(color: Color) {
@@ -44,7 +48,7 @@ export const htmlPlayer: Player = {
         document.documentElement.classList.remove("player-turn");
         gameInProgress = true;
       } else {
-        showAlert("Invalid move!");
+        showToast("Invalid move!");
       }
     };
     return new Promise((resolve) => {
@@ -53,19 +57,23 @@ export const htmlPlayer: Player = {
   },
 
   notifyBeforeOpponentTurn() {
-    waitingElement?.classList.remove("hidden");
+    const turnOver = new Promise<void>((resolve) => {
+      doneWaiting = resolve;
+    });
+
+    showToast("waiting for opponent...", turnOver);
   },
 
   notifyOpponentTurn() {
-    waitingElement?.classList.add("hidden");
+    doneWaiting();
   },
 
   notifySkippedTurn() {
-    return showAlert("your turn was skipped");
+    showToast("your turn was skipped");
   },
 
   notifyOpponentSkipped() {
-    return showAlert("your opponent's turn was skipped");
+    showToast("your opponent's turn was skipped");
   },
 
   async notifyBoardChanged(board: Board) {
@@ -86,18 +94,17 @@ export const htmlPlayer: Player = {
 
     const { black, white } = countBoard(board);
 
-    let title: string;
     if (black > white) {
-      title = "You won!";
+      gameOverDialogTitle.textContent = "You won!";
     } else if (white > black) {
-      title = "You lost!";
+      gameOverDialogTitle.textContent = "You lost!";
     } else {
-      title = "Draw!";
+      gameOverDialogTitle.textContent = "Draw!";
     }
 
-    const body = /*html*/ `black: ${black}<br>white: ${white}`;
+    gameOverDialogBody.innerHTML = /*html*/ `black: ${black}<br>white: ${white}`;
 
-    return showAlert({ title, body });
+    return showDialog(gameOverDialog);
   },
 };
 

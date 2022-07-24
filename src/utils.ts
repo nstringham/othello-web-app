@@ -17,7 +17,7 @@ export function waitForDialogToBeClosed(dialog: HTMLDialogElement): Promise<void
     dialog.querySelector("button")!.addEventListener(
       "click",
       () => {
-        close();
+        resolve();
       },
       { once: true }
     );
@@ -25,54 +25,11 @@ export function waitForDialogToBeClosed(dialog: HTMLDialogElement): Promise<void
       "cancel",
       (event) => {
         event.preventDefault();
-        close();
+        resolve();
       },
       { once: true }
     );
-    function dialogClickListener(event: MouseEvent) {
-      const rect = dialog.getBoundingClientRect();
-      if (
-        event.clientY < rect.top ||
-        event.clientY > rect.bottom ||
-        event.clientX < rect.left ||
-        event.clientX > rect.right
-      ) {
-        close();
-      }
-    }
-    dialog.addEventListener("click", dialogClickListener);
-    function close() {
-      dialog.removeEventListener("click", dialogClickListener);
-      resolve();
-    }
   });
-}
-
-const alertTemplate = document.getElementById("alert-template") as HTMLTemplateElement;
-
-export async function showAlert(options: string | { title?: string; body: string }): Promise<void> {
-  if (typeof options === "string") {
-    options = { body: options };
-  }
-
-  const fragment = alertTemplate.content.cloneNode(true) as DocumentFragment;
-  const dialog = fragment.querySelector("dialog") as HTMLDialogElement;
-  const text = fragment.querySelector(".body") as HTMLParagraphElement;
-
-  text.innerHTML = options.body;
-
-  if (options.title != undefined) {
-    const title = document.createElement("h1");
-    title.className = "title";
-    title.textContent = options.title;
-    dialog.insertBefore(title, text);
-  }
-
-  document.body.appendChild(fragment);
-
-  await showDialog(dialog);
-
-  dialog.remove();
 }
 
 export async function showDialog(dialog: HTMLDialogElement): Promise<void> {
@@ -85,4 +42,39 @@ export async function showDialog(dialog: HTMLDialogElement): Promise<void> {
   await waitForEvent(dialog, "animationend");
 
   dialog.classList.remove("closing");
+
+  dialog.close();
+}
+
+const toastTemplate = document.getElementById("toast-template") as HTMLTemplateElement;
+const toastContainer = document.getElementById("toast-container") as HTMLDivElement;
+
+const toastAnimation = toastContainer.animate(
+  { transform: ["translateY(60px)", "translateY(0)"] },
+  { duration: 250, easing: "ease-out" }
+);
+
+export async function showToast(text: string, waitFor: Promise<unknown> = waitForMilliseconds(10_000)) {
+  const fragment = toastTemplate.content.cloneNode(true) as DocumentFragment;
+
+  const toastElement = fragment.querySelector(".toast") as HTMLDivElement;
+  const textElement = fragment.querySelector(".text") as HTMLSpanElement;
+
+  textElement.textContent = text;
+
+  toastContainer.appendChild(fragment);
+
+  toastAnimation.finish();
+  toastAnimation.play();
+
+  await waitFor;
+
+  const toastDisappear = toastElement.animate(
+    { transform: ["translateX(0)", "translateX(calc(-12px + -100%))"] },
+    { duration: 500, easing: "ease-in", fill: "forwards" }
+  );
+
+  await toastDisappear.finished;
+
+  toastElement.remove();
 }
