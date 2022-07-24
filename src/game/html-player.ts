@@ -42,7 +42,9 @@ export const htmlPlayer: Player = {
     document.documentElement.classList.add("player-turn");
     let resolver: (move: number) => void;
     doTurn = (move: number) => {
-      if (checkMove(board, move)) {
+      if (board[move] != EMPTY) {
+        return;
+      } else if (checkMove(board, move)) {
         resolver(move);
         doTurn = undefined;
         document.documentElement.classList.remove("player-turn");
