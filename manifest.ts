@@ -5,8 +5,8 @@ export const manifest: Partial<ManifestOptions> = {
   short_name: undefined,
   description: "A game of Othello",
   id: "othello-web-app",
-  background_color: "#008000",
-  theme_color: "#008000",
+  background_color: "#121212",
+  theme_color: "#121212",
   categories: ["game"],
   icons: getIcons(),
 };
