@@ -182,15 +182,17 @@ button.cell {
 #settings-dialog label {
   margin: 0 -24px;
   padding: 12px 32px;
-  display: flex;
 }
 
 #settings-dialog #difficulty {
+  display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
+#settings-dialog #difficulty > div,
 #settings-dialog #enable-hints {
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
