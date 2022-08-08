@@ -37,6 +37,11 @@ input {
   accent-color: var(--accent);
 }
 
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
+
 button {
   --button-rgb: var(--accent-rgb);
   appearance: none;
@@ -164,6 +169,30 @@ button.cell {
   top: 8px;
   right: 8px;
   --button-rgb: var(--on-surface-rgb);
+}
+
+@media (min-width: 600px) {
+  dialog#settings-dialog {
+    margin-right: 48px;
+    margin-top: 48px;
+    transform-origin: calc(100% + 32px) -32px;
+  }
+}
+
+#settings-dialog label {
+  margin: 0 -24px;
+  padding: 12px 32px;
+  display: flex;
+}
+
+#settings-dialog #difficulty {
+  flex-direction: column;
+  gap: 4px;
+}
+
+#settings-dialog #enable-hints {
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 #close-settings {

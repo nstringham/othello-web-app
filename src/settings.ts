@@ -3,10 +3,22 @@ import { showDialog } from "./utils";
 const settingsButton = document.getElementById("settings-button") as HTMLButtonElement;
 const settingsDialog = document.getElementById("settings-dialog") as HTMLDialogElement;
 
+const DIFFICULTY_NAMES = ["Very Easy", "Easy", "Normal", "Hard", "Very Hard", "Extreme"] as const;
+
 const difficultySelector = settingsDialog.querySelector("#difficulty-input") as HTMLInputElement;
+const difficultyDisplay = settingsDialog.querySelector("#difficulty-output") as HTMLOutputElement;
+
+function updateDifficultyDisplay() {
+  difficultyDisplay.value = DIFFICULTY_NAMES[parseInt(difficultySelector.value)];
+}
+
+difficultySelector.addEventListener("input", updateDifficultyDisplay);
+
 const difficultyString = localStorage.getItem("difficulty");
 
 difficultySelector.value = difficultyString ?? "2";
+
+updateDifficultyDisplay();
 
 const difficultyBroadcastChannel = new BroadcastChannel("difficulty");
 

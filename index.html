@@ -28,13 +28,12 @@
     </button>
     <dialog id="settings-dialog">
       <h1>Settings</h1>
-      <div>
-        <label for="difficulty-input">Difficulty</label>
-        <input id="difficulty-input" type="range" min="0" max="5" step="1" />
-      </div>
-      <div>
-        <label for="enable-hints-input">Show Hints</label>
-        <input id="enable-hints-input" type="checkbox" />
+      <div class="body">
+        <label id="difficulty">
+          <span>Difficulty: <output id="difficulty-output"></output></span>
+          <input id="difficulty-input" type="range" min="0" max="5" step="1" />
+        </label>
+        <label id="enable-hints">Show Hints<input id="enable-hints-input" type="checkbox" /></label>
       </div>
       <button id="close-settings" class="icon-button">
         <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
