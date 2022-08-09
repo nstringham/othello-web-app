@@ -204,18 +204,6 @@ button.cell {
   --button-rgb: var(--on-surface-rgb);
 }
 
-#waiting {
-  color: var(--on-surface);
-  padding: 1em;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-
-#waiting.hidden {
-  display: none;
-}
-
 dialog::backdrop {
   background-color: rgb(0 0 0 / 0.25);
 }
