@@ -48,6 +48,100 @@ enableHintsCheckbox.addEventListener("change", () => {
   document.documentElement.classList.toggle("hints-enabled", enableHintsCheckbox.checked);
 });
 
+class Color {
+  constructor(public r: number, public g: number, public b: number) {}
+
+  darker() {
+    return new Color(Math.max(this.r * 0.8, 0), Math.max(this.g * 0.8, 0), Math.max(this.b * 0.8, 0));
+  }
+
+  toString(): string {
+    return `rgb(${this.r} ${this.g} ${this.b})`;
+  }
+}
+
+const black = new Color(0, 0, 0);
+const white = new Color(255, 255, 255);
+
+interface Theme {
+  board: Color;
+  player?: Color;
+  ai?: Color;
+  accent: Color;
+}
+
+const themes: { [id: string]: Theme } = {
+  classic: {
+    board: new Color(0, 128, 0),
+    accent: new Color(0, 128, 0),
+  },
+  red: {
+    board: new Color(160, 8, 0),
+    accent: new Color(255, 16, 0),
+  },
+  blue: {
+    board: new Color(0, 16, 192),
+    accent: new Color(32, 64, 255),
+  },
+  pink: {
+    board: new Color(255, 64, 128),
+    player: new Color(64, 0, 72),
+    ai: new Color(255, 255, 255),
+    accent: new Color(255, 0, 128),
+  },
+};
+
+function applyTheme({ board, player, ai, accent }: Theme) {
+  const colors = new Map<string, Color>();
+
+  colors.set("board", board);
+  colors.set("board-darker", board.darker());
+
+  if (player != undefined) {
+    colors.set("player", player);
+  }
+
+  if (ai != undefined) {
+    colors.set("ai", ai);
+  }
+
+  colors.set("accent", accent);
+
+  const styles: string[] = [];
+  for (const [key, { r, g, b }] of colors.entries()) {
+    styles.push(`--${key}-rgb: ${r} ${g} ${b}`);
+  }
+  const style = styles.join(";\n");
+
+  document.documentElement.style.cssText = style;
+  localStorage.setItem("theme-styles", style);
+}
+
+const themeLabels = document.querySelectorAll<HTMLLabelElement>("#themes>label");
+
+const currentThemeId = localStorage.getItem("theme-id") ?? "classic";
+
+themeLabels.forEach((label) => {
+  const input = label.querySelector('input[type="radio"]') as HTMLInputElement;
+
+  const themeId = input.value;
+  const theme = themes[themeId];
+
+  label.style.setProperty("--board", theme.board.toString());
+  label.style.setProperty("--player", (theme.player ?? black).toString());
+  label.style.setProperty("--ai", (theme.ai ?? white).toString());
+
+  input.addEventListener("change", () => {
+    localStorage.setItem("theme-id", themeId);
+    applyTheme(theme);
+  });
+
+  if (currentThemeId == themeId) {
+    input.checked = true;
+    applyTheme(theme);
+  }
+});
+
 async function showSettings() {
   await showDialog(settingsDialog);
   settingsDialog.close();

@@ -10,6 +10,11 @@
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121212" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Othello</title>
+
+    <script>
+      document.documentElement.style.cssText = localStorage.getItem("theme-styles");
+    </script>
+
     <link rel="preload" href="/resources/roboto.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/resources/style.css" />
     <script type="module" src="/src/main.ts"></script>
@@ -34,6 +39,17 @@
           <input id="difficulty-input" type="range" min="0" max="5" step="1" />
         </label>
         <label id="enable-hints">Show Hints<input id="enable-hints-input" type="checkbox" /></label>
+        <div id="themes">
+          <% for (const theme of ["classic", "red", "blue", "pink"]) { %>
+          <label>
+            <div class="disk ai"></div>
+            <div class="disk player"></div>
+            <div class="disk player"></div>
+            <div class="disk ai"></div>
+            <input type="radio" name="theme" value="<%= theme %>" />
+          </label>
+          <% } %>
+        </div>
       </div>
       <button id="close-settings" class="icon-button">
         <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">

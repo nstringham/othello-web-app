@@ -10,6 +10,16 @@
   --gutter-width: 2vmin;
   --cell-border-radius: 1vmin;
 
+  --board-rgb: 0 128 0;
+  --board: rgb(var(--board-rgb));
+  --board-darker-rgb: 0 102.4 0;
+  --board-darker: rgb(var(--board-darker-rgb));
+
+  --player-rgb: 0 0 0;
+  --player: rgb(var(--player-rgb));
+  --ai-rgb: 255 255 255;
+  --ai: rgb(var(--ai-rgb));
+
   --surface-rgb: 18 18 18;
   --surface: rgb(var(--surface-rgb));
   --on-surface-rgb: 255 255 255;
@@ -87,7 +97,7 @@ body {
   width: var(--size);
   height: var(--size);
   contain: strict;
-  background-color: green;
+  background-color: var(--board);
   padding: var(--gutter-width);
   gap: var(--gutter-width);
   display: grid;
@@ -105,7 +115,7 @@ body {
 button.cell {
   height: unset;
   padding: 0;
-  background-color: darkgreen;
+  background-color: var(--board-darker);
   border-radius: var(--cell-border-radius);
   display: grid;
   place-content: center;
@@ -145,12 +155,12 @@ button.cell {
 }
 
 .cell.white::before {
-  background-color: white;
+  background-color: var(--ai);
   transform: scaleY(1);
 }
 
 .cell.black::before {
-  background-color: black;
+  background-color: var(--player);
   transform: scaleY(-1);
 }
 
@@ -179,7 +189,7 @@ button.cell {
   }
 }
 
-#settings-dialog label {
+#settings-dialog .body > * {
   margin: 0 -24px;
   padding: 12px 32px;
 }
@@ -202,6 +212,39 @@ button.cell {
   top: 16px;
   right: 16px;
   --button-rgb: var(--on-surface-rgb);
+}
+
+#themes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+#themes label {
+  aspect-ratio: 1;
+  background-color: var(--board);
+  border-radius: 16px;
+  display: grid;
+  grid-template: 1fr 1fr / 1fr 1fr;
+  padding: 12px;
+  gap: 8px;
+}
+
+#themes .disk {
+  border-radius: 1000px;
+}
+
+#themes .disk.player {
+  background-color: var(--player);
+}
+
+#themes .disk.ai {
+  background-color: var(--ai);
+}
+
+#themes input {
+  appearance: none;
+  position: absolute;
 }
 
 dialog::backdrop {
