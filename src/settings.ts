@@ -65,6 +65,7 @@ const white = new Color(255, 255, 255);
 
 interface Theme {
   board: Color;
+  boardCells?: Color;
   player?: Color;
   ai?: Color;
   accent: Color;
@@ -85,17 +86,18 @@ const themes: { [id: string]: Theme } = {
   },
   pink: {
     board: new Color(255, 64, 128),
+    boardCells: new Color(226, 44, 106),
     player: new Color(64, 0, 72),
     ai: new Color(255, 255, 255),
     accent: new Color(255, 0, 128),
   },
 };
 
-function applyTheme({ board, player, ai, accent }: Theme) {
+function applyTheme({ board, boardCells, player, ai, accent }: Theme) {
   const colors = new Map<string, Color>();
 
   colors.set("board", board);
-  colors.set("board-darker", board.darker());
+  colors.set("board-cell", boardCells ?? board.darker());
 
   if (player != undefined) {
     colors.set("player", player);

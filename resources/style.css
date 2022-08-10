@@ -12,8 +12,8 @@
 
   --board-rgb: 0 128 0;
   --board: rgb(var(--board-rgb));
-  --board-darker-rgb: 0 102.4 0;
-  --board-darker: rgb(var(--board-darker-rgb));
+  --board-cell-rgb: 0 102.4 0;
+  --board-cell: rgb(var(--board-cell-rgb));
 
   --player-rgb: 0 0 0;
   --player: rgb(var(--player-rgb));
@@ -115,7 +115,7 @@ body {
 button.cell {
   height: unset;
   padding: 0;
-  background-color: var(--board-darker);
+  background-color: var(--board-cell);
   border-radius: var(--cell-border-radius);
   display: grid;
   place-content: center;
