@@ -189,7 +189,7 @@ button.cell {
   dialog#settings-dialog {
     margin-right: 48px;
     margin-top: 48px;
-    transform-origin: calc(100% + 32px) -32px;
+    transform-origin: calc(100% + 16px) -16px;
   }
 }
 
@@ -225,8 +225,33 @@ button.cell {
   --button-rgb: var(--on-surface-rgb);
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
 dialog::backdrop {
-  background-color: rgb(0 0 0 / 0.25);
+  background-color: rgb(0 0 0 / 0.5);
+  animation: fade-in 0.2s ease-out;
+}
+
+dialog.closing::backdrop {
+  animation: fade-out 0.2s ease-out;
 }
 
 dialog {
@@ -235,6 +260,7 @@ dialog {
   max-height: calc(100vh - 96px);
   border-radius: 28px;
   border: none;
+  box-shadow: 0 11px 15px -7px rgb(0 0 0 / 20%), 0 24px 38px 3px rgb(0 0 0 / 14%), 0 9px 46px 8px rgb(0 0 0 / 12%);
   padding: 24px;
   background-color: var(--surface);
   color: var(--on-surface);
