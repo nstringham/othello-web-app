@@ -28,7 +28,7 @@ export const themes: { [id: string]: Theme } = {
   red: {
     name: "Red",
     board: new Color(160, 8, 0),
-    accent: new Color(255, 16, 0),
+    accent: new Color(190, 16, 0),
   },
   blue: {
     name: "Blue",
