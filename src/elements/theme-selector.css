@@ -4,6 +4,11 @@
   gap: 16px;
 }
 
+input {
+  appearance: none;
+  position: absolute;
+}
+
 label {
   aspect-ratio: 1;
   background-color: var(--board);
@@ -28,9 +33,4 @@ input:checked + label {
 
 .disk.ai {
   background-color: var(--ai);
-}
-
-input {
-  appearance: none;
-  position: absolute;
 }
