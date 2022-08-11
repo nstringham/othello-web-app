@@ -1,0 +1,43 @@
+:host {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+label {
+  position: relative;
+  aspect-ratio: 1;
+  background-color: var(--board);
+  border-radius: 20%;
+  display: grid;
+  grid-template: 1fr 1fr / 1fr 1fr;
+  padding: 10%;
+  gap: 10%;
+}
+
+.disk {
+  border-radius: 100vmax;
+}
+
+.disk.player {
+  background-color: var(--player);
+}
+
+.disk.ai {
+  background-color: var(--ai);
+}
+
+input {
+  appearance: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  border-radius: inherit;
+}
+
+input:checked {
+  outline: 2px solid var(--on-surface);
+}

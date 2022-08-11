@@ -39,16 +39,9 @@
           <input id="difficulty-input" type="range" min="0" max="5" step="1" />
         </label>
         <label id="enable-hints">Show Hints<input id="enable-hints-input" type="checkbox" /></label>
-        <div id="themes">
-          <% for (const theme of ["classic", "red", "blue", "pink"]) { %>
-          <label>
-            <div class="disk ai"></div>
-            <div class="disk player"></div>
-            <div class="disk player"></div>
-            <div class="disk ai"></div>
-            <input type="radio" name="theme" value="<%= theme %>" />
-          </label>
-          <% } %>
+        <div id="color-theme">
+          <label>Color Theme</label>
+          <theme-selector></theme-selector>
         </div>
       </div>
       <button id="close-settings" class="icon-button">

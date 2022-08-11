@@ -207,44 +207,17 @@ button.cell {
   justify-content: space-between;
 }
 
+#settings-dialog #color-theme {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 #close-settings {
   position: absolute;
   top: 16px;
   right: 16px;
   --button-rgb: var(--on-surface-rgb);
-}
-
-#themes {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-#themes label {
-  aspect-ratio: 1;
-  background-color: var(--board);
-  border-radius: 16px;
-  display: grid;
-  grid-template: 1fr 1fr / 1fr 1fr;
-  padding: 12px;
-  gap: 8px;
-}
-
-#themes .disk {
-  border-radius: 1000px;
-}
-
-#themes .disk.player {
-  background-color: var(--player);
-}
-
-#themes .disk.ai {
-  background-color: var(--ai);
-}
-
-#themes input {
-  appearance: none;
-  position: absolute;
 }
 
 dialog::backdrop {
