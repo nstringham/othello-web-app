@@ -38,6 +38,10 @@
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   background-color: var(--surface);
   color: var(--on-surface);
@@ -225,14 +229,16 @@ dialog::backdrop {
 }
 
 dialog {
-  min-width: 280px;
-  max-width: 560px;
+  min-width: 320px;
+  max-width: min(600px, calc(100vw - 96px));
+  max-height: calc(100vh - 96px);
   border-radius: 28px;
   border: none;
   padding: 24px;
   background-color: var(--surface);
   color: var(--on-surface);
   animation: grow 0.2s ease-out;
+  overscroll-behavior: contain;
 }
 
 dialog.closing {
