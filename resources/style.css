@@ -194,8 +194,9 @@ button.cell {
 }
 
 #settings-dialog .body > * {
-  margin: 0 -24px;
-  padding: 12px 32px;
+  margin-top: 8px;
+  margin-inline: -24px;
+  padding: 8px 32px;
 }
 
 #settings-dialog #difficulty {

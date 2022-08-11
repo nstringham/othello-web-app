@@ -16,13 +16,15 @@ export class ThemeSelectorElement extends HTMLElement {
 
     const template = document.createElement("template");
 
-    template.innerHTML = /* html */ `<label>
+    template.innerHTML = /* html */ `
+      <input type="radio" name="theme"/>
+      <label>
         <div class="disk ai"></div>
         <div class="disk player"></div>
         <div class="disk player"></div>
         <div class="disk ai"></div>
-        <input type="radio" name="theme"/>
-      </label>`;
+      </label>
+    `;
 
     const currentThemeId = localStorage.getItem("theme-id") ?? "default";
 
@@ -30,13 +32,13 @@ export class ThemeSelectorElement extends HTMLElement {
       const fragment = template.content.cloneNode(true) as DocumentFragment;
 
       const label = fragment.querySelector("label") as HTMLLabelElement;
-
+      label.setAttribute("for", themeId);
       label.style.setProperty("--board", theme.board.toString());
       label.style.setProperty("--player", (theme.player ?? black).toString());
       label.style.setProperty("--ai", (theme.ai ?? white).toString());
 
       const input = fragment.querySelector('input[type="radio"]') as HTMLInputElement;
-
+      input.setAttribute("id", themeId);
       input.setAttribute("aria-label", theme.name);
 
       input.addEventListener("change", () => {

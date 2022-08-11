@@ -5,7 +5,6 @@
 }
 
 label {
-  position: relative;
   aspect-ratio: 1;
   background-color: var(--board);
   border-radius: 20%;
@@ -13,6 +12,10 @@ label {
   grid-template: 1fr 1fr / 1fr 1fr;
   padding: 10%;
   gap: 10%;
+}
+
+input:checked + label {
+  outline: 2px solid var(--on-surface);
 }
 
 .disk {
@@ -30,14 +33,4 @@ label {
 input {
   appearance: none;
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: 0;
-  border-radius: inherit;
-}
-
-input:checked {
-  outline: 2px solid var(--on-surface);
 }
