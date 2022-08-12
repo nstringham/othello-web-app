@@ -9,8 +9,17 @@
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121212" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Othello</title>
-    <meta name="description" content="<%= description %>" />
+
+    <title><%= TITLE %></title>
+    <meta name="description" content="<%= DESCRIPTION %>" />
+    <meta name="keywords" content="Othello, game" />
+    <meta property="og:title" content="<%= TITLE %>" />
+    <meta property="og:description" content="<%= DESCRIPTION %>" />
+    <meta property="og:type" content="game" />
+    <meta property="og:url" content="<%= BASE_URL %>" />
+    <meta property="og:image" content="<%= BASE_URL %>screenshots/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="<%= BASE_URL %>screenshots/twitter.webp" />
 
     <script>
       document.documentElement.style.cssText = localStorage.getItem("theme-styles");

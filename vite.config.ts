@@ -6,9 +6,14 @@ import { VitePWA } from "vite-plugin-pwa";
 import * as mdi from "@mdi/js";
 import { manifest } from "./manifest";
 
+const BASE_URL = "https://othello-rust.web.app/";
+
 export default defineConfig({
+  base: BASE_URL,
   plugins: [
-    createHtmlPlugin({ inject: { data: { ...mdi, description: manifest.description } } }),
+    createHtmlPlugin({
+      inject: { data: { ...mdi, DESCRIPTION: manifest.description, TITLE: manifest.name, BASE_URL } },
+    }),
     VitePWA({
       manifest,
       includeManifestIcons: false,
