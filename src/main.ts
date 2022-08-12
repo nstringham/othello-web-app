@@ -9,7 +9,13 @@ const play = Comlink.wrap<PlayFunction>(Comlink.proxy(worker));
 
 const player = Comlink.proxy(htmlPlayer);
 
-play(player);
+play(player).then(() => {
+  const newGameButton = document.querySelector("#new-game") as HTMLButtonElement;
+  newGameButton.addEventListener("click", () => {
+    location.reload();
+  });
+  newGameButton.classList.add("show");
+});
 
 import { registerSW } from "virtual:pwa-register";
 

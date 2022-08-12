@@ -83,6 +83,12 @@ button:active {
   width: 48px;
   display: inline-grid;
   place-content: center;
+  place-items: center;
+}
+
+.icon-button svg {
+  width: 24px;
+  height: 24px;
 }
 
 body {
@@ -96,7 +102,6 @@ body {
 }
 
 #board {
-  box-sizing: border-box;
   --size: calc(100dvmin - 4 * var(--gutter-width));
   width: var(--size);
   height: var(--size);
@@ -307,11 +312,51 @@ dialog h1 {
   padding: 0 24px;
   height: 48px;
   border: solid 1px rgb(var(--on-surface-rgb) / 0.25);
-  box-sizing: border-box;
   background-color: var(--surface);
   color: var(--on-surface);
 }
 
 .toast > .text {
   line-height: 48px;
+}
+
+.fab {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  height: 56px;
+  width: auto;
+  padding-right: 24px;
+  padding-left: 16px;
+  gap: 16px;
+  grid-template-columns: auto auto;
+  border-radius: 16px;
+  transition: border-radius 0.1s;
+  --button-rgb: 255 255 255;
+  background-color: var(--accent);
+}
+
+.fab:hover {
+  background-color: var(--accent);
+  filter: brightness(108%);
+}
+
+.fab:focus-visible,
+.fab:active {
+  background-color: var(--accent);
+  filter: brightness(112%);
+}
+
+.fab:active {
+  border-radius: 8px;
+}
+
+#new-game {
+  display: none;
+}
+
+#new-game.show {
+  display: grid;
+  animation: grow 0.2s ease-out;
+  transform-origin: 100% 100%;
 }

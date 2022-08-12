@@ -50,7 +50,7 @@ export class Game {
   }
 
   async play() {
-    this.notifyBoardChanged();
+    await this.notifyBoardChanged();
 
     while (true) {
       if (this.gameOver) {
