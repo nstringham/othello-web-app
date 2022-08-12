@@ -43,6 +43,16 @@ export const themes: { [id: string]: Theme } = {
     ai: new Color(255, 255, 255),
     accent: new Color(255, 0, 128),
   },
+  placeholder1: {
+    name: "Placeholder 1",
+    board: new Color(128, 128, 128),
+    accent: new Color(128, 128, 128),
+  },
+  placeholder2: {
+    name: "Placeholder 2",
+    board: new Color(128, 128, 128),
+    accent: new Color(128, 128, 128),
+  },
 };
 
 export function applyTheme({ board, boardCells, player, ai, accent }: Theme) {
