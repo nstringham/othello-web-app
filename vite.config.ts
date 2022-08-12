@@ -8,7 +8,7 @@ import { manifest } from "./manifest";
 
 export default defineConfig({
   plugins: [
-    createHtmlPlugin({ inject: { data: { ...mdi } } }),
+    createHtmlPlugin({ inject: { data: { ...mdi, description: manifest.description } } }),
     VitePWA({
       manifest,
       includeManifestIcons: false,
