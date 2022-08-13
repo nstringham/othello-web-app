@@ -9,6 +9,7 @@ export const manifest: Partial<ManifestOptions> = {
   theme_color: "#121212",
   categories: ["game"],
   icons: getIcons(),
+  screenshots: getScreenshots(),
 };
 
 function getIcons() {
@@ -37,4 +38,15 @@ function getIcons() {
   }
 
   return icons;
+}
+
+function getScreenshots() {
+  return [0, 1, 2, 3, 4, 5].map((id) => {
+    return {
+      src: `screenshots/android/${id}.png`,
+      sizes: "1080x1920",
+      type: "image/webp",
+      platform: "android",
+    };
+  });
 }
