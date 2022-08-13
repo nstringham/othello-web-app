@@ -1,3 +1,4 @@
+import { preventRestart } from "../pwa";
 import { showDialog, showToast, waitForMilliseconds } from "../utils";
 import { Board, Color, Player, BLACK, WHITE, EMPTY } from "./game";
 
@@ -49,6 +50,7 @@ export const htmlPlayer: Player = {
         doTurn = undefined;
         document.documentElement.classList.remove("player-turn");
         gameInProgress = true;
+        preventRestart();
       } else {
         showToast("Invalid move!");
       }

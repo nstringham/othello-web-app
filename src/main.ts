@@ -16,11 +16,3 @@ play(player).then(() => {
   });
   newGameButton.classList.add("show");
 });
-
-import { registerSW } from "virtual:pwa-register";
-
-const updateSW = registerSW({
-  onNeedRefresh() {
-    updateSW(true);
-  },
-});

@@ -1,3 +1,4 @@
+import { preventRestart } from "./pwa";
 import { showDialog } from "./utils";
 
 const settingsButton = document.getElementById("settings-button") as HTMLButtonElement;
@@ -51,6 +52,7 @@ enableHintsCheckbox.addEventListener("change", () => {
 import("./elements/theme-selector");
 
 async function showSettings() {
+  preventRestart();
   await showDialog(settingsDialog);
   settingsDialog.close();
 }
