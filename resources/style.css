@@ -101,6 +101,12 @@ body {
   place-content: center;
 }
 
+#lcp {
+  position: absolute;
+  color: transparent;
+  pointer-events: none;
+}
+
 #board {
   --size: calc(100dvmin - 4 * var(--gutter-width));
   width: var(--size);
