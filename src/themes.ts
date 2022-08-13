@@ -64,7 +64,7 @@ export const themes: { [id: string]: Theme } = {
     boardCells: new Color(152, 166, 212),
     player: new Color(68, 52, 79),
     ai: new Color(194, 249, 112),
-    accent: new Color(194, 249, 112),
+    accent: new Color(86, 77, 128),
   },
 };
 
