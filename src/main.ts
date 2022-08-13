@@ -19,4 +19,8 @@ play(player).then(() => {
 
 import { registerSW } from "virtual:pwa-register";
 
-registerSW();
+const updateSW = registerSW({
+  onNeedRefresh() {
+    updateSW(true);
+  },
+});

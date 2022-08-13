@@ -22,7 +22,6 @@ export default defineConfig({
       manifest,
       includeManifestIcons: false,
       includeAssets: ["favicon.ico", "icons/any.svg"],
-      registerType: "autoUpdate",
       workbox: {
         sourcemap: true,
         globPatterns: ["**/*.{html,js,css,wasm,woff2}"],
