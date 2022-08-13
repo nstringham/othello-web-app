@@ -184,16 +184,16 @@ button.cell {
 }
 
 #settings-button {
-  position: absolute;
-  top: 8px;
-  right: 8px;
+  position: fixed;
+  top: max(8px, env(safe-area-inset-top));
+  right: max(8px, env(safe-area-inset-right));
   --button-rgb: var(--on-surface-rgb);
 }
 
 @media (min-width: 600px) {
   dialog#settings-dialog {
-    margin-right: 48px;
-    margin-top: 48px;
+    margin-top: max(48px, env(safe-area-inset-top));
+    margin-right: max(48px, env(safe-area-inset-right));
     transform-origin: calc(100% + 16px) -16px;
   }
 }
@@ -302,8 +302,8 @@ dialog h1 {
 
 #toast-container {
   position: fixed;
-  bottom: 0;
-  left: 0;
+  bottom: max(0px, calc(env(safe-area-inset-bottom) - 12px));
+  left: max(0px, calc(env(safe-area-inset-left) - 12px));
   display: grid;
   padding: 12px;
   gap: 12px;
@@ -325,8 +325,8 @@ dialog h1 {
 
 .fab {
   position: fixed;
-  right: 16px;
-  bottom: 16px;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
   height: 56px;
   width: auto;
   padding-right: 24px;
