@@ -175,7 +175,7 @@ button.cell {
 
 .hints-enabled.player-turn .cell[tabindex="0"]::before {
   content: "";
-  box-shadow: inset 0 0 8px 1px rgba(255, 255, 255, 0.125);
+  box-shadow: inset 0 0 8px 1px rgba(255, 255, 255, 0.25);
 }
 
 .player-turn .cell:not(.black):not(.white):focus-visible::before {

@@ -21,37 +21,50 @@ export interface Theme {
 
 export const themes: { [id: string]: Theme } = {
   default: {
-    name: "Green",
+    name: "Classic",
     board: new Color(0, 128, 0),
     accent: new Color(0, 128, 0),
   },
+
   red: {
-    name: "Red",
+    name: "Velvet",
     board: new Color(160, 8, 0),
     accent: new Color(190, 16, 0),
   },
-  blue: {
-    name: "Blue",
-    board: new Color(0, 16, 192),
-    accent: new Color(32, 64, 255),
+
+  honey: {
+    name: "Honey",
+    board: new Color(254, 216, 146),
+    boardCells: new Color(252, 174, 30),
+    player: new Color(153, 62, 40),
+    accent: new Color(203, 98, 0),
   },
-  pink: {
-    name: "Pink",
-    board: new Color(255, 64, 128),
-    boardCells: new Color(226, 44, 106),
-    player: new Color(64, 0, 72),
-    ai: new Color(255, 255, 255),
-    accent: new Color(255, 0, 128),
+
+  oak: {
+    name: "Oak",
+    board: new Color(146, 77, 56),
+    boardCells: new Color(185, 122, 87),
+    player: new Color(103, 48, 80),
+    ai: new Color(231, 182, 190),
+    accent: new Color(146, 77, 56),
   },
-  placeholder1: {
-    name: "Placeholder 1",
-    board: new Color(128, 128, 128),
-    accent: new Color(128, 128, 128),
+
+  midnight: {
+    name: "Midnight",
+    board: new Color(28, 36, 98),
+    boardCells: new Color(46, 54, 114),
+    player: new Color(0, 0, 62),
+    ai: new Color(248, 245, 214),
+    accent: new Color(46, 54, 114),
   },
-  placeholder2: {
-    name: "Placeholder 2",
-    board: new Color(128, 128, 128),
-    accent: new Color(128, 128, 128),
+
+  glow: {
+    name: "Glow",
+    board: new Color(86, 77, 128),
+    boardCells: new Color(152, 166, 212),
+    player: new Color(68, 52, 79),
+    ai: new Color(194, 249, 112),
+    accent: new Color(194, 249, 112),
   },
 };
 
