@@ -5,7 +5,8 @@
       "namespace": "android_app",
       "package_name": "app.web.othello_rust.twa",
       "sha256_cert_fingerprints": [
-        "B3:38:83:55:A4:E4:F0:EC:6B:BC:17:2E:B1:DD:98:DB:41:4A:5F:BB:49:CB:05:56:3C:A5:19:5D:C2:B6:E9:90"
+        "B3:38:83:55:A4:E4:F0:EC:6B:BC:17:2E:B1:DD:98:DB:41:4A:5F:BB:49:CB:05:56:3C:A5:19:5D:C2:B6:E9:90",
+        "58:98:2A:55:8D:A9:2F:32:53:3A:E4:72:0B:29:43:33:0C:DB:A2:24:C2:D3:2F:67:1D:3A:41:C5:88:4A:E7:07"
       ]
     }
   }
