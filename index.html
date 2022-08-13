@@ -45,12 +45,17 @@
       <h1>Settings</h1>
       <div class="body">
         <label id="difficulty">
-          <div>Difficulty<output id="difficulty-output"></output></div>
+          <span class="label">Difficulty</span>
+          <output id="difficulty-output"></output>
           <input id="difficulty-input" type="range" min="0" max="5" step="1" />
         </label>
-        <label id="enable-hints">Show Hints<input id="enable-hints-input" type="checkbox" /></label>
+        <label id="enable-hints">
+          <span class="label">Show Hints</span>
+          <input id="enable-hints-input" type="checkbox" />
+        </label>
         <div id="color-theme">
-          <label>Color Theme</label>
+          <span class="label">Color Theme</span>
+          <output id="theme-output"></output>
           <theme-selector></theme-selector>
         </div>
       </div>

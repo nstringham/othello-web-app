@@ -202,25 +202,28 @@ button.cell {
   margin-top: 8px;
   margin-inline: -24px;
   padding: 8px 32px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "label value"
+    "control control";
+}
+
+#settings-dialog .body > * input[type="range"],
+#settings-dialog .body > * theme-selector {
+  grid-area: control;
 }
 
 #settings-dialog #difficulty {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-#settings-dialog #difficulty > div,
-#settings-dialog #enable-hints {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  gap: 4px 0;
 }
 
 #settings-dialog #color-theme {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  gap: 16px 0;
+}
+
+#settings-dialog .label {
+  font-weight: 600;
 }
 
 #close-settings {

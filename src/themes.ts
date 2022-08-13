@@ -55,7 +55,9 @@ export const themes: { [id: string]: Theme } = {
   },
 };
 
-export function applyTheme({ board, boardCells, player, ai, accent }: Theme) {
+const themeDisplay = document.querySelector("#theme-output") as HTMLOutputElement;
+
+export function applyTheme({ name, board, boardCells, player, ai, accent }: Theme) {
   const colors = new Map<string, Color>();
 
   colors.set("board", board);
@@ -76,6 +78,8 @@ export function applyTheme({ board, boardCells, player, ai, accent }: Theme) {
     styles.push(`--${key}-rgb: ${r} ${g} ${b}`);
   }
   const style = styles.join(";\n");
+
+  themeDisplay.value = name;
 
   document.documentElement.style.cssText = style;
   localStorage.setItem("theme-styles", style);
