@@ -4,6 +4,8 @@ import ThemeSelectorCSS from "./theme-selector.css?inline";
 const black = new Color(0, 0, 0);
 const white = new Color(255, 255, 255);
 
+const themeBroadcastChannel = new BroadcastChannel("theme");
+
 export class ThemeSelectorElement extends HTMLElement {
   constructor() {
     super();
@@ -44,6 +46,7 @@ export class ThemeSelectorElement extends HTMLElement {
       input.addEventListener("change", () => {
         localStorage.setItem("theme-id", themeId);
         applyTheme(theme);
+        themeBroadcastChannel.postMessage(themeId);
       });
 
       if (currentThemeId == themeId) {
@@ -53,6 +56,13 @@ export class ThemeSelectorElement extends HTMLElement {
 
       shadow.appendChild(fragment);
     }
+
+    themeBroadcastChannel.addEventListener("message", (event) => {
+      document.documentElement.style.cssText = localStorage.getItem("theme-styles")!;
+      const themeId = event.data;
+      const input = shadow.querySelector(`input#${themeId}`) as HTMLInputElement;
+      input.checked = true;
+    });
   }
 }
 

@@ -30,13 +30,16 @@ function sendDifficulty() {
 
 difficultySelector.addEventListener("change", sendDifficulty);
 
-difficultyBroadcastChannel.onmessage = (event) => {
+difficultyBroadcastChannel.addEventListener("message", (event) => {
   if (typeof event.data == "number") {
     difficultySelector.value = event.data.toString();
+    updateDifficultyDisplay();
   } else if (event.data == null) {
     sendDifficulty();
   }
-};
+});
+
+const enableHintsBroadcastChannel = new BroadcastChannel("enable-hints");
 
 const enableHintsCheckbox = settingsDialog.querySelector("#enable-hints-input") as HTMLInputElement;
 const enableHints = localStorage.getItem("enable-hints") === "true";
@@ -47,6 +50,12 @@ document.documentElement.classList.toggle("hints-enabled", enableHints);
 enableHintsCheckbox.addEventListener("change", () => {
   localStorage.setItem("enable-hints", String(enableHintsCheckbox.checked));
   document.documentElement.classList.toggle("hints-enabled", enableHintsCheckbox.checked);
+  enableHintsBroadcastChannel.postMessage(enableHintsCheckbox.checked);
+});
+
+enableHintsBroadcastChannel.addEventListener("message", (event) => {
+  enableHintsCheckbox.checked = event.data;
+  document.documentElement.classList.toggle("hints-enabled", event.data);
 });
 
 import("./elements/theme-selector");
