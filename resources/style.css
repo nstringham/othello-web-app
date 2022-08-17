@@ -306,6 +306,19 @@ dialog h1 {
   margin-bottom: 16px;
 }
 
+#game-over-dialog table {
+  width: 100%;
+  line-height: 24px;
+}
+
+#game-over-dialog th {
+  text-align: start;
+}
+
+#game-over-dialog td {
+  text-align: end;
+}
+
 #toast-container {
   position: fixed;
   bottom: max(0px, calc(env(safe-area-inset-bottom) - 12px));

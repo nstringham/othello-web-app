@@ -113,7 +113,10 @@ export const htmlPlayer: Player = {
       gameOverDialogTitle.textContent = "Draw!";
     }
 
-    gameOverDialogBody.innerHTML = /*html*/ `black: ${black}<br>white: ${white}`;
+    gameOverDialogBody.innerHTML = /*html*/ `<table><tbody>
+      <tr><th>Your Score</th><td>${black}</td></tr>
+      <tr><th>Opponent's Score</th><td>${white}</td></tr>
+    </tbody></table>`;
 
     return showDialog(gameOverDialog);
   },
