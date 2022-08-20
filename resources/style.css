@@ -7,8 +7,7 @@
 }
 
 :root {
-  --gutter-width: 2vmin;
-  --cell-border-radius: 1vmin;
+  --gutter-width: 1.8vmin;
 
   --board-rgb: 0 128 0;
   --board: rgb(var(--board-rgb));
@@ -131,7 +130,7 @@ button.cell {
   height: unset;
   padding: 0;
   background-color: var(--board-cell);
-  border-radius: var(--cell-border-radius);
+  border-radius: calc(var(--gutter-width) / 2);
   display: grid;
   place-content: center;
   grid-template-columns: 85%;
