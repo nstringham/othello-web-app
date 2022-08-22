@@ -41,12 +41,22 @@ function getIcons() {
 }
 
 function getScreenshots() {
-  return [0, 1, 2, 3, 4, 5].map((id) => {
-    return {
-      src: `screenshots/android/${id}.webp`,
-      sizes: "1080x1920",
-      type: "image/webp",
-      platform: "android",
-    };
-  });
+  return [
+    ...[0, 1, 2, 3, 4, 5].map((id) => {
+      return {
+        src: `screenshots/android/${id}.webp`,
+        sizes: "1080x1920",
+        type: "image/webp",
+        platform: "android",
+      };
+    }),
+    ...[0, 1, 2, 3, 4, 5].map((id) => {
+      return {
+        src: `screenshots/windows/${id}.webp`,
+        sizes: "2560x1440",
+        type: "image/webp",
+        platform: "windows",
+      };
+    }),
+  ];
 }
