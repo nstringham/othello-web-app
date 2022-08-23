@@ -1,3 +1,9 @@
 ci:
+  collect:
+    autodiscover-url-blocklist: /privacy-policy.html
   upload:
     target: "temporary-public-storage"
+  assert:
+    preset: "lighthouse:recommended"
+    assertions:
+      csp-xss: "off"
