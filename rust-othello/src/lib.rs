@@ -15,11 +15,9 @@ pub fn doMove(board: &mut [i8], origin: usize, color: i8) -> bool {
     match do_move(&convert_board(board), origin, color) {
         Ok(new_board) => {
             board.copy_from_slice(&new_board);
-            return true;
+            true
         }
-        Err(()) => {
-            return false;
-        }
+        Err(()) => false,
     }
 }
 
@@ -85,12 +83,12 @@ fn ab_min(board: Board, depth: u8, was_skip: bool, alpha: i8, mut beta: i8) -> i
 
     if min == i8::MAX {
         if was_skip {
-            return heuristic(board).signum() * 64;
+            heuristic(board).signum() * 64
         } else {
-            return ab_max(board, depth, true, alpha, beta);
+            ab_max(board, depth, true, alpha, beta)
         }
     } else {
-        return min;
+        min
     }
 }
 
@@ -117,12 +115,12 @@ fn ab_max(board: Board, depth: u8, was_skip: bool, mut alpha: i8, beta: i8) -> i
 
     if max == i8::MIN {
         if was_skip {
-            return heuristic(board).signum() * 64;
+            heuristic(board).signum() * 64
         } else {
-            return ab_min(board, depth - 1, true, alpha, beta);
+            ab_min(board, depth - 1, true, alpha, beta)
         }
     } else {
-        return max;
+        max
     }
 }
 
