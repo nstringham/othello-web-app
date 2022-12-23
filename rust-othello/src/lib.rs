@@ -25,25 +25,17 @@ pub fn doMove(board: &mut [i8], origin: usize, color: i8) -> bool {
 #[wasm_bindgen]
 pub fn moveExists(board: &[i8], color: i8) -> bool {
     let board = convert_board(board);
-    for i in 0..64 {
-        if do_move(&board, i, color).is_ok() {
-            return true;
-        }
-    }
-    return false;
+    (0..64).any(|i| do_move(&board, i, color).is_ok())
 }
 
 #[allow(non_snake_case)]
 #[wasm_bindgen]
 pub fn getValidMoves(input_board: &[i8]) -> Vec<u8> {
     let board = convert_board(input_board);
-    let mut valid_moves = Vec::with_capacity(64);
-    for location in 0..64 {
-        if do_move(&board, location, 1).is_ok() {
-            valid_moves.push(location as u8);
-        }
-    }
-    valid_moves
+    (0..64)
+        .filter(|&location| do_move(&board, location, 1).is_ok())
+        .map(|location| location as u8)
+        .collect()
 }
 
 #[allow(non_snake_case)]
