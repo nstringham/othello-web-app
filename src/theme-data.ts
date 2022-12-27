@@ -1,8 +1,16 @@
 export class Color {
-  constructor(public r: number, public g: number, public b: number) {}
+  constructor(public r: number, public g: number, public b: number, public a = 1) {}
+
+  withAlpha(a: number): Color {
+    return new Color(this.r, this.g, this.b, a);
+  }
 
   get hex(): Hex {
-    return "#" + [this.r, this.g, this.b].map((x) => x.toString(16).padStart(2, "0")).join("");
+    const parts = [this.r, this.g, this.b];
+    if (this.a < 1) {
+      parts.push(Math.round(this.a * 255));
+    }
+    return "#" + parts.map((x) => x.toString(16).padStart(2, "0")).join("");
   }
 }
 
@@ -15,6 +23,7 @@ type ThemeConfig = {
   boardCells: Color;
   player?: Color;
   ai?: Color;
+  hint?: Color;
   accentDark: Color;
   accentLight: Color;
   useLightAccent?: true;
@@ -42,6 +51,7 @@ const themes = {
     boardBackground: new Color(254, 216, 146),
     boardCells: new Color(252, 174, 30),
     player: new Color(153, 62, 40),
+    hint: white.withAlpha(0.4),
     accentDark: new Color(187, 90, 0),
     accentLight: new Color(252, 174, 30),
     useLightAccent: true,
@@ -53,6 +63,7 @@ const themes = {
     boardCells: new Color(185, 122, 87),
     player: new Color(103, 48, 80),
     ai: new Color(231, 182, 190),
+    hint: white.withAlpha(0.3),
     accentDark: new Color(146, 77, 56),
     accentLight: new Color(185, 122, 87),
   } satisfies ThemeConfig,
@@ -73,6 +84,7 @@ const themes = {
     boardCells: new Color(152, 166, 212),
     player: new Color(68, 52, 79),
     ai: new Color(194, 249, 112),
+    hint: white.withAlpha(0.4),
     accentDark: new Color(86, 77, 128),
     accentLight: new Color(194, 249, 112),
     useLightAccent: true,
@@ -87,6 +99,7 @@ export type Theme = {
   boardCells: Hex;
   player: Hex;
   ai: Hex;
+  hint: Hex;
   accentDark: Hex;
   accentLight: Hex;
   useLightAccent: boolean;
@@ -106,6 +119,7 @@ export default (): { data: Themes } => {
             boardCells: config.boardCells.hex,
             player: config.player?.hex ?? black.hex,
             ai: config.ai?.hex ?? white.hex,
+            hint: config.hint?.hex ?? (config.ai ?? white).withAlpha(0.2).hex,
             accentDark: config.accentDark.hex,
             accentLight: config.accentLight.hex,
             useLightAccent: config.useLightAccent ?? false,
