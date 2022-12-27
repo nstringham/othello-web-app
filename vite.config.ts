@@ -32,7 +32,7 @@ export default defineConfig({
   ],
   build: {
     target: "esnext",
-    polyfillModulePreload: false,
+    modulePreload: { polyfill: false },
     sourcemap: true,
   },
 });
