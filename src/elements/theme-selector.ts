@@ -1,8 +1,5 @@
-import { applyTheme, Color, themes } from "../themes";
+import { applyTheme, themes } from "../themes";
 import ThemeSelectorCSS from "./theme-selector.css?inline";
-
-const black = new Color(0, 0, 0);
-const white = new Color(255, 255, 255);
 
 const themeBroadcastChannel = new BroadcastChannel("theme");
 
@@ -35,9 +32,9 @@ export class ThemeSelectorElement extends HTMLElement {
 
       const label = fragment.querySelector("label") as HTMLLabelElement;
       label.setAttribute("for", themeId);
-      label.style.setProperty("--board", theme.board.toString());
-      label.style.setProperty("--player", (theme.player ?? black).toString());
-      label.style.setProperty("--ai", (theme.ai ?? white).toString());
+      label.style.setProperty("--board-background", theme.boardBackground);
+      label.style.setProperty("--player", theme.player);
+      label.style.setProperty("--ai", theme.ai);
 
       const input = fragment.querySelector('input[type="radio"]') as HTMLInputElement;
       input.setAttribute("id", themeId);

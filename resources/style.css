@@ -9,31 +9,32 @@
 :root {
   --gutter-width: 1.8vmin;
 
-  --board-rgb: 0 128 0;
-  --board: rgb(var(--board-rgb));
-  --board-cell-rgb: 0 102.4 0;
-  --board-cell: rgb(var(--board-cell-rgb));
+  /* fallback for first page load */
+  --board-background: #008000;
+  --board-cell: #006800;
+  --player: #000000;
+  --ai: #ffffff;
 
-  --player-rgb: 0 0 0;
-  --player: rgb(var(--player-rgb));
-  --ai-rgb: 255 255 255;
-  --ai: rgb(var(--ai-rgb));
-
-  --surface-rgb: 18 18 18;
-  --surface: rgb(var(--surface-rgb));
-  --on-surface-rgb: 255 255 255;
-  --on-surface: rgb(var(--on-surface-rgb));
-
-  --accent-rgb: 0 128 0;
-  --accent: rgb(var(--accent-rgb));
+  --surface: #121212;
+  --on-surface: #ffffff;
+  --on-surface-20: #ffffff20;
+  --on-surface-30: #ffffff30;
+  --accent-on-surface: var(--accent-light);
+  --accent-on-surface-20: var(--accent-light-20);
+  --accent-on-surface-30: var(--accent-light-30);
 
   font-family: "Roboto";
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --surface-rgb: 255 255 255;
-    --on-surface-rgb: 0 0 0;
+    --surface: #ffffff;
+    --on-surface: #000000;
+    --on-surface-20: #00000020;
+    --on-surface-30: #00000030;
+    --accent-on-surface: var(--accent-dark);
+    --accent-on-surface-20: var(--accent-dark-20);
+    --accent-on-surface-30: var(--accent-dark-30);
   }
 }
 
@@ -47,7 +48,7 @@ html {
 }
 
 input {
-  accent-color: var(--accent);
+  accent-color: var(--accent-on-surface);
 }
 
 input[type="checkbox"] {
@@ -56,24 +57,26 @@ input[type="checkbox"] {
 }
 
 button {
-  --button-rgb: var(--accent-rgb);
+  --button-text: var(--accent-on-surface);
+  --button-hover: var(--accent-on-surface-20);
+  --button-focus: var(--accent-on-surface-30);
   appearance: none;
   border: none;
   background-color: transparent;
   font: inherit;
-  color: rgb(var(--button-rgb));
+  color: var(--button-text);
   height: 40px;
   padding-inline: 12px;
   border-radius: 100vmax;
 }
 
 button:hover {
-  background-color: rgb(var(--button-rgb) / 0.08);
+  background-color: var(--button-hover);
 }
 
 button:focus-visible,
 button:active {
-  background-color: rgb(var(--button-rgb) / 0.12);
+  background-color: var(--button-focus);
   outline: none;
 }
 
@@ -111,7 +114,7 @@ body {
   width: var(--size);
   height: var(--size);
   contain: strict;
-  background-color: var(--board);
+  background-color: var(--board-background);
   padding: var(--gutter-width);
   gap: var(--gutter-width);
   display: grid;
@@ -188,11 +191,17 @@ button.cell {
   outline: 2px solid white;
 }
 
+#settings-button,
+#close-settings {
+  --button-text: var(--on-surface);
+  --button-hover: var(--on-surface-20);
+  --button-focus: var(--on-surface-30);
+}
+
 #settings-button {
   position: fixed;
   top: max(8px, env(safe-area-inset-top));
   right: max(8px, env(safe-area-inset-right));
-  --button-rgb: var(--on-surface-rgb);
 }
 
 @media (min-width: 600px) {
@@ -235,7 +244,6 @@ button.cell {
   position: absolute;
   top: 16px;
   right: 16px;
-  --button-rgb: var(--on-surface-rgb);
 }
 
 @keyframes fade-in {
@@ -353,18 +361,19 @@ dialog h1 {
   grid-template-columns: auto auto;
   border-radius: 16px;
   transition: border-radius 0.1s;
-  --button-rgb: 255 255 255;
-  background-color: var(--accent);
+  --button-text: var(--fab-foreground);
+  background-color: var(--fab-background);
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12), 0 1px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .fab:hover {
-  background-color: var(--accent);
+  background-color: var(--fab-background);
   filter: brightness(108%);
 }
 
 .fab:focus-visible,
 .fab:active {
-  background-color: var(--accent);
+  background-color: var(--fab-background);
   filter: brightness(112%);
 }
 

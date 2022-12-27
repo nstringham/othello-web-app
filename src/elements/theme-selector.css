@@ -11,7 +11,7 @@ input {
 
 label {
   aspect-ratio: 1;
-  background-color: var(--board);
+  background-color: var(--board-background);
   border-radius: 20%;
   display: grid;
   grid-template: 1fr 1fr / 1fr 1fr;
