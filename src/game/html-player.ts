@@ -86,7 +86,7 @@ export const htmlPlayer: Player = {
 
   async notifyBoardChanged(board: Board) {
     await animationDone;
-    animationDone = waitForMilliseconds(500);
+    animationDone = waitForMilliseconds(750);
     requestAnimationFrame(() => {
       for (let i = 0; i < 64; i++) {
         cells[i].classList.toggle("black", board[i] === BLACK);
