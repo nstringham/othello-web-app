@@ -18,8 +18,8 @@ boardElement.querySelectorAll<HTMLButtonElement>(".cell").forEach((cell) => {
 
 let doTurn: ((move: number) => void) | undefined;
 
-for (let i = 0; i < 64; i++) {
-  cells[i].addEventListener("click", () => {
+for (const [i, cell] of cells.entries()) {
+  cell.addEventListener("click", () => {
     doTurn?.(i);
   });
 }
