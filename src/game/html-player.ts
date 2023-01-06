@@ -86,6 +86,7 @@ export const htmlPlayer: Player = {
 
   async notifyBoardChanged(board: Board) {
     await animationDone;
+    animationDone = waitForMilliseconds(500);
     requestAnimationFrame(() => {
       for (let i = 0; i < 64; i++) {
         cells[i].classList.toggle("black", board[i] === BLACK);
@@ -93,7 +94,6 @@ export const htmlPlayer: Player = {
         cells[i].setAttribute("tabindex", checkMove(board, i) ? "0" : "-1");
         cells[i].setAttribute("aria-label", ariaLabels[board[i]]);
       }
-      animationDone = waitForMilliseconds(500);
     });
   },
 
