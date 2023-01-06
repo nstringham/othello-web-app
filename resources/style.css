@@ -340,7 +340,7 @@ dialog h1 {
   border-radius: 28px;
   padding: 0 24px;
   height: 48px;
-  border: solid 1px rgb(var(--on-surface-rgb) / 0.25);
+  border: solid 1px var(--on-surface-30);
   background-color: var(--surface);
   color: var(--on-surface);
 }
