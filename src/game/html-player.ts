@@ -4,17 +4,13 @@ import { Board, Color, Player, BLACK, WHITE, EMPTY } from "./game";
 
 const boardElement = document.getElementById("board") as HTMLDivElement;
 
-const cells: HTMLButtonElement[] = [];
+const cells = [...boardElement.querySelectorAll<HTMLButtonElement>(".cell")];
 
 const ariaLabels: { [key: number]: string } = {
   [BLACK]: "black",
   [WHITE]: "white",
   [EMPTY]: "empty",
 };
-
-boardElement.querySelectorAll<HTMLButtonElement>(".cell").forEach((cell) => {
-  cells.push(cell);
-});
 
 let doTurn: ((move: number) => void) | undefined;
 
