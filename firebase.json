@@ -2,6 +2,7 @@
   "hosting": {
     "public": "dist",
     "ignore": [],
+    "cleanUrls": true,
     "rewrites": [
       {
         "source": "**",
