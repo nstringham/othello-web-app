@@ -7,7 +7,7 @@ export const manifest: Partial<ManifestOptions> = {
   id: "othello-web-app",
   background_color: "#121212",
   theme_color: "#121212",
-  categories: ["game"],
+  categories: ["games"],
   iarc_rating_id: "b5c3da86-e1a0-4f97-86b6-a3f6246c90ff",
   related_applications: [
     {
