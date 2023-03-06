@@ -1,5 +1,10 @@
+mod heuristic;
+
+use heuristic::score;
 use std::cmp::min;
 use wasm_bindgen::prelude::*;
+
+use crate::heuristic::Heuristic;
 
 type Board = [i8; 64];
 
@@ -40,15 +45,22 @@ pub fn getValidMoves(input_board: &[i8]) -> Vec<u8> {
 
 #[allow(non_snake_case)]
 #[wasm_bindgen]
-pub fn alphaBeta(input_board: &[i8], location: usize, depth: u8) -> i8 {
+pub fn alphaBeta(input_board: &[i8], location: usize, depth: u8, heuristic: Heuristic) -> i8 {
     let board = convert_board(input_board);
 
     let new_board = do_move(&board, location, 1).unwrap();
 
-    ab_min(new_board, depth, false, i8::MIN, i8::MAX)
+    ab_min(new_board, depth, heuristic.into(), false, i8::MIN, i8::MAX)
 }
 
-fn ab_min(board: Board, depth: u8, was_skip: bool, alpha: i8, mut beta: i8) -> i8 {
+fn ab_min(
+    board: Board,
+    depth: u8,
+    heuristic: fn(Board) -> i8,
+    was_skip: bool,
+    alpha: i8,
+    mut beta: i8,
+) -> i8 {
     if depth == 0 {
         return heuristic(board);
     }
@@ -57,7 +69,7 @@ fn ab_min(board: Board, depth: u8, was_skip: bool, alpha: i8, mut beta: i8) -> i
 
     for i in 0..64 {
         if let Ok(new_board) = do_move(&board, i, -1) {
-            let value = ab_max(new_board, depth, false, alpha, beta);
+            let value = ab_max(new_board, depth, heuristic, false, alpha, beta);
 
             if value < min {
                 min = value;
@@ -75,21 +87,28 @@ fn ab_min(board: Board, depth: u8, was_skip: bool, alpha: i8, mut beta: i8) -> i
 
     if min == i8::MAX {
         if was_skip {
-            heuristic(board).signum() * 64
+            score(board).signum() * WIN_VALUE
         } else {
-            ab_max(board, depth, true, alpha, beta)
+            ab_max(board, depth, heuristic, true, alpha, beta)
         }
     } else {
         min
     }
 }
 
-fn ab_max(board: Board, depth: u8, was_skip: bool, mut alpha: i8, beta: i8) -> i8 {
+fn ab_max(
+    board: Board,
+    depth: u8,
+    heuristic: fn(Board) -> i8,
+    was_skip: bool,
+    mut alpha: i8,
+    beta: i8,
+) -> i8 {
     let mut max = i8::MIN;
 
     for i in 0..64 {
         if let Ok(new_board) = do_move(&board, i, 1) {
-            let value = ab_min(new_board, depth - 1, false, alpha, beta);
+            let value = ab_min(new_board, depth - 1, heuristic, false, alpha, beta);
 
             if value > max {
                 max = value;
@@ -107,9 +126,9 @@ fn ab_max(board: Board, depth: u8, was_skip: bool, mut alpha: i8, beta: i8) -> i
 
     if max == i8::MIN {
         if was_skip {
-            heuristic(board).signum() * 64
+            score(board).signum() * WIN_VALUE
         } else {
-            ab_min(board, depth - 1, true, alpha, beta)
+            ab_min(board, depth - 1, heuristic, true, alpha, beta)
         }
     } else {
         max
@@ -259,6 +278,4 @@ fn do_move(board: &Board, origin: usize, placing: i8) -> Result<Board, ()> {
     }
 }
 
-fn heuristic(board: Board) -> i8 {
-    board.iter().sum()
-}
+const WIN_VALUE: i8 = i8::MAX - 1;

@@ -1,9 +1,19 @@
-import { getValidMoves, alphaBeta } from "rust-othello";
+import { getValidMoves, alphaBeta, Heuristic } from "rust-othello";
 import * as Comlink from "comlink";
 import { Board, Color, Player, WHITE } from "./game";
 import type { AlphaBetaFunction } from "./alpha-beta-worker";
 
 export type Depth = 0 | 1 | 2 | 3 | 4;
+
+export type Difficulty = { depth: Depth; heuristic: Heuristic };
+
+const DIFFICULTIES: readonly Difficulty[] = [
+  { depth: 0, heuristic: Heuristic.Score },
+  { depth: 1, heuristic: Heuristic.Coroners },
+  { depth: 3, heuristic: Heuristic.Coroners },
+  { depth: 3, heuristic: Heuristic.Weights },
+  { depth: 4, heuristic: Heuristic.Weights },
+];
 
 const workers: AlphaBetaFunction[] = [];
 
@@ -17,13 +27,13 @@ if (typeof Worker !== "undefined") {
   workers.push(async (...args) => alphaBeta(...args));
 }
 
-let depth: Depth = 0;
+let difficulty = 0;
 
 const difficultyBroadcastChannel = new BroadcastChannel("difficulty");
 
 difficultyBroadcastChannel.onmessage = (event) => {
   if (typeof event.data == "number") {
-    depth = event.data as Depth;
+    difficulty = event.data as number;
   }
 };
 
@@ -43,7 +53,8 @@ export const alphaBetaPlayer: Player = {
 
     for (const [i, move] of validMoves.entries()) {
       const alphaBeta = workers[i % workers.length];
-      const heuristicPromise = alphaBeta(board, move, depth);
+      const { depth, heuristic } = DIFFICULTIES[difficulty];
+      const heuristicPromise = alphaBeta(board, move, depth, heuristic);
       heuristics.set(move, heuristicPromise);
     }
 

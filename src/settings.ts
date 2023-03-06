@@ -4,7 +4,7 @@ import { showDialog } from "./utils";
 const settingsButton = document.getElementById("settings-button") as HTMLButtonElement;
 const settingsDialog = document.getElementById("settings-dialog") as HTMLDialogElement;
 
-const DIFFICULTY_NAMES = ["Very Easy", "Easy", "Normal", "Hard", "Very Hard", "Extreme"] as const;
+const DIFFICULTY_NAMES = ["Very Easy", "Easy", "Normal", "Hard", "Very Hard"] as const;
 
 const difficultySelector = settingsDialog.querySelector("#difficulty-input") as HTMLInputElement;
 const difficultyDisplay = settingsDialog.querySelector("#difficulty-output") as HTMLOutputElement;
