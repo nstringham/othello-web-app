@@ -1,6 +1,4 @@
 /// <reference types="vite/client" />
 /// <reference types="vite-plugin-pwa/client" />
 
-interface ImportMeta {
-  compileTime(file: string): any;
-}
+declare const __THEME_DATA__: string;

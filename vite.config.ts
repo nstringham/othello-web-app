@@ -2,10 +2,11 @@ import { defineConfig } from "vite";
 
 import { createHtmlPlugin } from "vite-plugin-html";
 import { VitePWA } from "vite-plugin-pwa";
-import compileTime from "vite-plugin-compile-time";
 
 import * as mdi from "@mdi/js";
 import { manifest } from "./manifest";
+
+import { themes } from "./src/theme-data";
 
 export default defineConfig({
   plugins: [
@@ -28,11 +29,13 @@ export default defineConfig({
         globPatterns: ["**/*.{html,js,css,wasm,woff2}"],
       },
     }),
-    compileTime(),
   ],
   build: {
     target: "esnext",
     modulePreload: { polyfill: false },
     sourcemap: true,
+  },
+  define: {
+    __THEME_DATA__: JSON.stringify(JSON.stringify(themes)),
   },
 });

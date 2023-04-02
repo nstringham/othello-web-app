@@ -29,7 +29,7 @@ type ThemeConfig = {
   useLightAccent?: true;
 };
 
-const themes = {
+const themeConfigs = {
   default: {
     name: "Classic",
     boardBackground: new Color(0, 128, 0),
@@ -105,27 +105,23 @@ export type Theme = {
   useLightAccent: boolean;
 };
 
-export type Themes = { [id in keyof typeof themes]: Theme };
+export type Themes = { [id in keyof typeof themeConfigs]: Theme };
 
-export default (): { data: Themes } => {
-  return {
-    data: Object.fromEntries(
-      (Object.entries(themes) as [keyof Themes, ThemeConfig][]).map(([id, config]): [keyof Themes, Theme] => {
-        return [
-          id,
-          {
-            name: config.name,
-            boardBackground: config.boardBackground.hex,
-            boardCells: config.boardCells.hex,
-            player: config.player?.hex ?? black.hex,
-            ai: config.ai?.hex ?? white.hex,
-            hint: config.hint?.hex ?? (config.ai ?? white).withAlpha(0.2).hex,
-            accentDark: config.accentDark.hex,
-            accentLight: config.accentLight.hex,
-            useLightAccent: config.useLightAccent ?? false,
-          },
-        ];
-      })
-    ) as Themes,
-  };
-};
+export const themes = Object.fromEntries(
+  (Object.entries(themeConfigs) as [keyof Themes, ThemeConfig][]).map(([id, config]): [keyof Themes, Theme] => {
+    return [
+      id,
+      {
+        name: config.name,
+        boardBackground: config.boardBackground.hex,
+        boardCells: config.boardCells.hex,
+        player: config.player?.hex ?? black.hex,
+        ai: config.ai?.hex ?? white.hex,
+        hint: config.hint?.hex ?? (config.ai ?? white).withAlpha(0.2).hex,
+        accentDark: config.accentDark.hex,
+        accentLight: config.accentLight.hex,
+        useLightAccent: config.useLightAccent ?? false,
+      },
+    ];
+  })
+) as Themes;
