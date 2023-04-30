@@ -23,7 +23,7 @@ label {
 /* Detect Safari and use workaround */
 @supports (-webkit-hyphens: none) {
   label {
-    aspect-ratio: 1.25 / 1; /* 1.25 = 1 ÷ (1 + (10% padding * 2) */
+    aspect-ratio: 1.332; /* I have no clue why 1.332 works */
   }
 }
 
