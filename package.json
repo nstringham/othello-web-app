@@ -12,7 +12,7 @@
     "wasm-release": "wasm-pack build ./rust-othello --target web --release"
   },
   "devDependencies": {
-    "typescript": "^4.9.5",
+    "typescript": "^5.0.4",
     "vite": "^4.3.3",
     "vite-plugin-html": "^3.2.0",
     "vite-plugin-pwa": "^0.14.7"
