@@ -19,7 +19,7 @@ const workers: AlphaBetaFunction[] = [];
 
 if (typeof Worker !== "undefined") {
   for (let i = 0; i < navigator.hardwareConcurrency; i++) {
-    const worker = new Worker(new URL("./alpha-beta-worker", import.meta.url), { type: "module" });
+    const worker = new Worker(new URL("./alpha-beta-worker.ts", import.meta.url), { type: "module" });
     const alphaBeta = Comlink.wrap<AlphaBetaFunction>(Comlink.proxy(worker));
     workers.push(alphaBeta);
   }

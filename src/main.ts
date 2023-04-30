@@ -3,7 +3,7 @@ import { htmlPlayer } from "./game/html-player";
 import "./settings";
 import type { PlayFunction } from "./worker";
 
-const worker = new Worker(new URL("./worker", import.meta.url), { type: "module" });
+const worker = new Worker(new URL("./worker.ts", import.meta.url), { type: "module" });
 
 const play = Comlink.wrap<PlayFunction>(Comlink.proxy(worker));
 
