@@ -20,6 +20,7 @@
   "dependencies": {
     "@mdi/js": "^7.2.96",
     "comlink": "^4.4.1",
+    "dialog-polyfill": "^0.5.6",
     "rust-othello": "file:rust-othello/pkg"
   }
 }
