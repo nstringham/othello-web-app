@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 
 import { createHtmlPlugin } from "vite-plugin-html";
-import { VitePWA } from "vite-plugin-pwa";
+import generateFile from "vite-plugin-generate-file";
 
 import * as mdi from "@mdi/js";
 import { manifest } from "./manifest";
@@ -20,15 +20,12 @@ export default defineConfig({
         },
       },
     }),
-    VitePWA({
-      manifest,
-      includeManifestIcons: false,
-      includeAssets: ["favicon.ico", "icons/any.svg"],
-      workbox: {
-        sourcemap: true,
-        globPatterns: ["**/*.{html,js,css,wasm,woff2}"],
+    generateFile([
+      {
+        output: "manifest.webmanifest",
+        data: manifest,
       },
-    }),
+    ]),
   ],
   build: {
     target: "es2021",

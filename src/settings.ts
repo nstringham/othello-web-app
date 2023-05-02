@@ -1,4 +1,3 @@
-import { preventRestart } from "./pwa";
 import { showDialog } from "./utils";
 
 const settingsButton = document.getElementById("settings-button") as HTMLButtonElement;
@@ -61,7 +60,6 @@ enableHintsBroadcastChannel.addEventListener("message", (event) => {
 import("./elements/theme-selector");
 
 async function showSettings() {
-  preventRestart();
   await showDialog(settingsDialog);
   settingsDialog.close();
 }
