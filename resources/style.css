@@ -150,7 +150,7 @@ button.cell {
 }
 
 .cell::before {
-  aspect-ratio: 1;
+  padding-bottom: 100%;
   border-radius: 100vmax;
   transition: box-shadow 0.5s ease-in-out 0s, transform 0.5s ease-in-out 0s, background-color 0s step-start 0.25s;
 }

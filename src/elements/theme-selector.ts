@@ -18,10 +18,12 @@ export class ThemeSelectorElement extends HTMLElement {
     template.innerHTML = /* html */ `
       <input type="radio" name="theme"/>
       <label>
-        <div class="disk ai"></div>
-        <div class="disk player"></div>
-        <div class="disk player"></div>
-        <div class="disk ai"></div>
+        <svg viewBox="0 0 10 10">
+          <circle cx="2.25" cy="2.25" r="2.25" fill="var(--ai)"/>
+          <circle cx="2.25" cy="7.75" r="2.25" fill="var(--player)"/>
+          <circle cx="7.75" cy="2.25" r="2.25" fill="var(--player)"/>
+          <circle cx="7.75" cy="7.75" r="2.25" fill="var(--ai)"/>
+        </svg>
       </label>
     `;
 
