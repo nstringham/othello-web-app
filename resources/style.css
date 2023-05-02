@@ -62,7 +62,7 @@ button {
   --button-focus: var(--accent-on-surface-30);
   appearance: none;
   border: none;
-  background-color: transparent;
+  background: transparent;
   font: inherit;
   color: var(--button-text);
   height: 40px;
