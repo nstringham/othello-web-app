@@ -7,7 +7,7 @@
 input {
   appearance: none;
   position: absolute;
-  background-color: transparent;
+  background: transparent;
 }
 
 label {
