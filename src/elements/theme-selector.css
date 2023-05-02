@@ -18,7 +18,7 @@ label {
 }
 
 input:checked + label {
-  outline: 2px solid var(--on-surface);
+  box-shadow: 0 0 0 2px var(--on-surface);
 }
 
 svg {
