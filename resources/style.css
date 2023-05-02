@@ -250,10 +250,9 @@ button.cell {
 
 dialog {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   border: none;
-  box-shadow: 0 11px 15px -7px rgb(0 0 0 / 20%), 0 24px 38px 3px rgb(0 0 0 / 14%), 0 9px 46px 8px rgb(0 0 0 / 12%);
-  padding: 24px;
+  padding: 16px;
   background-color: var(--surface);
   color: var(--on-surface);
   animation: fade-in 0.2s ease-in-out;
