@@ -16,9 +16,9 @@ export class ThemeSelectorElement extends HTMLElement {
     const template = document.createElement("template");
 
     template.innerHTML = /* html */ `
-      <input type="radio" name="theme"/>
       <label>
-        <svg viewBox="0 0 10 10">
+        <input type="radio" name="theme"/>
+        <svg viewBox="-1.25 -1.25 12.5 12.5">
           <circle cx="2.25" cy="2.25" r="2.25" fill="var(--ai)"/>
           <circle cx="2.25" cy="7.75" r="2.25" fill="var(--player)"/>
           <circle cx="7.75" cy="2.25" r="2.25" fill="var(--player)"/>
@@ -33,7 +33,6 @@ export class ThemeSelectorElement extends HTMLElement {
       const fragment = template.content.cloneNode(true) as DocumentFragment;
 
       const label = fragment.querySelector("label") as HTMLLabelElement;
-      label.setAttribute("for", themeId);
       label.style.setProperty("--board-background", theme.boardBackground);
       label.style.setProperty("--player", theme.player);
       label.style.setProperty("--ai", theme.ai);

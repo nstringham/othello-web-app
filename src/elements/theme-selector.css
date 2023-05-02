@@ -4,24 +4,24 @@
   gap: 12px;
 }
 
+label {
+  display: contents;
+}
+
 input {
   appearance: none;
   position: absolute;
   background: transparent;
 }
 
-label {
-  background-color: var(--board-background);
-  border-radius: 20%;
-  padding: 10%;
-}
-
-input:checked + label {
-  box-shadow: 0 0 0 2px var(--on-surface);
-}
-
 svg {
   display: block;
+  background-color: var(--board-background);
+  border-radius: 20%;
+}
+
+input:checked + svg {
+  box-shadow: 0 0 0 2px var(--on-surface);
 }
 
 .disk {
