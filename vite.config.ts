@@ -31,9 +31,14 @@ export default defineConfig({
     }),
   ],
   build: {
-    target: "esnext",
-    modulePreload: { polyfill: false },
-    sourcemap: true,
+    target: "es2021",
+    modulePreload: false,
+    rollupOptions: {
+      output: {
+        assetFileNames: "assets/[name][extname]",
+        chunkFileNames: "[name].js",
+      },
+    },
   },
   define: {
     __THEME_DATA__: JSON.stringify(JSON.stringify(themes)),
