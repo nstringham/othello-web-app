@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light-theme">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="icons/any.svg" />
     <link rel="apple-touch-icon" sizes="any" href="icons/square.svg" />
     <link rel="apple-touch-icon" sizes="120x120" href="icons/square-120.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="icons/square-180.png" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121212" />
+    <meta name="theme-color" content="#ffffff" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="color-scheme" content="dark light" />
 
     <title><%= TITLE %></title>
 
     <script>
       document.documentElement.style.cssText = localStorage.getItem("theme-styles");
+      const darkTheme = localStorage.getItem("dark-theme") === "true";
+      document.documentElement.classList.toggle("light-theme", !darkTheme);
+      document.querySelector('meta[name="theme-color"]').content = darkTheme ? "#121212" : "#ffffff";
     </script>
 
     <link rel="preload" href="/resources/roboto.woff2" as="font" type="font/woff2" crossorigin />
@@ -45,6 +46,10 @@
         <label id="enable-hints">
           <span class="label">Show Hints</span>
           <input id="enable-hints-input" type="checkbox" />
+        </label>
+        <label id="dark-theme">
+          <span class="label">Dark Theme</span>
+          <input id="dark-theme-input" type="checkbox" />
         </label>
         <div id="color-theme">
           <span class="label">Color Theme</span>

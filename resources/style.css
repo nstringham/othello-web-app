@@ -26,16 +26,14 @@
   font-family: "Roboto";
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --surface: #ffffff;
-    --on-surface: #000000;
-    --on-surface-20: #00000020;
-    --on-surface-30: #00000030;
-    --accent-on-surface: var(--accent-dark);
-    --accent-on-surface-20: var(--accent-dark-20);
-    --accent-on-surface-30: var(--accent-dark-30);
-  }
+:root.light-theme {
+  --surface: #ffffff;
+  --on-surface: #000000;
+  --on-surface-20: #00000020;
+  --on-surface-30: #00000030;
+  --accent-on-surface: var(--accent-dark);
+  --accent-on-surface-20: var(--accent-dark-20);
+  --accent-on-surface-30: var(--accent-dark-30);
 }
 
 * {

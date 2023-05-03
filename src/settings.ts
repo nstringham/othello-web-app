@@ -57,6 +57,32 @@ enableHintsBroadcastChannel.addEventListener("message", (event) => {
   document.documentElement.classList.toggle("hints-enabled", event.data);
 });
 
+const darkThemeBroadcastChannel = new BroadcastChannel("dark-theme");
+
+const darkThemeCheckbox = settingsDialog.querySelector("#dark-theme-input") as HTMLInputElement;
+const darkTheme = localStorage.getItem("dark-theme") === "true";
+
+const themeColorMetaTag = document.querySelector('meta[name="theme-color"]') as HTMLMetaElement;
+function setDarkTheme(darkTheme: boolean) {
+  document.documentElement.classList.toggle("light-theme", !darkTheme);
+  themeColorMetaTag.content = darkTheme ? "#121212" : "#ffffff";
+}
+
+darkThemeCheckbox.checked = darkTheme;
+setDarkTheme(darkTheme);
+document.documentElement.classList.toggle("light-theme", !darkTheme);
+
+darkThemeCheckbox.addEventListener("change", () => {
+  localStorage.setItem("dark-theme", String(darkThemeCheckbox.checked));
+  setDarkTheme(darkThemeCheckbox.checked);
+  darkThemeBroadcastChannel.postMessage(darkThemeCheckbox.checked);
+});
+
+darkThemeBroadcastChannel.addEventListener("message", (event) => {
+  darkThemeCheckbox.checked = event.data;
+  setDarkTheme(event.data);
+});
+
 import("./elements/theme-selector");
 
 async function showSettings() {
