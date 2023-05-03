@@ -8,12 +8,13 @@ import { manifest } from "./manifest";
 
 import { themes } from "./src/theme-data";
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [
     createHtmlPlugin({
       inject: {
         data: {
           ...mdi,
+          DEVELOPMENT: mode == "development",
           TITLE: manifest.name,
         },
       },
@@ -38,4 +39,4 @@ export default defineConfig({
   define: {
     __THEME_DATA__: JSON.stringify(JSON.stringify(themes)),
   },
-});
+}));

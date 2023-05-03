@@ -15,7 +15,9 @@
       document.querySelector('meta[name="theme-color"]').content = darkTheme ? "#121212" : "#ffffff";
     </script>
 
-    <link rel="preload" href="/resources/roboto.woff2" as="font" type="font/woff2" crossorigin />
+    <% if (DEVELOPMENT) { %>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700" rel="stylesheet" />
+    <% } %>
     <link rel="stylesheet" href="/resources/style.css" />
     <script type="module" src="/src/main.ts"></script>
   </head>

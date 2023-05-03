@@ -1,11 +1,3 @@
-@font-face {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(roboto.woff2) format("woff2");
-}
-
 :root {
   --gutter-width: 1.8vmin;
 
@@ -23,7 +15,7 @@
   --accent-on-surface-20: var(--accent-light-20);
   --accent-on-surface-30: var(--accent-light-30);
 
-  font-family: "Roboto";
+  font-family: "Open Sans";
 }
 
 :root.light-theme {
