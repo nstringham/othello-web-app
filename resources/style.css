@@ -11,11 +11,13 @@
   --on-surface: #ffffff;
   --on-surface-20: #ffffff20;
   --on-surface-30: #ffffff30;
+  --soft-button-surface: #cccccc;
   --accent-on-surface: var(--accent-light);
   --accent-on-surface-20: var(--accent-light-20);
   --accent-on-surface-30: var(--accent-light-30);
 
   font-family: "Open Sans";
+  font-size: 14px;
 }
 
 :root.light-theme {
@@ -90,23 +92,13 @@ body {
   height: 100dvh;
   margin: 0;
   display: grid;
-  place-content: center;
+  grid-template-rows: 1fr 32px;
 }
 
 h1 {
   font-size: 17px;
   font-weight: 400;
   text-align: center;
-}
-
-th {
-  font-size: 17px;
-  font-weight: 600;
-}
-
-td {
-  font-size: 17px;
-  font-weight: 400;
 }
 
 #lcp {
@@ -116,6 +108,7 @@ td {
 }
 
 #board {
+  place-self: center;
   --size: calc(100dvmin - 4 * var(--gutter-width));
   width: var(--size);
   height: var(--size);
@@ -185,6 +178,33 @@ button.cell {
 .player-turn .cell:not(.black):not(.white):focus-visible::before {
   content: "";
   outline: 2px solid white;
+}
+
+#soft-keys {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  background-color: var(--soft-button-surface);
+  padding: 4px;
+}
+
+#soft-left,
+#soft-right {
+  font-weight: 600;
+}
+
+#soft-left {
+  text-align: left;
+}
+
+#soft-right {
+  text-align: right;
+}
+
+#soft-enter {
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center;
 }
 
 #settings-button,
@@ -301,10 +321,14 @@ dialog h1 {
 
 #game-over-dialog th {
   text-align: start;
+  font-size: 17px;
+  font-weight: 600;
 }
 
 #game-over-dialog td {
   text-align: end;
+  font-size: 17px;
+  font-weight: 400;
 }
 
 #toast-container {
