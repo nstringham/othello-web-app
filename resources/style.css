@@ -256,8 +256,10 @@ button.cell {
 }
 
 dialog {
+  top: 0 !important;
   width: 100vw;
-  min-height: 100vh;
+  height: calc(100vh - 30px);
+  overflow-y: auto;
   border: none;
   padding: 8px;
   background-color: var(--surface);
