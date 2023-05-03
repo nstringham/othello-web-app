@@ -18,21 +18,53 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-export function setLeft(label: string, listener: Listener) {
-  leftElement.innerText = label;
-  onLeft = listener;
+export function setLeft(label: string, listener: Listener = undefined, once = false) {
+  if (once) {
+    const oldLabel = leftElement.innerText;
+    const oldListener = onLeft;
+
+    leftElement.innerText = label;
+    onLeft = () => {
+      leftElement.innerText = oldLabel;
+      onLeft = oldListener;
+      listener?.();
+    };
+  } else {
+    leftElement.innerText = label;
+    onLeft = listener;
+  }
 }
 
-export function setRight(label: string, listener: Listener) {
-  rightElement.innerText = label;
-  onRight = listener;
+export function setRight(label: string, listener: Listener = undefined, once = false) {
+  if (once) {
+    const oldLabel = rightElement.innerText;
+    const oldListener = onRight;
+
+    rightElement.innerText = label;
+    onRight = () => {
+      rightElement.innerText = oldLabel;
+      onRight = oldListener;
+      listener?.();
+    };
+  } else {
+    rightElement.innerText = label;
+    onRight = listener;
+  }
 }
 
-export function setEnter(label: string, listener: Listener) {
-  enterElement.innerText = label;
-  onEnter = listener;
-}
+export function setEnter(label: string, listener: Listener = undefined, once = false) {
+  if (once) {
+    const oldLabel = enterElement.innerText;
+    const oldListener = onEnter;
 
-setLeft("left", () => alert("left"));
-setRight("right", () => alert("right"));
-setEnter("enter", () => alert("enter"));
+    enterElement.innerText = label;
+    onEnter = () => {
+      enterElement.innerText = oldLabel;
+      onEnter = oldListener;
+      listener?.();
+    };
+  } else {
+    enterElement.innerText = label;
+    onEnter = listener;
+  }
+}
