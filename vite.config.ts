@@ -26,7 +26,7 @@ export default defineConfig({
     ]),
   ],
   build: {
-    target: "es2021",
+    target: "firefox84",
     modulePreload: false,
     rollupOptions: {
       output: {
