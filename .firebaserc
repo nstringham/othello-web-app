@@ -1,14 +1,5 @@
 {
   "projects": {
     "default": "othello-rust"
-  },
-  "targets": {
-    "othello-rust": {
-      "hosting": {
-        "default": [
-          "othello-rust-kaios"
-        ]
-      }
-    }
   }
 }
