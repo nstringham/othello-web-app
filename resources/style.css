@@ -11,7 +11,7 @@
   --on-surface: #ffffff;
   --on-surface-20: #ffffff20;
   --on-surface-30: #ffffff30;
-  --soft-button-surface: #cccccc;
+  --soft-button-surface: #333333;
   --accent-on-surface: var(--accent-light);
   --accent-on-surface-20: var(--accent-light-20);
   --accent-on-surface-30: var(--accent-light-30);
@@ -25,6 +25,7 @@
   --on-surface: #000000;
   --on-surface-20: #00000020;
   --on-surface-30: #00000030;
+  --soft-button-surface: #cccccc;
   --accent-on-surface: var(--accent-dark);
   --accent-on-surface-20: var(--accent-dark-20);
   --accent-on-surface-30: var(--accent-dark-30);
