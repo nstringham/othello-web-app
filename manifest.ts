@@ -1,4 +1,4 @@
-import type { ImageResource, WebAppManifest } from "web-app-manifest";
+import type { WebAppManifest } from "web-app-manifest";
 
 export const manifest: WebAppManifest & { id: string } = {
   name: "Othello",
