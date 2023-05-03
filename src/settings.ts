@@ -87,7 +87,7 @@ import("./elements/theme-selector");
 
 async function showSettings() {
   await showDialog(settingsDialog, "done");
-  settingsDialog.close();
+  setKey("right", "settings", showSettings, true);
 }
 
-setKey("right", "settings", showSettings);
+setKey("right", "settings", showSettings, true);
