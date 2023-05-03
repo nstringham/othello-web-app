@@ -9,9 +9,9 @@ let onRight: Listener;
 let onEnter: Listener;
 
 document.addEventListener("keydown", (event) => {
-  if (event.key == "SoftLeft") {
+  if (event.key == "SoftLeft" || event.key == "ArrowLeft") {
     onLeft?.();
-  } else if (event.key == "SoftRight") {
+  } else if (event.key == "SoftRight" || event.key == "ArrowRight") {
     onRight?.();
   } else if (event.key == "Enter") {
     onEnter?.();
@@ -33,6 +33,6 @@ export function setEnter(label: string, listener: Listener) {
   onEnter = listener;
 }
 
-setLeft("left", () => console.log("left"));
-setRight("right", () => console.log("right"));
-setEnter("enter", () => console.log("enter"));
+setLeft("left", () => alert("left"));
+setRight("right", () => alert("right"));
+setEnter("enter", () => alert("enter"));
