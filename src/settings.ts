@@ -1,6 +1,6 @@
+import { setKey } from "./soft-keys";
 import { showDialog } from "./utils";
 
-const settingsButton = document.getElementById("settings-button") as HTMLButtonElement;
 const settingsDialog = document.getElementById("settings-dialog") as HTMLDialogElement;
 
 const DIFFICULTY_NAMES = ["Very Easy", "Easy", "Normal", "Hard", "Very Hard"] as const;
@@ -86,8 +86,8 @@ darkThemeBroadcastChannel.addEventListener("message", (event) => {
 import("./elements/theme-selector");
 
 async function showSettings() {
-  await showDialog(settingsDialog);
+  await showDialog(settingsDialog, "done");
   settingsDialog.close();
 }
 
-settingsButton.addEventListener("click", showSettings);
+setKey("right", "settings", showSettings);

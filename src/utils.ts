@@ -1,3 +1,5 @@
+import { waitForKeyPress } from "./soft-keys";
+
 export function waitForMilliseconds(milliseconds?: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
@@ -12,30 +14,10 @@ export function waitForEvent(emitter: EventTarget, event: string, options?: AddE
   });
 }
 
-export function waitForDialogToBeClosed(dialog: HTMLDialogElement): Promise<void> {
-  return new Promise((resolve) => {
-    dialog.querySelector("button")!.addEventListener(
-      "click",
-      () => {
-        resolve();
-      },
-      { once: true }
-    );
-    dialog.addEventListener(
-      "cancel",
-      (event) => {
-        event.preventDefault();
-        resolve();
-      },
-      { once: true }
-    );
-  });
-}
-
-export async function showDialog(dialog: HTMLDialogElement): Promise<void> {
+export async function showDialog(dialog: HTMLDialogElement, closeLabel: string): Promise<void> {
   dialog.showModal();
 
-  await waitForDialogToBeClosed(dialog);
+  await waitForKeyPress("left", closeLabel);
 
   dialog.classList.add("closing");
 

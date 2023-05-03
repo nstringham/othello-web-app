@@ -33,12 +33,6 @@
       <span id="soft-enter"></span>
       <span id="soft-right"></span>
     </div>
-    <button id="settings-button" class="icon-button">
-      <svg viewBox="0 0 24 24">
-        <title>Settings</title>
-        <path fill="currentcolor" d="<%- mdiCog %>" />
-      </svg>
-    </button>
     <dialog id="settings-dialog">
       <h1>Settings</h1>
       <div class="body">
@@ -61,19 +55,10 @@
           <theme-selector></theme-selector>
         </div>
       </div>
-      <button id="close-settings" class="icon-button">
-        <svg viewBox="0 0 24 24">
-          <title>Close</title>
-          <path fill="currentcolor" d="<%- mdiClose %>" />
-        </svg>
-      </button>
     </dialog>
     <dialog id="game-over-dialog">
       <h1 class="title"></h1>
       <p class="body"></p>
-      <div class="buttons">
-        <button class="ok">Ok</button>
-      </div>
     </dialog>
     <div id="toast-container"></div>
     <template id="toast-template">
@@ -81,11 +66,5 @@
         <snap class="text"></snap>
       </div>
     </template>
-    <button id="new-game" class="fab icon-button">
-      <svg viewBox="0 0 24 24">
-        <path fill="currentcolor" d="<%- mdiReplay %>" />
-      </svg>
-      <span>New Game</span>
-    </button>
   </body>
 </html>

@@ -112,7 +112,7 @@ export const htmlPlayer: Player = {
       <tr><th>Opponent's Score</th><td>${white}</td></tr>
     </tbody></table>`;
 
-    return showDialog(gameOverDialog);
+    return showDialog(gameOverDialog, "ok");
   },
 };
 

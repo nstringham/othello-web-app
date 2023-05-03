@@ -3,7 +3,7 @@ import { htmlPlayer } from "./game/html-player";
 import type { PlayFunction } from "./worker";
 import dialogPolyfill from "dialog-polyfill";
 import "./settings";
-import "./soft-keys";
+import { setKey } from "./soft-keys";
 
 const worker = new Worker(new URL("./worker.ts", import.meta.url), { type: "module" });
 
@@ -12,11 +12,9 @@ const play = Comlink.wrap<PlayFunction>(Comlink.proxy(worker));
 const player = Comlink.proxy(htmlPlayer);
 
 play(player).then(() => {
-  const newGameButton = document.querySelector("#new-game") as HTMLButtonElement;
-  newGameButton.addEventListener("click", () => {
+  setKey("left", "new game", () => {
     location.reload();
   });
-  newGameButton.classList.add("show");
 });
 
 for (const dialog of document.querySelectorAll("dialog")) {

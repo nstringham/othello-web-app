@@ -72,19 +72,6 @@ button:active {
   outline: none;
 }
 
-.icon-button {
-  height: 48px;
-  width: 48px;
-  display: inline-grid;
-  place-content: center;
-  place-items: center;
-}
-
-.icon-button svg {
-  width: 24px;
-  height: 24px;
-}
-
 body {
   width: 100vw;
   height: 100vh;
@@ -209,19 +196,6 @@ button.cell {
   text-align: center;
 }
 
-#settings-button,
-#close-settings {
-  --button-text: var(--on-surface);
-  --button-hover: var(--on-surface-20);
-  --button-focus: var(--on-surface-30);
-}
-
-#settings-button {
-  position: fixed;
-  top: max(8px, env(safe-area-inset-top));
-  right: max(8px, env(safe-area-inset-right));
-}
-
 #settings-dialog .body > * {
   margin-inline: -8px;
   padding: 8px 16px;
@@ -305,12 +279,6 @@ dialog .body {
   margin: 0;
 }
 
-dialog .buttons {
-  margin-top: 24px;
-  display: flex;
-  justify-content: flex-end;
-}
-
 dialog h1 {
   margin: 0;
   margin-bottom: 8px;
@@ -354,46 +322,4 @@ dialog h1 {
 
 .toast > .text {
   line-height: 48px;
-}
-
-.fab {
-  position: fixed;
-  right: max(16px, env(safe-area-inset-right));
-  bottom: max(16px, env(safe-area-inset-bottom));
-  height: 56px;
-  width: auto;
-  padding-right: 24px;
-  padding-left: 16px;
-  gap: 16px;
-  grid-template-columns: auto auto;
-  border-radius: 16px;
-  transition: border-radius 0.1s;
-  --button-text: var(--fab-foreground);
-  background-color: var(--fab-background);
-  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12), 0 1px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-.fab:hover {
-  background-color: var(--fab-background);
-  filter: brightness(108%);
-}
-
-.fab:focus-visible,
-.fab:active {
-  background-color: var(--fab-background);
-  filter: brightness(112%);
-}
-
-.fab:active {
-  border-radius: 8px;
-}
-
-#new-game {
-  display: none;
-}
-
-#new-game.show {
-  display: grid;
-  animation: grow 0.2s ease-out;
-  transform-origin: 100% 100%;
 }
