@@ -93,6 +93,22 @@ body {
   place-content: center;
 }
 
+h1 {
+  font-size: 17px;
+  font-weight: 400;
+  text-align: center;
+}
+
+th {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+td {
+  font-size: 17px;
+  font-weight: 400;
+}
+
 #lcp {
   position: absolute;
   color: transparent;
@@ -185,9 +201,8 @@ button.cell {
 }
 
 #settings-dialog .body > * {
-  margin-top: 8px;
-  margin-inline: -24px;
-  padding: 8px 32px;
+  margin-inline: -8px;
+  padding: 8px 16px;
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-areas:
@@ -209,13 +224,19 @@ button.cell {
 }
 
 #settings-dialog .label {
-  font-weight: 700;
+  font-size: 17px;
+  font-weight: 400;
+}
+
+#settings-dialog output {
+  font-size: 14px;
+  font-weight: 400;
 }
 
 #close-settings {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 0;
+  right: 0;
 }
 
 @keyframes fade-in {
@@ -242,7 +263,7 @@ dialog {
   width: 100vw;
   min-height: 100vh;
   border: none;
-  padding: 16px;
+  padding: 8px;
   background-color: var(--surface);
   color: var(--on-surface);
   animation: fade-in 0.2s ease-in-out;
