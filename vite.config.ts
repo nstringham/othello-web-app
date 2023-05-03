@@ -14,9 +14,7 @@ export default defineConfig({
       inject: {
         data: {
           ...mdi,
-          DESCRIPTION: manifest.description,
           TITLE: manifest.name,
-          BASE_URL: "https://othello-rust.web.app",
         },
       },
     }),

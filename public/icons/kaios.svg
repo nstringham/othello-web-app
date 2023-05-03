@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-28 -28 56 56">
+    <defs>
+        <!-- taken from https://codepen.io/hanger/pen/yOGvQp -->
+        <filter id="shadow" x="-50%" y="-100%" width="200%" height="300%">
+            <feOffset in="SourceAlpha" result="offA" dy="2"></feOffset>
+            <feOffset in="SourceAlpha" result="offB" dy="1"></feOffset>
+            <feOffset in="SourceAlpha" result="offC" dy="3"></feOffset>
+            <feMorphology in="offC" result="spreadC" operator="erode" radius="2"></feMorphology>
+            <feGaussianBlur in="offA" result="blurA" stdDeviation="1"></feGaussianBlur>
+            <feGaussianBlur in="offB" result="blurB" stdDeviation="2.5"></feGaussianBlur>
+            <feGaussianBlur in="spreadC" result="blurC" stdDeviation="0.5"></feGaussianBlur>
+            <feFlood flood-opacity="0.14" result="opA"></feFlood>
+            <feFlood flood-opacity="0.12" result="opB"></feFlood>
+            <feFlood flood-opacity="0.20" result="opC"></feFlood>
+            <feComposite in="opA" in2="blurA" result="shA" operator="in"></feComposite>
+            <feComposite in="opB" in2="blurB" result="shB" operator="in"></feComposite>
+            <feComposite in="opC" in2="blurC" result="shC" operator="in"></feComposite>
+            <feMerge>
+                <feMergeNode in="shA"></feMergeNode>
+                <feMergeNode in="shB"></feMergeNode>
+                <feMergeNode in="shC"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <rect x="-22" y="-22" width="44" height="44" rx="5" fill="#008000" style="filter:url(#shadow)" />
+    <circle r="8.25" cx="-9.625" cy="-9.625" fill="#fff" />
+    <circle r="8.25" cx="9.625" cy="-9.625" fill="#000" />
+    <circle r="8.25" cx="-9.625" cy="9.625" fill="#000" />
+    <circle r="8.25" cx="9.625" cy="9.625" fill="#fff" />
+</svg>
