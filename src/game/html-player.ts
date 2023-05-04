@@ -5,6 +5,17 @@ const boardElement = document.getElementById("board") as HTMLDivElement;
 
 const cells = [...boardElement.querySelectorAll<HTMLButtonElement>(".cell")];
 
+let cursorPosition = 0;
+const cursor = document.createElement("div");
+cursor.id = "cursor";
+cells[0].appendChild(cursor);
+
+function moveCursor(position: number) {
+  cells[position].appendChild(cursor);
+  cells[position].focus();
+  cursorPosition = position;
+}
+
 const ariaLabels: { [key: number]: string } = {
   [BLACK]: "black",
   [WHITE]: "white",
@@ -13,32 +24,28 @@ const ariaLabels: { [key: number]: string } = {
 
 let doTurn: ((move: number) => void) | undefined;
 
-for (const [i, cell] of cells.entries()) {
-  cell.addEventListener("click", () => {
-    boardElement.classList.remove("arrow-navigation");
-    doTurn?.(i);
-  });
+document.addEventListener("keydown", (event) => {
+  const row = Math.floor(cursorPosition / 8);
+  const column = cursorPosition % 8;
 
-  cell.addEventListener("keydown", (event) => {
-    const row = Math.floor(i / 8);
-    const column = i % 8;
+  if (event.key == "ArrowLeft") {
+    moveCursor(row * 8 + ((column + 7) % 8));
+  } else if (event.key == "ArrowRight") {
+    moveCursor(row * 8 + ((column + 1) % 8));
+  } else if (event.key == "ArrowUp") {
+    moveCursor(((row + 7) % 8) * 8 + column);
+  } else if (event.key == "ArrowDown") {
+    moveCursor(((row + 1) % 8) * 8 + column);
+  } else if (event.key == "Enter") {
+    doTurn?.(cursorPosition);
+  } else {
+    return;
+  }
 
-    if (event.key == "ArrowLeft") {
-      cells[row * 8 + ((column + 7) % 8)].focus();
-    } else if (event.key == "ArrowRight") {
-      cells[row * 8 + ((column + 1) % 8)].focus();
-    } else if (event.key == "ArrowUp") {
-      cells[((row + 7) % 8) * 8 + column].focus();
-    } else if (event.key == "ArrowDown") {
-      cells[((row + 1) % 8) * 8 + column].focus();
-    } else {
-      return;
-    }
+  event.preventDefault();
+});
 
-    event.preventDefault();
-    boardElement.classList.add("arrow-navigation");
-  });
-}
+cells[0].focus();
 
 let doneWaiting = () => {};
 
