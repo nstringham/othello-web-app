@@ -13,13 +13,16 @@ const listeners = {} as {
 };
 
 document.addEventListener("keydown", (event) => {
-  if (event.key == "SoftLeft" || event.key == "ArrowLeft") {
+  if (event.key == "SoftLeft" || event.key == "[") {
     listeners["left"]?.();
-  } else if (event.key == "SoftRight" || event.key == "ArrowRight") {
+  } else if (event.key == "SoftRight" || event.key == "]") {
     listeners["right"]?.();
   } else if (event.key == "Enter") {
     listeners["enter"]?.();
+  } else {
+    return;
   }
+  event.preventDefault();
 });
 
 export function setKey(key: "left" | "right" | "enter", label: string, listener: Listener = undefined, once = false) {
