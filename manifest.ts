@@ -1,11 +1,17 @@
 import type { WebAppManifest } from "web-app-manifest";
 
-export const manifest: WebAppManifest & { id: string } = {
+export const manifest: WebAppManifest & { id: string; b2g_features: object } = {
   name: "Othello",
-  description: "Play Othello against an AI with this beautiful modern web app.",
+  description:
+    "Use the D-pad to select a box to place a disk. Place a disk so that you surround your opponent's disks'. " +
+    "End the game with the most disks to win. Adjust the difficulty and color theme in the settings.",
+  lang: "en-US",
   id: "othello-web-app",
+  start_url: "/",
   background_color: "#121212",
   theme_color: "#121212",
+  display: "standalone",
+  orientation: "natural",
   categories: ["games"],
   icons: [
     {
@@ -24,4 +30,19 @@ export const manifest: WebAppManifest & { id: string } = {
       type: "image/svg+xml",
     },
   ],
+  b2g_features: {
+    version: "3.0.0",
+    type: "web",
+    subtitle: "Play Othello against an AI opponent",
+    permissions: {},
+    origin: "othello-web-app",
+    developer: {
+      name: "Nate Stringham",
+      url: "https://github.com/nstringham",
+    },
+    chrome: {
+      statusbar: "overlap",
+    },
+    focus_color: "#008000",
+  },
 };
