@@ -56,8 +56,22 @@ select {
 }
 
 input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
+  appearance: none;
+  border: none;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  background: var(--accent-on-surface);
+  mask-image: url(../node_modules/@mdi/svg/svg/checkbox-blank-outline.svg);
+}
+
+input[type="checkbox"]::before,
+input[type="checkbox"]::after {
+  display: none;
+}
+
+input[type="checkbox"]:checked {
+  mask-image: url(../node_modules/@mdi/svg/svg/checkbox-marked.svg);
 }
 
 button {
