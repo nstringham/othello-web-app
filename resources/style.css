@@ -253,12 +253,14 @@ button.cell {
   }
 }
 
-dialog {
-  top: 0 !important;
-  width: 100vw;
-  height: calc(100vh - 30px);
+.dialog {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 30px;
   overflow-y: auto;
-  border: none;
   padding: 8px;
   background-color: var(--surface);
   color: var(--on-surface);
@@ -266,20 +268,24 @@ dialog {
   overscroll-behavior: contain;
 }
 
-dialog.closing {
+.dialog:not(.open) {
+  display: none;
+}
+
+.dialog.closing {
   animation: fade-out 0.2s ease-in-out forwards;
 }
 
-dialog .title {
+.dialog .title {
   margin: 0;
   margin-bottom: 16px;
 }
 
-dialog .body {
+.dialog .body {
   margin: 0;
 }
 
-dialog h1 {
+.dialog h1 {
   margin: 0;
   margin-bottom: 8px;
 }

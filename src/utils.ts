@@ -15,7 +15,7 @@ export function waitForEvent(emitter: EventTarget, event: string, options?: AddE
 }
 
 export async function showDialog(dialog: HTMLDialogElement, closeLabel: string): Promise<void> {
-  dialog.showModal();
+  dialog.classList.add("open");
 
   await waitForKeyPress("left", closeLabel);
 
@@ -25,7 +25,7 @@ export async function showDialog(dialog: HTMLDialogElement, closeLabel: string):
 
   dialog.classList.remove("closing");
 
-  dialog.close();
+  dialog.classList.remove("open");
 }
 
 const toastTemplate = document.getElementById("toast-template") as HTMLTemplateElement;

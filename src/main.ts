@@ -1,7 +1,6 @@
 import * as Comlink from "comlink";
 import { htmlPlayer } from "./game/html-player";
 import type { PlayFunction } from "./worker";
-import dialogPolyfill from "dialog-polyfill";
 import "./settings";
 import { setKey } from "./soft-keys";
 
@@ -16,7 +15,3 @@ play(player).then(() => {
     location.reload();
   });
 });
-
-for (const dialog of document.querySelectorAll("dialog")) {
-  dialogPolyfill.registerDialog(dialog);
-}
