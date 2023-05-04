@@ -44,6 +44,17 @@ input {
   accent-color: var(--accent-on-surface);
 }
 
+select {
+  appearance: none;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  text-align: end;
+}
+
 input[type="checkbox"] {
   width: 16px;
   height: 16px;
