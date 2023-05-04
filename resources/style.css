@@ -163,9 +163,22 @@ button.cell {
   box-shadow: inset 0 0 8px 1px var(--hint);
 }
 
-.player-turn .cell:not(.black):not(.white):focus-visible::before {
+.player-turn .cell:focus-visible::before {
   content: "";
-  outline: 2px solid white;
+  outline: 2px solid transparent;
+  outline-offset: -1px;
+}
+
+.player-turn .cell:not(.black):not(.white):focus-visible::before {
+  outline-color: white;
+}
+
+.player-turn .arrow-navigation .cell.white:focus-visible::before {
+  outline-color: var(--player);
+}
+
+.player-turn .arrow-navigation .cell.black:focus-visible::before {
+  outline-color: var(--ai);
 }
 
 #soft-keys {
