@@ -209,10 +209,6 @@ button.cell {
   grid-area: control;
 }
 
-#settings-dialog #difficulty {
-  gap: 4px 0;
-}
-
 #settings-dialog #color-theme {
   gap: 16px 0;
 }

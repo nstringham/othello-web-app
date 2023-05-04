@@ -3,22 +3,11 @@ import { showDialog } from "./utils";
 
 const settingsDialog = document.getElementById("settings-dialog") as HTMLDialogElement;
 
-const DIFFICULTY_NAMES = ["Very Easy", "Easy", "Normal", "Hard", "Very Hard"] as const;
-
-const difficultySelector = settingsDialog.querySelector("#difficulty-input") as HTMLInputElement;
-const difficultyDisplay = settingsDialog.querySelector("#difficulty-output") as HTMLOutputElement;
-
-function updateDifficultyDisplay() {
-  difficultyDisplay.value = DIFFICULTY_NAMES[parseInt(difficultySelector.value)];
-}
-
-difficultySelector.addEventListener("input", updateDifficultyDisplay);
+const difficultySelector = settingsDialog.querySelector("#difficulty-input") as HTMLSelectElement;
 
 const difficultyString = localStorage.getItem("difficulty");
 
 difficultySelector.value = difficultyString ?? "2";
-
-updateDifficultyDisplay();
 
 const difficultyBroadcastChannel = new BroadcastChannel("difficulty");
 
@@ -32,7 +21,6 @@ difficultySelector.addEventListener("change", sendDifficulty);
 difficultyBroadcastChannel.addEventListener("message", (event) => {
   if (typeof event.data == "number") {
     difficultySelector.value = event.data.toString();
-    updateDifficultyDisplay();
   } else if (event.data == null) {
     sendDifficulty();
   }
