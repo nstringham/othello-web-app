@@ -50,27 +50,9 @@ input[type="checkbox"] {
 }
 
 button {
-  --button-text: var(--accent-on-surface);
-  --button-hover: var(--accent-on-surface-20);
-  --button-focus: var(--accent-on-surface-30);
   appearance: none;
   border: none;
   background: transparent;
-  font: inherit;
-  color: var(--button-text);
-  height: 40px;
-  padding-inline: 12px;
-  border-radius: 100vmax;
-}
-
-button:hover {
-  background-color: var(--button-hover);
-}
-
-button:focus-visible,
-button:active {
-  background-color: var(--button-focus);
-  outline: none;
 }
 
 body {
