@@ -16,7 +16,28 @@ let doTurn: ((move: number) => void) | undefined;
 
 for (const [i, cell] of cells.entries()) {
   cell.addEventListener("click", () => {
+    boardElement.classList.remove("arrow-navigation");
     doTurn?.(i);
+  });
+
+  cell.addEventListener("keydown", (event) => {
+    const row = Math.floor(i / 8);
+    const column = i % 8;
+
+    if (event.key == "ArrowLeft") {
+      cells[row * 8 + ((column + 7) % 8)].focus();
+    } else if (event.key == "ArrowRight") {
+      cells[row * 8 + ((column + 1) % 8)].focus();
+    } else if (event.key == "ArrowUp") {
+      cells[((row + 7) % 8) * 8 + column].focus();
+    } else if (event.key == "ArrowDown") {
+      cells[((row + 1) % 8) * 8 + column].focus();
+    } else {
+      return;
+    }
+
+    event.preventDefault();
+    boardElement.classList.add("arrow-navigation");
   });
 }
 
