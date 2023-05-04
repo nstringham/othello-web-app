@@ -113,7 +113,7 @@ export const htmlPlayer: Player = {
       for (let i = 0; i < 64; i++) {
         cells[i].classList.toggle("black", board[i] === BLACK);
         cells[i].classList.toggle("white", board[i] === WHITE);
-        cells[i].setAttribute("tabindex", checkMove(board, i) ? "0" : "-1");
+        cells[i].classList.toggle("valid", checkMove(board, i));
         cells[i].setAttribute("aria-label", ariaLabels[board[i]]);
       }
     });

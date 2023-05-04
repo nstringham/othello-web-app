@@ -141,7 +141,7 @@ button.cell {
   transform: scaleY(-1);
 }
 
-.hints-enabled.player-turn .cell[tabindex="0"]::before {
+.hints-enabled.player-turn .cell.valid::before {
   content: "";
   box-shadow: inset 0 0 8px 1px var(--hint);
 }
