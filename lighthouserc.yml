@@ -9,4 +9,5 @@ ci:
       csp-xss: "off"
       bf-cache: "warn"
       is-crawlable: "off"
+      robots-txt: "off"
       meta-description: "off"
