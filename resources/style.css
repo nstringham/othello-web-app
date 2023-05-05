@@ -104,7 +104,7 @@ h1 {
 
 #board {
   place-self: center;
-  --size: calc(100dvmin - 4 * var(--gutter-width));
+  --size: calc(min(calc(100vh - 30px), 100vw) - 4 * var(--gutter-width));
   width: var(--size);
   height: var(--size);
   contain: strict;
@@ -115,12 +115,6 @@ h1 {
   grid-template: repeat(8, 1fr) / repeat(8, 1fr);
   place-content: stretch;
   border-radius: var(--gutter-width);
-}
-
-@supports not (height: 100dvmin) {
-  #board {
-    --size: calc(100vmin - 4 * var(--gutter-width));
-  }
 }
 
 button.cell {
@@ -287,12 +281,11 @@ button.cell {
   right: 0;
   top: 0;
   bottom: 30px;
-  overflow-y: auto;
-  padding: 8px;
+  display: grid;
+  grid-template-rows: auto 1fr;
   background-color: var(--surface);
   color: var(--on-surface);
   animation: fade-in 0.2s ease-in-out;
-  overscroll-behavior: contain;
 }
 
 .dialog:not(.open) {
@@ -310,11 +303,14 @@ button.cell {
 
 .dialog .body {
   margin: 0;
+  padding: 8px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .dialog h1 {
   margin: 0;
-  margin-bottom: 8px;
+  margin-top: 8px;
 }
 
 #game-over-dialog table {

@@ -13,7 +13,9 @@ settingsDialog.addEventListener("keydown", (event) => {
     const index = settingsInputs.indexOf(event.target.closest(".body > *") as HTMLElement);
     const newIndex = (index + (event.key == "ArrowDown" ? 1 : -1) + settingsInputs.length) % settingsInputs.length;
     const container = settingsInputs[newIndex]?.querySelector("theme-selector")?.shadowRoot ?? settingsInputs[newIndex];
-    container.querySelector<HTMLElement>('input:not([type="radio"]), input:checked, select')?.focus();
+    const input = container.querySelector<HTMLElement>('input:not([type="radio"]), input:checked, select');
+    input?.focus({ preventScroll: true });
+    settingsInputs[newIndex]?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   } else if (event.key == "Enter") {
     event.target.click();
   } else {
