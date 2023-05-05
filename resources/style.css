@@ -229,6 +229,12 @@ button.cell {
     "control control";
 }
 
+#settings-dialog .body > *:focus-within {
+  background-color: var(--fab-background);
+  color: var(--fab-foreground);
+  --accent-on-surface: var(--fab-foreground);
+}
+
 #settings-dialog .body > * theme-selector {
   grid-area: control;
 }

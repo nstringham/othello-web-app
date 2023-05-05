@@ -2,6 +2,26 @@ import { setKey } from "./soft-keys";
 import { showDialog } from "./utils";
 
 const settingsDialog = document.getElementById("settings-dialog") as HTMLDialogElement;
+const settingsInputs = [...settingsDialog.querySelectorAll<HTMLElement>(".body > *")];
+
+settingsDialog.addEventListener("keydown", (event) => {
+  if (!(event.target instanceof HTMLElement)) {
+    return;
+  }
+
+  if (event.key == "ArrowDown" || event.key == "ArrowUp") {
+    const index = settingsInputs.indexOf(event.target.closest(".body > *") as HTMLElement);
+    const newIndex = (index + (event.key == "ArrowDown" ? 1 : -1) + settingsInputs.length) % settingsInputs.length;
+    const container = settingsInputs[newIndex]?.querySelector("theme-selector")?.shadowRoot ?? settingsInputs[newIndex];
+    container.querySelector<HTMLElement>("input, select")?.focus();
+  } else if (event.key == "Enter") {
+    event.target.click();
+  } else {
+    return;
+  }
+
+  event.preventDefault();
+});
 
 const difficultySelector = settingsDialog.querySelector("#difficulty-input") as HTMLSelectElement;
 

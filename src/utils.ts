@@ -17,6 +17,8 @@ export function waitForEvent(emitter: EventTarget, event: string, options?: AddE
 export async function showDialog(dialog: HTMLDialogElement, closeLabel: string): Promise<void> {
   dialog.classList.add("open");
 
+  dialog.querySelector<HTMLElement>("input, select, button")?.focus();
+
   await waitForKeyPress("left", closeLabel);
 
   dialog.classList.add("closing");

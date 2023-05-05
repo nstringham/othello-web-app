@@ -25,6 +25,10 @@ const ariaLabels: { [key: number]: string } = {
 let doTurn: ((move: number) => void) | undefined;
 
 document.addEventListener("keydown", (event) => {
+  if ((event.target as HTMLElement)?.closest(".dialog") != undefined) {
+    return;
+  }
+
   const row = Math.floor(cursorPosition / 8);
   const column = cursorPosition % 8;
 
