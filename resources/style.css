@@ -191,6 +191,7 @@ button.cell {
 }
 
 #soft-keys {
+  z-index: 2;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
@@ -334,24 +335,25 @@ button.cell {
 }
 
 #toast-container {
+  z-index: 1;
   position: fixed;
-  bottom: max(0px, calc(env(safe-area-inset-bottom) - 12px));
-  left: max(0px, calc(env(safe-area-inset-left) - 12px));
+  bottom: 30px;
+  left: 0;
   display: grid;
-  padding: 12px;
-  gap: 12px;
+  padding: 8px;
+  gap: 8px;
   justify-items: start;
 }
 
 .toast {
-  border-radius: 28px;
-  padding: 0 24px;
-  height: 48px;
+  border-radius: 16px;
+  padding: 0 12px;
+  height: 32px;
   border: solid 1px var(--on-surface-30);
   background-color: var(--surface);
   color: var(--on-surface);
 }
 
 .toast > .text {
-  line-height: 48px;
+  line-height: 32px;
 }

@@ -34,7 +34,7 @@ const toastTemplate = document.getElementById("toast-template") as HTMLTemplateE
 const toastContainer = document.getElementById("toast-container") as HTMLDivElement;
 
 const toastAnimation = toastContainer.animate(
-  { transform: ["translateY(60px)", "translateY(0)"] },
+  { transform: ["translateY(40px)", "translateY(0)"] },
   { duration: 250, easing: "ease-out" }
 );
 
