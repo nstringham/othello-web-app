@@ -1,7 +1,7 @@
 :host {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 12px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 6px;
 }
 
 label {
@@ -21,7 +21,7 @@ svg {
 }
 
 input:checked + svg {
-  box-shadow: 0 0 0 2px var(--on-surface);
+  box-shadow: 0 0 0 2px currentColor;
 }
 
 .disk {

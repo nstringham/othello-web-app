@@ -57,17 +57,6 @@ const themeConfigs = {
     useLightAccent: true,
   } satisfies ThemeConfig,
 
-  oak: {
-    name: "Oak",
-    boardBackground: new Color(146, 77, 56),
-    boardCells: new Color(185, 122, 87),
-    player: new Color(103, 48, 80),
-    ai: new Color(231, 182, 190),
-    hint: white.withAlpha(0.3),
-    accentDark: new Color(146, 77, 56),
-    accentLight: new Color(185, 122, 87),
-  } satisfies ThemeConfig,
-
   midnight: {
     name: "Midnight",
     boardBackground: new Color(28, 36, 98),
