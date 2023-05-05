@@ -29,14 +29,20 @@ export default defineConfig(({ mode }) => ({
   build: {
     target: "firefox84",
     modulePreload: false,
-    rollupOptions: {
-      output: {
-        assetFileNames: "assets/[name][extname]",
-        chunkFileNames: "[name].js",
-      },
-    },
+    rollupOptions,
+  },
+  worker: {
+    rollupOptions,
   },
   define: {
     __THEME_DATA__: JSON.stringify(JSON.stringify(themes)),
   },
 }));
+
+const rollupOptions = {
+  output: {
+    entryFileNames: `assets/[name].js`,
+    chunkFileNames: `assets/[name].js`,
+    assetFileNames: `assets/[name].[ext]`,
+  },
+} as const;
