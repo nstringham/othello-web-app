@@ -13,7 +13,7 @@ settingsDialog.addEventListener("keydown", (event) => {
     const index = settingsInputs.indexOf(event.target.closest(".body > *") as HTMLElement);
     const newIndex = (index + (event.key == "ArrowDown" ? 1 : -1) + settingsInputs.length) % settingsInputs.length;
     const container = settingsInputs[newIndex]?.querySelector("theme-selector")?.shadowRoot ?? settingsInputs[newIndex];
-    container.querySelector<HTMLElement>("input, select")?.focus();
+    container.querySelector<HTMLElement>('input:not([type="radio"]), input:checked, select')?.focus();
   } else if (event.key == "Enter") {
     event.target.click();
   } else {
