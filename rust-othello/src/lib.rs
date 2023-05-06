@@ -1,10 +1,19 @@
 mod heuristic;
 
-use heuristic::score;
+use heuristic::{score, Heuristic};
 use std::cmp::min;
 use wasm_bindgen::prelude::*;
 
-use crate::heuristic::Heuristic;
+extern crate alloc;
+
+#[cfg(target_arch = "wasm32")]
+use lol_alloc::{AssumeSingleThreaded, FreeListAllocator};
+
+#[cfg(target_arch = "wasm32")]
+// SAFETY: This application is single threaded, so using AssumeSingleThreaded is allowed.
+#[global_allocator]
+static ALLOCATOR: AssumeSingleThreaded<FreeListAllocator> =
+    unsafe { AssumeSingleThreaded::new(FreeListAllocator::new()) };
 
 type Board = [i8; 64];
 
