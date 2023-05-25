@@ -50,7 +50,7 @@ jobs:
         with:
           cache: "npm"
       - name: install wasm-pack
-        run: cargo install wasm-pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
       - run: npm ci
       - run: npm run build
       - name: Upload dist
