@@ -3,7 +3,45 @@ on:
   - push
   - workflow_dispatch
 
+env:
+  CARGO_TERM_VERBOSE: true
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: "-Dwarnings"
+
 jobs:
+  cargo-check:
+    name: Cargo Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cargo check
+        working-directory: rust-othello
+
+  cargo-test:
+    name: Cargo Test Suite
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cargo test
+        working-directory: rust-othello
+
+  cargo-fmt:
+    name: Rustfmt
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cargo fmt --check
+        working-directory: rust-othellok
+
+  cargo-clippy:
+    name: Clippy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cargo clippy
+        working-directory: rust-othellok
+          
+    
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -13,7 +51,7 @@ jobs:
         with:
           cache: "npm"
       - name: install wasm-pack
-        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+        run: cargo install wasm-pack
       - run: npm ci
       - run: npm run build
       - name: Upload dist
