@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cargo fmt --check
-        working-directory: rust-othellok
+        working-directory: rust-othello
 
   cargo-clippy:
     name: Clippy
@@ -39,7 +39,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cargo clippy
-        working-directory: rust-othellok
+        working-directory: rust-othello
           
     
   build:
