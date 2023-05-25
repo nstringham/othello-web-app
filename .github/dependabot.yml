@@ -1,7 +1,17 @@
 version: 2
 updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: friday
   - package-ecosystem: npm
     directory: /
+    schedule:
+      interval: weekly
+      day: friday
+  - package-ecosystem: cargo
+    directory: /rust-othello
     schedule:
       interval: weekly
       day: friday
