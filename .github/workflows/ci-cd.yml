@@ -27,7 +27,6 @@ jobs:
           name: pkg
           path: rust-othello/pkg
 
-
   prettier:
     name: Prettier
     runs-on: ubuntu-latest
