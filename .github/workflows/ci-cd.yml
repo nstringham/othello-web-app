@@ -4,6 +4,30 @@ on:
   - workflow_dispatch
 
 jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: "npm"
+      - name: install wasm-pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+      - run: npm ci
+      - run: npm run build
+      - name: Upload dist
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist
+      - name: Upload pkg
+        uses: actions/upload-artifact@v3
+        with:
+          name: pkg
+          path: rust-othello/pkg
+
+
   prettier:
     name: Prettier
     runs-on: ubuntu-latest
@@ -18,26 +42,34 @@ jobs:
   eslint:
     name: ESLint
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           cache: "npm"
       - run: npm ci
+      - name: Download pkg
+        uses: actions/download-artifact@v3
+        with:
+          name: pkg
+          path: rust-othello/pkg
       - run: npm run lint
 
   lhci-file:
     name: Lighthouse (file)
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           cache: "npm"
-      - name: install wasm-pack
-        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-      - run: npm ci
-      - run: npm run build
+      - name: Download dist
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist
       - name: run Lighthouse CI
         run: |
           npm install -g @lhci/cli@latest
@@ -49,6 +81,7 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
+    needs: build
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -57,7 +90,11 @@ jobs:
       - name: install wasm-pack
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
       - run: npm ci
-      - run: npm run build
+      - name: Download dist
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
