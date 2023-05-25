@@ -14,7 +14,7 @@ export function waitForEvent(emitter: EventTarget, event: string, options?: AddE
 
 export function waitForDialogToBeClosed(dialog: HTMLDialogElement): Promise<void> {
   return new Promise((resolve) => {
-    dialog.querySelector("button")!.addEventListener(
+    dialog.querySelector("button")?.addEventListener(
       "click",
       () => {
         resolve();

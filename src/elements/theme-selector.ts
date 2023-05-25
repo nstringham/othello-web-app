@@ -55,7 +55,7 @@ export class ThemeSelectorElement extends HTMLElement {
     }
 
     themeBroadcastChannel.addEventListener("message", (event) => {
-      document.documentElement.style.cssText = localStorage.getItem("theme-styles")!;
+      document.documentElement.style.cssText = localStorage.getItem("theme-styles") ?? "";
       const themeId = event.data;
       const input = shadow.querySelector(`input#${themeId}`) as HTMLInputElement;
       input.checked = true;
