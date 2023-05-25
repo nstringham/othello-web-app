@@ -4,6 +4,17 @@ on:
   - workflow_dispatch
 
 jobs:
+  prettier:
+    name: Prettier
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: "npm"
+      - run: npm ci
+      - run: npm run prettier
+
   lhci-file:
     name: Lighthouse (file)
     runs-on: ubuntu-latest

@@ -8,10 +8,13 @@
     "build": "npm run wasm-release && tsc && vite build",
     "preview": "vite preview",
     "preview:host": "vite preview --host",
+    "format": "prettier -w .",
+    "prettier": "prettier -c .",
     "wasm-dev": "wasm-pack build ./rust-othello --target web --dev --debug",
     "wasm-release": "wasm-pack build ./rust-othello --target web --release"
   },
   "devDependencies": {
+    "prettier": "^2.8.8",
     "typescript": "^5.0.4",
     "vite": "^4.3.8",
     "vite-plugin-html": "^3.2.0",
