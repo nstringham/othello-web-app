@@ -8,12 +8,16 @@
     "build": "npm run wasm-release && tsc && vite build",
     "preview": "vite preview",
     "preview:host": "vite preview --host",
+    "lint": "eslint .",
     "format": "prettier -w .",
     "prettier": "prettier -c .",
     "wasm-dev": "wasm-pack build ./rust-othello --target web --dev --debug",
     "wasm-release": "wasm-pack build ./rust-othello --target web --release"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.59.7",
+    "@typescript-eslint/parser": "^5.59.7",
+    "eslint": "^8.41.0",
     "prettier": "^2.8.8",
     "typescript": "^5.0.4",
     "vite": "^4.3.8",
