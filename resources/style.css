@@ -221,7 +221,8 @@ button.cell {
   dialog#settings-dialog {
     margin-top: max(48px, env(safe-area-inset-top));
     margin-right: max(48px, env(safe-area-inset-right));
-    transform-origin: calc(100% + 16px) -16px;
+    transform-origin: calc(100% - 24px + max(48px, env(safe-area-inset-right)) - max(8px, env(safe-area-inset-right)))
+      calc(24px - max(48px, env(safe-area-inset-top)) + max(8px, env(safe-area-inset-top)));
   }
 }
 
