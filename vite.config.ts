@@ -8,12 +8,13 @@ import { manifest } from "./manifest";
 
 import { themes } from "./src/theme-data";
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [
     createHtmlPlugin({
       inject: {
         data: {
           ...mdi,
+          COMMAND: command,
           DESCRIPTION: manifest.description,
           TITLE: manifest.name,
           BASE_URL: "https://othello-rust.web.app",
@@ -39,7 +40,7 @@ export default defineConfig({
   define: {
     __THEME_DATA__: JSON.stringify(JSON.stringify(themes)),
   },
-});
+}));
 
 function modulepreloadPlugin({ regex }: { regex: RegExp }): Plugin {
   let baseUrl: string;
