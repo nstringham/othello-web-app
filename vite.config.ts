@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { Plugin, defineConfig } from "vite";
 
 import { createHtmlPlugin } from "vite-plugin-html";
 import { VitePWA } from "vite-plugin-pwa";
@@ -29,6 +29,7 @@ export default defineConfig({
         globPatterns: ["**/*.{html,js,css,wasm,woff2}"],
       },
     }),
+    modulepreloadPlugin({ regex: /worker-[0-9a-f]+\.js$/ }),
   ],
   build: {
     target: "esnext",
@@ -39,3 +40,25 @@ export default defineConfig({
     __THEME_DATA__: JSON.stringify(JSON.stringify(themes)),
   },
 });
+
+function modulepreloadPlugin({ regex }: { regex: RegExp }): Plugin {
+  let baseUrl: string;
+
+  return {
+    name: "modulepreload",
+
+    configResolved({ base }) {
+      baseUrl = base;
+    },
+
+    transformIndexHtml(html, { bundle }) {
+      return Object.values(bundle ?? {})
+        .filter((chunk) => regex.test(chunk.fileName))
+        .map((chunk) => ({
+          tag: "link",
+          attrs: { rel: "modulepreload", href: baseUrl + chunk.fileName },
+          injectTo: "head",
+        }));
+    },
+  };
+}
