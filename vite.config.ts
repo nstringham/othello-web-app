@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { Plugin, defineConfig } from "vite";
 
 import { createHtmlPlugin } from "vite-plugin-html";
 import generateFile from "vite-plugin-generate-file";
@@ -8,13 +8,14 @@ import { manifest } from "./manifest";
 
 import { themes } from "./src/theme-data";
 
-export default defineConfig(({ mode }) => ({
+export default defineConfig(({ mode, command }) => ({
   plugins: [
     createHtmlPlugin({
       inject: {
         data: {
           ...mdi,
           DEVELOPMENT: mode == "development",
+          COMMAND: command,
           TITLE: manifest.name,
         },
       },
@@ -25,6 +26,7 @@ export default defineConfig(({ mode }) => ({
         data: manifest,
       },
     ]),
+    modulepreloadPlugin({ regex: /worker-[0-9a-f]+\.js$/ }),
   ],
   build: {
     target: "firefox84",
@@ -46,3 +48,25 @@ const rollupOptions = {
     assetFileNames: `assets/[name].[ext]`,
   },
 } as const;
+
+function modulepreloadPlugin({ regex }: { regex: RegExp }): Plugin {
+  let baseUrl: string;
+
+  return {
+    name: "modulepreload",
+
+    configResolved({ base }) {
+      baseUrl = base;
+    },
+
+    transformIndexHtml(html, { bundle }) {
+      return Object.values(bundle ?? {})
+        .filter((chunk) => regex.test(chunk.fileName))
+        .map((chunk) => ({
+          tag: "link",
+          attrs: { rel: "modulepreload", href: baseUrl + chunk.fileName },
+          injectTo: "head",
+        }));
+    },
+  };
+}

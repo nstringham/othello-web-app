@@ -1,5 +1,11 @@
 import { Board, Color, Player, BLACK } from "./game";
 
+declare global {
+  interface Window {
+    input: (input: number) => void;
+  }
+}
+
 export const consolePlayer: Player = {
   setColor(color: Color) {
     if (color != BLACK) {
@@ -10,7 +16,6 @@ export const consolePlayer: Player = {
   getTurn(board: Board) {
     console.log("getting turn for:", board);
     return new Promise((resolve) => {
-      //@ts-ignore
       window.input = resolve;
     });
   },
