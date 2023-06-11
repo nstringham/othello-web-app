@@ -35,6 +35,7 @@ export const manifest: WebAppManifest & { id: string; b2g_features: object } = {
     type: "web",
     subtitle: "Play Othello against an AI opponent",
     permissions: {},
+    cursor: false,
     origin: "othello-web-app",
     developer: {
       name: "Nate Stringham",
