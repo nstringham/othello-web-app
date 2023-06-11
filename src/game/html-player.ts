@@ -24,13 +24,13 @@ for (const [i, cell] of cells.entries()) {
     const row = Math.floor(i / 8);
     const column = i % 8;
 
-    if (event.key == "ArrowLeft") {
+    if (event.key == "ArrowLeft" || event.code == "KeyA") {
       cells[row * 8 + ((column + 7) % 8)].focus();
-    } else if (event.key == "ArrowRight") {
+    } else if (event.key == "ArrowRight" || event.code == "KeyD") {
       cells[row * 8 + ((column + 1) % 8)].focus();
-    } else if (event.key == "ArrowUp") {
+    } else if (event.key == "ArrowUp" || event.code == "KeyW") {
       cells[((row + 7) % 8) * 8 + column].focus();
-    } else if (event.key == "ArrowDown") {
+    } else if (event.key == "ArrowDown" || event.code == "KeyS") {
       cells[((row + 1) % 8) * 8 + column].focus();
     } else {
       return;
