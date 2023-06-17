@@ -218,7 +218,7 @@ button.cell {
 }
 
 @media (min-width: 600px) {
-  dialog#settings-dialog {
+  dialog#settings {
     margin-top: max(48px, env(safe-area-inset-top));
     margin-right: max(48px, env(safe-area-inset-right));
     transform-origin: calc(100% - 24px + max(48px, env(safe-area-inset-right)) - max(8px, env(safe-area-inset-right)))
@@ -226,7 +226,7 @@ button.cell {
   }
 }
 
-#settings-dialog .body > * {
+#settings .body > * {
   margin-top: 8px;
   margin-inline: -24px;
   padding: 8px 32px;
@@ -237,20 +237,20 @@ button.cell {
     "control control";
 }
 
-#settings-dialog .body > * input[type="range"],
-#settings-dialog .body > * theme-selector {
+#settings .body > * input[type="range"],
+#settings .body > * theme-selector {
   grid-area: control;
 }
 
-#settings-dialog #difficulty {
+#settings #difficulty {
   gap: 4px 0;
 }
 
-#settings-dialog #color-theme {
+#settings #color-theme {
   gap: 16px 0;
 }
 
-#settings-dialog .label {
+#settings .label {
   font-weight: 700;
 }
 
@@ -327,16 +327,16 @@ dialog h1 {
   margin-bottom: 16px;
 }
 
-#game-over-dialog table {
+#game-over table {
   width: 100%;
   line-height: 24px;
 }
 
-#game-over-dialog th {
+#game-over th {
   text-align: start;
 }
 
-#game-over-dialog td {
+#game-over td {
   text-align: end;
 }
 

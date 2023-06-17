@@ -45,7 +45,7 @@ let doneWaiting = () => {};
 
 let animationDone: Promise<void> | undefined;
 
-const gameOverDialog = document.querySelector("#game-over-dialog") as HTMLDialogElement;
+const gameOverDialog = document.querySelector("#game-over") as HTMLDialogElement;
 const gameOverDialogTitle = gameOverDialog.querySelector(".title") as HTMLHeadingElement;
 const gameOverDialogBody = gameOverDialog.querySelector(".body") as HTMLParagraphElement;
 

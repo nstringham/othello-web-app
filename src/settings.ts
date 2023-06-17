@@ -2,7 +2,7 @@ import { preventRestart } from "./pwa";
 import { showDialog } from "./utils";
 
 const settingsButton = document.getElementById("settings-button") as HTMLButtonElement;
-const settingsDialog = document.getElementById("settings-dialog") as HTMLDialogElement;
+const settingsDialog = document.getElementById("settings") as HTMLDialogElement;
 
 const DIFFICULTY_NAMES = ["Very Easy", "Easy", "Normal", "Hard", "Very Hard"] as const;
 
@@ -63,7 +63,16 @@ import("./elements/theme-selector");
 async function showSettings() {
   preventRestart();
   await showDialog(settingsDialog);
-  settingsDialog.close();
 }
 
 settingsButton.addEventListener("click", showSettings);
+
+function checkHash() {
+  if (location.hash == "#settings") {
+    showSettings();
+  }
+}
+
+window.addEventListener("hashchange", checkHash);
+
+checkHash();
