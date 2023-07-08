@@ -19,7 +19,7 @@ export function waitForDialogToBeClosed(dialog: HTMLDialogElement): Promise<void
       () => {
         resolve();
       },
-      { once: true }
+      { once: true },
     );
     dialog.addEventListener(
       "cancel",
@@ -27,14 +27,14 @@ export function waitForDialogToBeClosed(dialog: HTMLDialogElement): Promise<void
         event.preventDefault();
         resolve();
       },
-      { once: true }
+      { once: true },
     );
     window.addEventListener(
       "popstate",
       () => {
         resolve();
       },
-      { once: true }
+      { once: true },
     );
   });
 }
@@ -69,7 +69,7 @@ const toastContainer = document.getElementById("toast-container") as HTMLDivElem
 
 const toastAnimation = toastContainer.animate(
   { transform: ["translateY(60px)", "translateY(0)"] },
-  { duration: 250, easing: "ease-out" }
+  { duration: 250, easing: "ease-out" },
 );
 
 export async function showToast(text: string, waitFor: Promise<unknown> = waitForMilliseconds(10_000)) {
@@ -89,7 +89,7 @@ export async function showToast(text: string, waitFor: Promise<unknown> = waitFo
 
   const toastDisappear = toastElement.animate(
     { transform: ["translateX(0)", "translateX(calc(-12px + -100%))"] },
-    { duration: 500, easing: "ease-in", fill: "forwards" }
+    { duration: 500, easing: "ease-in", fill: "forwards" },
   );
 
   await toastDisappear.finished;
