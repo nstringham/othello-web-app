@@ -10,6 +10,7 @@ const updateSW = registerSW({
   onNeedRefresh() {
     if (shouldRestart) {
       updateSW();
+      sessionStorage.setItem("updating", "true");
     } else {
       updateAndRestart = updateSW;
     }
@@ -17,3 +18,5 @@ const updateSW = registerSW({
 });
 
 export let updateAndRestart = () => location.reload();
+
+sessionStorage.removeItem("updating");

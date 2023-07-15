@@ -169,17 +169,24 @@ button.cell {
 }
 
 .cell.black::before,
-.cell.white::before {
+.cell.white::before,
+.updating .cell:is(:nth-child(28), :nth-child(29), :nth-child(36), :nth-child(37))::before {
   content: "";
   animation: grow 0.5s ease-in-out;
 }
 
-.cell.white::before {
+.updating .cell:is(:nth-child(28), :nth-child(29), :nth-child(36), :nth-child(37))::before {
+  animation-duration: 0s;
+}
+
+.cell.white::before,
+.updating .cell:is(:nth-child(28), :nth-child(37))::before {
   background-color: var(--ai);
   transform: scaleY(1);
 }
 
-.cell.black::before {
+.cell.black::before,
+.updating .cell:is(:nth-child(29), :nth-child(36), )::before {
   background-color: var(--player);
   transform: scaleY(-1);
 }

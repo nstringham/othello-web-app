@@ -26,6 +26,7 @@
 
     <script>
       document.documentElement.style.cssText = localStorage.getItem("theme-styles");
+      document.documentElement.classList.toggle("updating", sessionStorage.getItem("updating"));
     </script>
 
     <link rel="preload" href="/resources/roboto.woff2" as="font" type="font/woff2" crossorigin />

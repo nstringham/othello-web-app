@@ -65,7 +65,7 @@ export const htmlPlayer: Player = {
       } else if (checkMove(board, move)) {
         resolver(move);
         doTurn = undefined;
-        document.documentElement.classList.remove("player-turn");
+        document.documentElement.classList.remove("player-turn", "updating");
         gameInProgress = true;
         preventRestart();
       } else {
