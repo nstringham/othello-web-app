@@ -2,11 +2,12 @@ import { ManifestOptions } from "vite-plugin-pwa";
 
 export const manifest: Partial<ManifestOptions> = {
   name: "Othello",
-  short_name: undefined,
+  short_name: "Othello",
   description: "Play Othello against an AI with this beautiful modern web app.",
   id: "othello-web-app",
   background_color: "#121212",
   theme_color: "#121212",
+  display: "standalone",
   categories: ["games"],
   iarc_rating_id: "b5c3da86-e1a0-4f97-86b6-a3f6246c90ff",
   related_applications: [
