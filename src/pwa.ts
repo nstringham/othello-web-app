@@ -8,6 +8,12 @@ export function preventRestart() {
 
 const updateSW = registerSW({
   onNeedRefresh() {
-    updateSW(shouldRestart);
+    if (shouldRestart) {
+      updateSW();
+    } else {
+      updateAndRestart = updateSW;
+    }
   },
 });
+
+export let updateAndRestart = () => location.reload();
