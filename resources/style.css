@@ -420,3 +420,45 @@ dialog h1 {
   animation: grow 0.2s ease-out;
   transform-origin: 100% 100%;
 }
+
+@media (forced-colors: active) {
+  #lcp {
+    display: none;
+  }
+
+  button:not(.cell),
+  button:not(.cell):focus-visible,
+  button:not(.cell):active {
+    outline: revert !important;
+    border: 1px solid;
+  }
+
+  dialog {
+    outline: 1px solid;
+  }
+
+  #settings #color-theme {
+    display: none;
+  }
+
+  #board,
+  .cell {
+    background-color: Canvas;
+    outline: 1px solid CanvasText !important;
+  }
+
+  #board {
+    --ai: CanvasText;
+    --player: LinkText;
+  }
+
+  .hints-enabled.player-turn .cell[tabindex="0"]:not(:focus-visible)::before {
+    outline: 1px solid;
+    outline-offset: -1px;
+  }
+
+  .player-turn .cell:focus-visible::before {
+    outline-width: 8px;
+    outline-offset: -6px;
+  }
+}
