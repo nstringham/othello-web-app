@@ -17,6 +17,6 @@ const updateSW = registerSW({
   },
 });
 
-export let updateAndRestart = location.reload;
+export let updateAndRestart = () => location.reload();
 
 sessionStorage.removeItem("updating");
