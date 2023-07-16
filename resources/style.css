@@ -186,7 +186,7 @@ button.cell {
 }
 
 .cell.black::before,
-.updating .cell:is(:nth-child(29), :nth-child(36), )::before {
+.updating .cell:is(:nth-child(29), :nth-child(36))::before {
   background-color: var(--player);
   transform: scaleY(-1);
 }
