@@ -42,7 +42,7 @@
     <div class="dialog" id="settings-dialog">
       <h1>Settings</h1>
       <div class="body">
-        <label id="difficulty">
+        <label id="difficulty" class="focusable">
           <span class="label">Difficulty</span>
           <select id="difficulty-input">
             <option value="0">Very Easy</option>
@@ -52,15 +52,15 @@
             <option value="4">Very Hard</option>
           </select>
         </label>
-        <label id="enable-hints">
+        <label id="enable-hints" class="focusable">
           <span class="label">Show Hints</span>
           <input id="enable-hints-input" type="checkbox" />
         </label>
-        <label id="dark-theme">
+        <label id="dark-theme" class="focusable">
           <span class="label">Dark Theme</span>
           <input id="dark-theme-input" type="checkbox" />
         </label>
-        <div id="color-theme">
+        <div id="color-theme" class="focusable">
           <span class="label">Color Theme</span>
           <output id="theme-output"></output>
           <theme-selector></theme-selector>

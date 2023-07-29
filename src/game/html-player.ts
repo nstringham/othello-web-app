@@ -25,7 +25,7 @@ const ariaLabels: { [key: number]: string } = {
 let doTurn: ((move: number) => void) | undefined;
 
 document.addEventListener("keydown", (event) => {
-  if ((event.target as HTMLElement)?.closest(".dialog") != undefined) {
+  if (document.querySelector(".dialog.open") != null) {
     return;
   }
 

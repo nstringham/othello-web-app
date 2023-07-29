@@ -14,10 +14,20 @@ export function waitForEvent(emitter: EventTarget, event: string, options?: AddE
   });
 }
 
+export function focus(element: HTMLElement | null | undefined) {
+  if (element == null) {
+    return;
+  }
+  for (const element of document.querySelectorAll(".focus")) {
+    element.classList.remove("focus");
+  }
+  element.classList.add("focus");
+}
+
 export async function showDialog(dialog: HTMLDialogElement, closeLabel: string): Promise<void> {
   dialog.classList.add("open");
 
-  dialog.querySelector<HTMLElement>("input, select, button")?.focus();
+  focus(dialog.querySelector<HTMLElement>(".focusable"));
 
   await waitForKeyPress("left", closeLabel);
 

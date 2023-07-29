@@ -224,7 +224,7 @@ button.cell {
     "control control";
 }
 
-#settings-dialog .body > *:focus-within {
+#settings-dialog .body > .focus {
   background-color: var(--fab-background);
   color: var(--fab-foreground);
   --accent-on-surface: var(--fab-foreground);

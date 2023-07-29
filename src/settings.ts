@@ -1,23 +1,27 @@
+import { type ThemeSelectorElement } from "./elements/theme-selector";
 import { setKey } from "./soft-keys";
-import { showDialog } from "./utils";
+import { showDialog, focus } from "./utils";
 
 const settingsDialog = document.getElementById("settings-dialog") as HTMLDialogElement;
-const settingsInputs = [...settingsDialog.querySelectorAll<HTMLElement>(".body > *")];
+const settingsInputs = [...settingsDialog.querySelectorAll<HTMLElement>(".focusable")];
 
-settingsDialog.addEventListener("keydown", (event) => {
-  if (!(event.target instanceof HTMLElement)) {
+document.addEventListener("keydown", (event) => {
+  if (!settingsDialog.classList.contains("open")) {
     return;
   }
 
+  const focusedElement = settingsDialog.querySelector<HTMLElement>(".focus") ?? settingsInputs[0];
+
   if (event.key == "ArrowDown" || event.key == "ArrowUp") {
-    const index = settingsInputs.indexOf(event.target.closest(".body > *") as HTMLElement);
+    const index = settingsInputs.indexOf(focusedElement);
     const newIndex = (index + (event.key == "ArrowDown" ? 1 : -1) + settingsInputs.length) % settingsInputs.length;
-    const container = settingsInputs[newIndex]?.querySelector("theme-selector")?.shadowRoot ?? settingsInputs[newIndex];
-    const input = container.querySelector<HTMLElement>('input:not([type="radio"]), input:checked, select');
-    input?.focus({ preventScroll: true });
+    focus(settingsInputs[newIndex]);
     settingsInputs[newIndex]?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   } else if (event.key == "Enter") {
-    event.target.click();
+    focusedElement.querySelector("select")?.focus();
+    focusedElement.querySelector("input")?.click();
+  } else if (event.key == "ArrowLeft" || event.key == "ArrowRight") {
+    focusedElement.querySelector<ThemeSelectorElement>("theme-selector")?.select(event.key == "ArrowRight" ? 1 : -1);
   } else {
     return;
   }
