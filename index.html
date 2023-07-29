@@ -34,10 +34,15 @@
       <button class="cell" tabindex="-1"></button>
       <% } %>
     </div>
-    <div id="soft-keys">
-      <span id="soft-left"></span>
-      <span id="soft-enter"></span>
-      <span id="soft-right"></span>
+    <div id="toast-container"></div>
+    <template id="toast-template">
+      <div role="alert" class="toast">
+        <snap class="text"></snap>
+      </div>
+    </template>
+    <div class="dialog" id="game-over-dialog">
+      <h1 class="title"></h1>
+      <p class="body"></p>
     </div>
     <div class="dialog" id="settings-dialog">
       <h1>Settings</h1>
@@ -67,15 +72,10 @@
         </div>
       </div>
     </div>
-    <div class="dialog" id="game-over-dialog">
-      <h1 class="title"></h1>
-      <p class="body"></p>
+    <div id="soft-keys">
+      <span id="soft-left"></span>
+      <span id="soft-enter"></span>
+      <span id="soft-right"></span>
     </div>
-    <div id="toast-container"></div>
-    <template id="toast-template">
-      <div role="alert" class="toast">
-        <snap class="text"></snap>
-      </div>
-    </template>
   </body>
 </html>
