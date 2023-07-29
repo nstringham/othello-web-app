@@ -7,7 +7,7 @@ export const manifest: WebAppManifest & { b2g_features: object } = {
     "End the game with the most disks to win. Adjust the difficulty and color theme in the settings.",
   lang: "en-US",
   id: "othello-web-app",
-  start_url: "/",
+  start_url: "/index.html",
   background_color: "#121212",
   theme_color: "#121212",
   display: "standalone",
