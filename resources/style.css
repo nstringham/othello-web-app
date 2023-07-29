@@ -1,5 +1,6 @@
 :root {
   --gutter-width: 1.8vmin;
+  --statusbar-height: 26px;
 
   /* fallback for first page load */
   --board-background: #008000;
@@ -87,6 +88,7 @@ body {
   height: 100dvh;
   margin: 0;
   display: grid;
+  padding-top: var(--statusbar-height);
   grid-template-rows: 1fr 30px;
 }
 
@@ -104,7 +106,7 @@ h1 {
 
 #board {
   place-self: center;
-  --size: calc(min(calc(100vh - 30px), 100vw) - 4 * var(--gutter-width));
+  --size: calc(min(calc(100vh - 30px - var(--statusbar-height)), 100vw) - 4 * var(--gutter-width));
   width: var(--size);
   height: var(--size);
   contain: strict;
@@ -279,7 +281,7 @@ button.cell {
   z-index: 1000;
   left: 0;
   right: 0;
-  top: 0;
+  top: var(--statusbar-height);
   bottom: 30px;
   display: grid;
   grid-template-rows: auto 1fr;
