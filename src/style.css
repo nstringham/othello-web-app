@@ -56,6 +56,7 @@ button {
   border: none;
   background: transparent;
   font: inherit;
+  font-weight: 500;
   color: var(--button-text);
   height: 40px;
   padding-inline: 12px;
@@ -253,7 +254,11 @@ button.cell {
 }
 
 #settings .label {
-  font-weight: 700;
+  font-weight: 500;
+}
+
+#settings output {
+  font-weight: 300;
 }
 
 #close-settings {
@@ -330,6 +335,7 @@ dialog .buttons {
 dialog h1 {
   margin: 0;
   margin-bottom: 16px;
+  font-weight: 400;
 }
 
 #game-over table {
@@ -339,10 +345,12 @@ dialog h1 {
 
 #game-over th {
   text-align: start;
+  font-weight: 500;
 }
 
 #game-over td {
   text-align: end;
+  font-weight: 300;
 }
 
 #toast-container {
