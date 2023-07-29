@@ -44,8 +44,9 @@ input {
 }
 
 input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
+  margin: 0;
 }
 
 button {
@@ -238,6 +239,7 @@ button.cell {
   grid-template-areas:
     "label value"
     "control control";
+  align-items: center;
 }
 
 #settings .body > * input[type="range"],
