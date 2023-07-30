@@ -21,7 +21,13 @@ document.addEventListener("keydown", (event) => {
     focusedElement.querySelector("select")?.focus();
     focusedElement.querySelector("input")?.click();
   } else if (event.key == "ArrowLeft" || event.key == "ArrowRight") {
-    focusedElement.querySelector<ThemeSelectorElement>("theme-selector")?.select(event.key == "ArrowRight" ? 1 : -1);
+    const offset = event.key == "ArrowRight" ? 1 : -1;
+    focusedElement.querySelector<ThemeSelectorElement>("theme-selector")?.select(offset);
+    if (focusedElement.contains(difficultySelector)) {
+      const options = difficultySelector.options;
+      difficultySelector.selectedIndex = (difficultySelector.selectedIndex + offset + options.length) % options.length;
+      sendDifficulty();
+    }
   } else {
     return;
   }
