@@ -224,8 +224,8 @@ button.cell {
   padding: 8px 16px;
   display: grid;
   grid-template:
-    "label value"  24px
-    "control control"  auto
+    "label value" 24px
+    "control control" auto
     / 1fr auto;
   align-items: center;
 }
