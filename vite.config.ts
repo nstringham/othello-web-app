@@ -38,7 +38,7 @@ export default defineConfig(({ command }) => ({
     sourcemap: true,
   },
   define: {
-    __THEME_DATA__: JSON.stringify(JSON.stringify(themes)),
+    __THEME_DATA__: JSON.stringify(themes, undefined, 2),
   },
 }));
 

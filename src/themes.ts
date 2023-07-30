@@ -1,6 +1,6 @@
-import type { Theme, Themes } from "./theme-data";
+import type { Theme } from "./theme-data";
 
-export const themes = JSON.parse(__THEME_DATA__) as Themes;
+export const themes = __THEME_DATA__;
 
 const themeDisplay = document.querySelector("#theme-output") as HTMLOutputElement;
 
