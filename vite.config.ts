@@ -32,6 +32,7 @@ export default defineConfig(({ mode, command }) => ({
     target: "firefox84",
     modulePreload: false,
     rollupOptions,
+    sourcemap: mode == "development",
   },
   worker: {
     rollupOptions,
