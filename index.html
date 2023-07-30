@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="light-theme">
   <head>
     <meta charset="UTF-8" />
@@ -21,7 +21,7 @@
     <% if (DEVELOPMENT) { %>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700" rel="stylesheet" />
     <% } %>
-    <link rel="stylesheet" href="/resources/style.css" />
+    <link rel="stylesheet" href="/src/style.css" />
     <script type="module" src="/src/main.ts"></script>
     <% if ( COMMAND == "build") { %>
     <link rel="prefetch" href="/rust-othello/pkg/rust_othello_bg.wasm" />
@@ -40,11 +40,11 @@
         <snap class="text"></snap>
       </div>
     </template>
-    <div class="dialog" id="game-over-dialog">
+    <div class="dialog" id="game-over">
       <h1 class="title"></h1>
       <p class="body"></p>
     </div>
-    <div class="dialog" id="settings-dialog">
+    <div class="dialog" id="settings">
       <h1>Settings</h1>
       <div class="body">
         <label id="difficulty" class="focusable">

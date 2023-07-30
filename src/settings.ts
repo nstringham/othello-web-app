@@ -2,7 +2,7 @@ import { type ThemeSelectorElement } from "./elements/theme-selector";
 import { setKey } from "./soft-keys";
 import { showDialog, focus } from "./utils";
 
-const settingsDialog = document.getElementById("settings-dialog") as HTMLDialogElement;
+const settingsDialog = document.getElementById("settings") as HTMLDialogElement;
 const settingsInputs = [...settingsDialog.querySelectorAll<HTMLElement>(".focusable")];
 
 document.addEventListener("keydown", (event) => {

@@ -2,6 +2,7 @@ import type { WebAppManifest } from "web-app-manifest";
 
 export const manifest: WebAppManifest & { b2g_features: object } = {
   name: "Othello",
+  short_name: "Othello",
   description:
     "Use the D-pad to select a box to place a disk. Place a disk so that you surround your opponent's disks. " +
     "End the game with the most disks to win. Adjust the difficulty and color theme in the settings.",

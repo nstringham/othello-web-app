@@ -1,5 +1,10 @@
 export class Color {
-  constructor(public r: number, public g: number, public b: number, public a = 1) {}
+  constructor(
+    public r: number,
+    public g: number,
+    public b: number,
+    public a = 1,
+  ) {}
 
   withAlpha(a: number): Color {
     return new Color(this.r, this.g, this.b, a);
@@ -112,5 +117,5 @@ export const themes = Object.fromEntries(
         useLightAccent: config.useLightAccent ?? false,
       },
     ];
-  })
+  }),
 ) as Themes;

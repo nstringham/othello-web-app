@@ -143,7 +143,10 @@ button.cell {
 .cell::before {
   padding-bottom: 100%;
   border-radius: 100vmax;
-  transition: box-shadow 0.5s ease-in-out 0s, transform 0.5s ease-in-out 0s, background-color 0s step-start 0.25s;
+  transition:
+    box-shadow 0.5s ease-in-out 0s,
+    transform 0.5s ease-in-out 0s,
+    background-color 0s step-start 0.25s;
 }
 
 .cell.black::before,
@@ -216,7 +219,7 @@ button.cell {
   text-align: center;
 }
 
-#settings-dialog .body > * {
+#settings .body > * {
   margin-inline: -8px;
   padding: 8px 16px;
   display: grid;
@@ -224,28 +227,29 @@ button.cell {
   grid-template-areas:
     "label value"
     "control control";
+  align-items: center;
 }
 
-#settings-dialog .body > .focus {
+#settings .body > .focus {
   background-color: var(--fab-background);
   color: var(--fab-foreground);
   --accent-on-surface: var(--fab-foreground);
 }
 
-#settings-dialog .body > * theme-selector {
+#settings .body > * theme-selector {
   grid-area: control;
 }
 
-#settings-dialog #color-theme {
+#settings #color-theme {
   gap: 16px 0;
 }
 
-#settings-dialog .label {
+#settings .label {
   font-size: 17px;
   font-weight: 400;
 }
 
-#settings-dialog output {
+#settings output {
   font-size: 14px;
   font-weight: 400;
 }
@@ -315,18 +319,18 @@ button.cell {
   margin-top: 8px;
 }
 
-#game-over-dialog table {
+#game-over table {
   width: 100%;
   line-height: 24px;
 }
 
-#game-over-dialog th {
+#game-over th {
   text-align: start;
   font-size: 17px;
   font-weight: 600;
 }
 
-#game-over-dialog td {
+#game-over td {
   text-align: end;
   font-size: 17px;
   font-weight: 400;
@@ -354,4 +358,46 @@ button.cell {
 
 .toast > .text {
   line-height: 32px;
+}
+
+@media (forced-colors: active) {
+  #lcp {
+    display: none;
+  }
+
+  button:not(.cell),
+  button:not(.cell):focus-visible,
+  button:not(.cell):active {
+    outline: revert !important;
+    border: 1px solid;
+  }
+
+  dialog {
+    outline: 1px solid;
+  }
+
+  #settings #color-theme {
+    display: none;
+  }
+
+  #board,
+  .cell {
+    background-color: Canvas;
+    outline: 1px solid CanvasText !important;
+  }
+
+  #board {
+    --ai: CanvasText;
+    --player: LinkText;
+  }
+
+  .hints-enabled.player-turn .cell[tabindex="0"]:not(:focus-visible)::before {
+    outline: 1px solid;
+    outline-offset: -1px;
+  }
+
+  .player-turn .cell:focus-visible::before {
+    outline-width: 8px;
+    outline-offset: -6px;
+  }
 }
