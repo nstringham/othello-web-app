@@ -4,7 +4,7 @@ import ThemeSelectorCSS from "./theme-selector.css?inline";
 const themeBroadcastChannel = new BroadcastChannel("theme");
 
 export class ThemeSelectorElement extends HTMLElement {
-  #inputs: HTMLInputElement[] = [];
+  private inputs: HTMLInputElement[] = [];
 
   constructor() {
     super();
@@ -42,7 +42,7 @@ export class ThemeSelectorElement extends HTMLElement {
       const input = fragment.querySelector('input[type="radio"]') as HTMLInputElement;
       input.setAttribute("id", themeId);
       input.setAttribute("aria-label", theme.name);
-      this.#inputs.push(input);
+      this.inputs.push(input);
 
       input.addEventListener("change", () => {
         localStorage.setItem("theme-id", themeId);
@@ -67,8 +67,8 @@ export class ThemeSelectorElement extends HTMLElement {
   }
 
   select(offset: 1 | -1) {
-    const selectedIndex = this.#inputs.findIndex((input) => input.checked);
-    this.#inputs[(selectedIndex + offset + this.#inputs.length) % this.#inputs.length].click();
+    const selectedIndex = this.inputs.findIndex((input) => input.checked);
+    this.inputs[(selectedIndex + offset + this.inputs.length) % this.inputs.length].click();
   }
 }
 
