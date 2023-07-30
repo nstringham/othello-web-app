@@ -1,4 +1,4 @@
-import { waitForKeyPress } from "./soft-keys";
+import { setKey, waitForKeyPress } from "./soft-keys";
 
 export function waitForMilliseconds(milliseconds?: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
@@ -15,27 +15,46 @@ export function waitForEvent(emitter: EventTarget, event: string, options?: AddE
 }
 
 export function focus(element: HTMLElement | null | undefined) {
-  if (element == null) {
-    return;
-  }
   for (const element of document.querySelectorAll(".focus")) {
     element.classList.remove("focus");
   }
+  if (element == null) {
+    setKey("enter", "");
+    return;
+  }
   element.classList.add("focus");
+
+  const select = element.querySelector("select");
+  const input = element.querySelector("input");
+  if (select != undefined) {
+    setKey("enter", "select", () => select.focus());
+  } else if (input != undefined) {
+    setKey("enter", "select", () => input.click());
+  } else {
+    setKey("enter", "");
+  }
+
+  element.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
 export async function showDialog(dialog: HTMLDialogElement, closeLabel: string): Promise<void> {
+  const previouslyFocusedElement = document.querySelector<HTMLElement>(".focus");
+
   dialog.classList.add("open");
 
   focus(dialog.querySelector<HTMLElement>(".focusable"));
 
   await waitForKeyPress("left", closeLabel);
 
+  setKey("enter", "");
+
   dialog.classList.add("closing");
 
   await waitForEvent(dialog, "animationend");
 
   dialog.classList.remove("closing");
+
+  focus(previouslyFocusedElement);
 
   dialog.classList.remove("open");
 }

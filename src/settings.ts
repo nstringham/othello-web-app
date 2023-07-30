@@ -17,9 +17,6 @@ document.addEventListener("keydown", (event) => {
     const newIndex = (index + (event.key == "ArrowDown" ? 1 : -1) + settingsInputs.length) % settingsInputs.length;
     focus(settingsInputs[newIndex]);
     settingsInputs[newIndex]?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-  } else if (event.key == "Enter") {
-    focusedElement.querySelector("select")?.focus();
-    focusedElement.querySelector("input")?.click();
   } else if (event.key == "ArrowLeft" || event.key == "ArrowRight") {
     const offset = event.key == "ArrowRight" ? 1 : -1;
     focusedElement.querySelector<ThemeSelectorElement>("theme-selector")?.select(offset);
