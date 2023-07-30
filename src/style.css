@@ -223,10 +223,10 @@ button.cell {
   margin-inline: -8px;
   padding: 8px 16px;
   display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-areas:
-    "label value"
-    "control control";
+  grid-template:
+    "label value"  24px
+    "control control"  auto
+    / 1fr auto;
   align-items: center;
 }
 
@@ -241,7 +241,8 @@ button.cell {
 }
 
 #settings #color-theme {
-  gap: 16px 0;
+  gap: 12px 0;
+  padding-bottom: 12px;
 }
 
 #settings .label {
