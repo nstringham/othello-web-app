@@ -1,4 +1,5 @@
 import { waitForMilliseconds } from "./utils";
+import "./kaiads.v5.min.js";
 
 const publisherId = "be03b323-64ad-468e-b429-6018d38d3c5d";
 
