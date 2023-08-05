@@ -107,7 +107,7 @@ export const htmlPlayer: Player = {
   },
 
   notifyOpponentSkipped() {
-    showToast("your opponent's turn was skipped");
+    showToast("opponent's turn was skipped");
   },
 
   async notifyBoardChanged(board: Board) {
