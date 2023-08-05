@@ -46,5 +46,8 @@ export const manifest: WebAppManifest & { b2g_features: object } = {
       statusbar: "overlap",
     },
     focus_color: "#008000",
+    dependencies: {
+      "ads-sdk": "1.5.8",
+    },
   },
 };

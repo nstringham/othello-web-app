@@ -62,6 +62,7 @@ export class Game {
         return;
       }
       await this.doTurn(this.player2, WHITE, this.player1, BLACK);
+      await this.endGame();
     }
   }
 

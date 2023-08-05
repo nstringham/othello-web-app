@@ -126,6 +126,8 @@ export const htmlPlayer: Player = {
   async notifyGameOver(board: Board) {
     gameInProgress = false;
 
+    const adPromise = import("../ads").then(({ getAd }) => getAd());
+
     await animationDone;
     await waitForMilliseconds(250);
 
@@ -144,7 +146,14 @@ export const htmlPlayer: Player = {
       <tr><th>Opponent's Score</th><td>${white}</td></tr>
     </tbody></table>`;
 
-    return showDialog(gameOverDialog, "ok");
+    await showDialog(gameOverDialog, "ok");
+
+    const { displayAd } = await import("../ads");
+    try {
+      await displayAd(adPromise);
+    } catch (error) {
+      console.error(error);
+    }
   },
 };
 
