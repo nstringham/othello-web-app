@@ -7,7 +7,7 @@ export const manifest: WebAppManifest & { b2g_features: object } = {
     "Use the D-pad to select a box to place a disk. Place a disk so that you surround your opponent's disks. " +
     "End the game with the most disks to win. Adjust the difficulty and color theme in the settings.",
   lang: "en-US",
-  id: "othello-web-app",
+  id: "othello-rust",
   start_url: "/index.html",
   background_color: "#121212",
   theme_color: "#121212",
@@ -32,12 +32,12 @@ export const manifest: WebAppManifest & { b2g_features: object } = {
     },
   ],
   b2g_features: {
-    version: "3.2.0",
+    version: "3.0.0",
     type: "web",
     subtitle: "Play Othello against an AI opponent",
     permissions: {},
     cursor: false,
-    origin: "othello-web-app",
+    origin: "othello-rust",
     developer: {
       name: "Nate Stringham",
       url: "https://github.com/nstringham",
