@@ -155,7 +155,6 @@ export const htmlPlayer: Player = {
         await displayAd(adPromise);
       } catch (error) {
         console.error(error);
-        showToast(String(error));
       }
     }
   },
