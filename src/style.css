@@ -17,7 +17,7 @@
   --accent-on-surface-20: var(--accent-light-20);
   --accent-on-surface-30: var(--accent-light-30);
 
-  font-family: "Open Sans";
+  font-family: "Open Sans", sans-serif;
   font-size: 14px;
 }
 
