@@ -1,3 +1,4 @@
+import { enableAds } from "../settings";
 import { showDialog, showToast, waitForMilliseconds } from "../utils";
 import { Board, Color, Player, BLACK, WHITE, EMPTY } from "./game";
 
@@ -126,7 +127,7 @@ export const htmlPlayer: Player = {
   async notifyGameOver(board: Board) {
     gameInProgress = false;
 
-    const adPromise = import("../ads").then(({ getAd }) => getAd());
+    const adPromise = enableAds ? import("../ads").then(({ getAd }) => getAd()) : undefined;
 
     await animationDone;
     await waitForMilliseconds(250);
@@ -148,12 +149,14 @@ export const htmlPlayer: Player = {
 
     await showDialog(gameOverDialog, "ok");
 
-    const { displayAd } = await import("../ads");
-    try {
-      await displayAd(adPromise);
-    } catch (error) {
-      console.error(error);
-      showToast(String(error));
+    if (enableAds && adPromise != undefined) {
+      const { displayAd } = await import("../ads");
+      try {
+        await displayAd(adPromise);
+      } catch (error) {
+        console.error(error);
+        showToast(String(error));
+      }
     }
   },
 };

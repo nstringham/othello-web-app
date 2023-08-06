@@ -74,6 +74,24 @@ enableHintsBroadcastChannel.addEventListener("message", (event) => {
   document.documentElement.classList.toggle("hints-enabled", event.data);
 });
 
+const enableAdsBroadcastChannel = new BroadcastChannel("enable-ads");
+
+const enableAdsCheckbox = settingsDialog.querySelector("#enable-ads-input") as HTMLInputElement;
+export let enableAds = localStorage.getItem("ads-hints") !== "false";
+
+enableAdsCheckbox.checked = enableAds;
+
+enableAdsCheckbox.addEventListener("change", () => {
+  enableAds = enableAdsCheckbox.checked;
+  localStorage.setItem("enable-ads", String(enableAds));
+  enableAdsBroadcastChannel.postMessage(enableAds);
+});
+
+enableAdsBroadcastChannel.addEventListener("message", (event) => {
+  enableAds = event.data;
+  enableAdsCheckbox.checked = enableAds;
+});
+
 const darkThemeBroadcastChannel = new BroadcastChannel("dark-theme");
 
 const darkThemeCheckbox = settingsDialog.querySelector("#dark-theme-input") as HTMLInputElement;
