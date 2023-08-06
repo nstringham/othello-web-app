@@ -220,8 +220,6 @@ button.cell {
 }
 
 #settings .body > * {
-  margin-inline: -8px;
-  padding: 8px 16px;
   display: grid;
   grid-template:
     "label value" 24px
@@ -242,7 +240,6 @@ button.cell {
 
 #settings #color-theme {
   gap: 12px 0;
-  padding-bottom: 12px;
 }
 
 #settings .label {
@@ -310,14 +307,16 @@ button.cell {
 
 .dialog .body {
   margin: 0;
-  padding: 8px;
   overflow-y: auto;
   overscroll-behavior: contain;
 }
 
+.dialog .body > * {
+  padding-inline: 12px;
+}
+
 .dialog h1 {
-  margin: 0;
-  margin-top: 8px;
+  margin: 8px;
 }
 
 #game-over table {
