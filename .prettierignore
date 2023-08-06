@@ -2,3 +2,4 @@ node_modules/
 dist/
 rust-othello/target/
 rust-othello/pkg/
+*.min.js
