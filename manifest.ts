@@ -32,7 +32,7 @@ export const manifest: WebAppManifest & { b2g_features: object } = {
     },
   ],
   b2g_features: {
-    version: "3.1.1",
+    version: "3.1.2",
     type: "web",
     subtitle: "Play Othello against an AI opponent",
     permissions: {},
