@@ -312,7 +312,7 @@ button.cell {
 }
 
 .dialog .body > * {
-  padding-inline: 12px;
+  padding: 12px;
 }
 
 .dialog h1 {
