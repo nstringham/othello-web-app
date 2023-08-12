@@ -1,12 +1,12 @@
 import { preventRestart } from "../pwa";
 import { showDialog, showToast, waitForMilliseconds } from "../utils";
-import { Board, Color, Player, BLACK, WHITE, EMPTY } from "./game";
+import { Board, Color, Player, BLACK, WHITE, EMPTY, Cell } from "./game";
 
 const boardElement = document.getElementById("board") as HTMLDivElement;
 
 const cells = [...boardElement.querySelectorAll<HTMLButtonElement>(".cell")];
 
-const ariaLabels: { [key: number]: string } = {
+const ariaLabels: { [key in Cell]: string } = {
   [BLACK]: "black",
   [WHITE]: "white",
   [EMPTY]: "empty",
@@ -109,7 +109,7 @@ export const htmlPlayer: Player = {
         cells[i].classList.toggle("black", board[i] === BLACK);
         cells[i].classList.toggle("white", board[i] === WHITE);
         cells[i].setAttribute("tabindex", checkMove(board, i) ? "0" : "-1");
-        cells[i].setAttribute("aria-label", ariaLabels[board[i]]);
+        cells[i].setAttribute("aria-label", ariaLabels[board[i] as Cell]);
       }
     });
   },
