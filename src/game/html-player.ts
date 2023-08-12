@@ -1,6 +1,6 @@
 import { enableAds } from "../settings";
 import { showDialog, showToast, waitForMilliseconds } from "../utils";
-import { Board, Color, Player, BLACK, WHITE, EMPTY } from "./game";
+import { Board, Color, Player, BLACK, WHITE, EMPTY, Cell } from "./game";
 
 const boardElement = document.getElementById("board") as HTMLDivElement;
 
@@ -17,7 +17,7 @@ function moveCursor(position: number) {
   cursorPosition = position;
 }
 
-const ariaLabels: { [key: number]: string } = {
+const ariaLabels: { [key in Cell]: string } = {
   [BLACK]: "black",
   [WHITE]: "white",
   [EMPTY]: "empty",
@@ -105,6 +105,7 @@ export const htmlPlayer: Player = {
 
   notifySkippedTurn() {
     showToast("your turn was skipped");
+    animationDone = waitForMilliseconds(2_000);
   },
 
   notifyOpponentSkipped() {
@@ -119,7 +120,7 @@ export const htmlPlayer: Player = {
         cells[i].classList.toggle("black", board[i] === BLACK);
         cells[i].classList.toggle("white", board[i] === WHITE);
         cells[i].classList.toggle("valid", checkMove(board, i));
-        cells[i].setAttribute("aria-label", ariaLabels[board[i]]);
+        cells[i].setAttribute("aria-label", ariaLabels[board[i] as Cell]);
       }
     });
   },
