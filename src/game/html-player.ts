@@ -95,6 +95,7 @@ export const htmlPlayer: Player = {
 
   notifySkippedTurn() {
     showToast("your turn was skipped");
+    animationDone = waitForMilliseconds(2_000);
   },
 
   notifyOpponentSkipped() {
