@@ -25,7 +25,7 @@
     "vite-plugin-pwa": "^0.16.5"
   },
   "dependencies": {
-    "@mdi/js": "^7.2.96",
+    "@mdi/js": "^7.3.67",
     "comlink": "^4.4.1",
     "rust-othello": "file:rust-othello/pkg"
   }
