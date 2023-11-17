@@ -45,6 +45,8 @@ let doneWaiting = () => {};
 
 let animationDone: Promise<void> | undefined;
 
+let rippleOrigin: number | undefined;
+
 const gameOverDialog = document.querySelector("#game-over") as HTMLDialogElement;
 const gameOverDialogTitle = gameOverDialog.querySelector(".title") as HTMLHeadingElement;
 const gameOverDialogBody = gameOverDialog.querySelector(".body") as HTMLParagraphElement;
@@ -63,6 +65,7 @@ export const htmlPlayer: Player = {
       if (board[move] != EMPTY) {
         return;
       } else if (checkMove(board, move)) {
+        rippleOrigin = move;
         resolver(move);
         doTurn = undefined;
         document.documentElement.classList.remove("player-turn", "updating");
@@ -89,7 +92,8 @@ export const htmlPlayer: Player = {
     doneWaiting = () => clearTimeout(timeoutID);
   },
 
-  notifyOpponentTurn() {
+  notifyOpponentTurn(move) {
+    rippleOrigin = move;
     doneWaiting();
   },
 
@@ -104,15 +108,7 @@ export const htmlPlayer: Player = {
 
   async notifyBoardChanged(board: Board) {
     await animationDone;
-    animationDone = waitForMilliseconds(750);
-    requestAnimationFrame(() => {
-      for (let i = 0; i < 64; i++) {
-        cells[i].classList.toggle("black", board[i] === BLACK);
-        cells[i].classList.toggle("white", board[i] === WHITE);
-        cells[i].setAttribute("tabindex", checkMove(board, i) ? "0" : "-1");
-        cells[i].setAttribute("aria-label", ariaLabels[board[i] as Cell]);
-      }
-    });
+    animationDone = updateBoard(board);
   },
 
   async notifyGameOver(board: Board) {
@@ -139,6 +135,52 @@ export const htmlPlayer: Player = {
     return showDialog(gameOverDialog);
   },
 };
+
+async function updateBoard(board: Board) {
+  function updateCell(position: number) {
+    cells[position].classList.toggle("black", board[position] === BLACK);
+    cells[position].classList.toggle("white", board[position] === WHITE);
+    cells[position].setAttribute("aria-label", ariaLabels[board[position] as Cell]);
+  }
+
+  if (rippleOrigin == undefined) {
+    requestAnimationFrame(() => {
+      for (let i = 0; i < 64; i++) {
+        updateCell(i);
+      }
+    });
+  } else {
+    updateCell(rippleOrigin);
+    const originX = rippleOrigin % 8;
+    const originY = Math.floor(rippleOrigin / 8);
+    rippleOrigin = undefined;
+    for (let i = 1; i < 8; i++) {
+      await waitForMilliseconds(100);
+      let updatedCells = 0;
+      for (const [xOffset, yOffset] of DIRECTIONS) {
+        const x = originX + xOffset * i;
+        const y = originY + yOffset * i;
+        if (x < 0 || 8 <= x || y < 0 || 8 <= y) {
+          continue;
+        }
+        const position = x + y * 8;
+        if (cells[position].getAttribute("aria-label") != ariaLabels[board[position] as Cell]) {
+          updateCell(position);
+          updatedCells += 1;
+        }
+      }
+      if (updatedCells == 0) {
+        break;
+      }
+    }
+  }
+
+  for (let i = 0; i < 64; i++) {
+    cells[i].setAttribute("tabindex", checkMove(board, i) ? "0" : "-1");
+  }
+
+  await waitForMilliseconds(750);
+}
 
 const DIRECTIONS = [
   [1, 0],
