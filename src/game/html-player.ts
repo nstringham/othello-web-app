@@ -144,11 +144,9 @@ async function updateBoard(board: Board) {
   }
 
   if (rippleOrigin == undefined) {
-    requestAnimationFrame(() => {
-      for (let i = 0; i < 64; i++) {
-        updateCell(i);
-      }
-    });
+    for (let i = 0; i < 64; i++) {
+      updateCell(i);
+    }
   } else {
     updateCell(rippleOrigin);
     const originX = rippleOrigin % 8;
