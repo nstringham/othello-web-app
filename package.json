@@ -15,19 +15,19 @@
     "wasm-release": "wasm-pack build ./rust-othello --target web --release"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.2.1",
-    "@typescript-eslint/parser": "^6.2.1",
-    "eslint": "^8.46.0",
-    "prettier": "^3.0.1",
-    "typescript": "^5.1.6",
-    "vite": "^4.4.8",
-    "vite-plugin-generate-file": "^0.0.4",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
+    "eslint": "^8.54.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0",
+    "vite-plugin-generate-file": "^0.1.1",
     "vite-plugin-html": "^3.2.0"
   },
   "dependencies": {
-    "@mdi/js": "^7.2.96",
-    "@mdi/svg": "^7.2.96",
-    "@types/web-app-manifest": "^1.0.3",
+    "@mdi/js": "^7.3.67",
+    "@mdi/svg": "^7.3.67",
+    "@types/web-app-manifest": "^1.0.7",
     "comlink": "^4.4.1",
     "rust-othello": "file:rust-othello/pkg"
   }

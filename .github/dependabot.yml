@@ -3,21 +3,21 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: weekly
+      interval: monthly
       day: friday
     commit-message:
       prefix: "ci: 👷 "
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: weekly
+      interval: monthly
       day: friday
     commit-message:
       prefix: "build: ⬆️ "
   - package-ecosystem: cargo
     directory: /rust-othello
     schedule:
-      interval: weekly
+      interval: monthly
       day: friday
     commit-message:
       prefix: "build: ⬆️ "
