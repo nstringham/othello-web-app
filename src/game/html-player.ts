@@ -164,6 +164,15 @@ async function updateBoard(board: Board) {
         const position = x + y * 8;
         if (cells[position].getAttribute("aria-label") != ariaLabels[board[position] as Cell]) {
           updateCell(position);
+          cells[position].animate([{ transform: "scaleY(-1)" }, { transform: "scaleY(1)" }], {
+            pseudoElement: "::before",
+            duration: 500,
+            easing: "ease-in-out",
+          });
+          cells[position].animate([{ backgroundColor: "var(--back-side)" }, { backgroundColor: "var(--back-side)" }], {
+            pseudoElement: "::before",
+            duration: 250,
+          });
           updatedCells += 1;
         }
       }
