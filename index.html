@@ -39,7 +39,7 @@
     <span id="lcp" aria-hidden="true">Othello</span>
     <main id="board">
       <% for (let i = 0; i < 64; i++) { %>
-      <button class="cell"></button>
+      <button class="cell <%= i == 27 || i == 36 ? 'white' : i == 28 || i == 35 ? 'black' : '' %>"></button>
       <% } %>
     </main>
     <button id="settings-button" class="icon-button">

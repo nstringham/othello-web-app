@@ -159,24 +159,21 @@ button.cell {
 }
 
 .cell.black::before,
-.cell.white::before,
-.updating .cell:is(:nth-child(28), :nth-child(29), :nth-child(36), :nth-child(37))::before {
+.cell.white::before {
   content: "";
   animation: grow 0.5s ease-in-out;
 }
 
-.updating .cell:is(:nth-child(28), :nth-child(29), :nth-child(36), :nth-child(37))::before {
+.updating .cell::before {
   animation-duration: 0s;
 }
 
-.cell.white::before,
-.updating .cell:is(:nth-child(28), :nth-child(37))::before {
+.cell.white::before {
   background-color: var(--ai);
   --back-side: var(--player);
 }
 
-.cell.black::before,
-.updating .cell:is(:nth-child(29), :nth-child(36))::before {
+.cell.black::before {
   background-color: var(--player);
   --back-side: var(--ai);
 }
