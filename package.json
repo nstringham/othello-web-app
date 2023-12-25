@@ -28,7 +28,6 @@
   "dependencies": {
     "@mdi/js": "^7.3.67",
     "@mdi/svg": "^7.3.67",
-    "@types/web-app-manifest": "^1.0.7",
     "comlink": "^4.4.1",
     "rust-othello": "file:rust-othello/pkg"
   }
