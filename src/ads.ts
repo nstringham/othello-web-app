@@ -53,7 +53,6 @@ export function getAd() {
     getKaiAd({
       publisher: publisherId,
       app: "Othello",
-
       test: import.meta.env.DEV ? 1 : 0,
       timeout: 30_000,
       onready: resolve,
