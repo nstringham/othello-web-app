@@ -2,6 +2,7 @@
   "name": "othello-web-app",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "npm run wasm-dev && vite",
     "dev:host": "npm run wasm-dev && vite --host",
@@ -15,12 +16,12 @@
     "wasm-release": "wasm-pack build ./rust-othello --target web --release"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.11.0",
-    "@typescript-eslint/parser": "^6.11.0",
-    "eslint": "^8.54.0",
-    "prettier": "^3.1.0",
-    "typescript": "^5.2.2",
-    "vite": "^5.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "eslint": "^8.56.0",
+    "prettier": "^3.1.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10",
     "vite-plugin-generate-file": "^0.1.1",
     "vite-plugin-html": "^3.2.0"
   },

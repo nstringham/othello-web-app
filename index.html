@@ -29,11 +29,11 @@
   </head>
   <body>
     <span id="lcp" aria-hidden="true">Othello</span>
-    <div id="board">
+    <main id="board">
       <% for (let i = 0; i < 64; i++) { %>
       <button class="cell" tabindex="-1"></button>
       <% } %>
-    </div>
+    </main>
     <div id="toast-container"></div>
     <template id="toast-template">
       <div role="alert" class="toast">
