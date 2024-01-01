@@ -86,7 +86,7 @@ jobs:
           cache: "npm"
       - run: npm ci
       - name: Download pkg
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: pkg
           path: rust-othello/pkg
@@ -102,7 +102,7 @@ jobs:
         with:
           cache: "npm"
       - name: Download dist
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist
@@ -128,7 +128,7 @@ jobs:
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
       - run: npm ci
       - name: Download dist
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist
