@@ -11,3 +11,4 @@ ci:
       is-crawlable: "off"
       robots-txt: "off"
       meta-description: "off"
+      total-byte-weight: "off" # TODO: enable this when this bug is fixed: https://github.com/GoogleChrome/lighthouse-ci/issues/1001
