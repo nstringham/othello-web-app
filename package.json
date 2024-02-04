@@ -26,8 +26,8 @@
     "vite-plugin-html": "^3.2.2"
   },
   "dependencies": {
-    "@mdi/js": "^7.3.67",
-    "@mdi/svg": "^7.3.67",
+    "@mdi/js": "^7.4.47",
+    "@mdi/svg": "^7.4.47",
     "comlink": "^4.4.1",
     "rust-othello": "file:rust-othello/pkg"
   }
