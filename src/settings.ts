@@ -66,13 +66,3 @@ async function showSettings() {
 }
 
 settingsButton.addEventListener("click", showSettings);
-
-function checkHash() {
-  if (location.hash == "#settings") {
-    showSettings();
-  }
-}
-
-window.addEventListener("hashchange", checkHash);
-
-checkHash();

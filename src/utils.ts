@@ -13,38 +13,16 @@ export function waitForEvent(emitter: EventTarget, event: string, options?: AddE
 }
 
 export function waitForDialogToBeClosed(dialog: HTMLDialogElement): Promise<void> {
+  const closeWatcher = new CloseWatcher();
+
+  dialog.querySelector("button")?.addEventListener("click", () => closeWatcher.requestClose(), { once: true });
+
   return new Promise((resolve) => {
-    dialog.querySelector("button")?.addEventListener(
-      "click",
-      () => {
-        resolve();
-      },
-      { once: true },
-    );
-    dialog.addEventListener(
-      "cancel",
-      (event) => {
-        event.preventDefault();
-        resolve();
-      },
-      { once: true },
-    );
-    window.addEventListener(
-      "popstate",
-      () => {
-        resolve();
-      },
-      { once: true },
-    );
+    closeWatcher.addEventListener("close", () => resolve());
   });
 }
 
 export async function showDialog(dialog: HTMLDialogElement): Promise<void> {
-  const hash = "#" + dialog.id;
-  if (location.hash != hash) {
-    history.pushState({ dialog: true }, "", hash);
-  }
-
   dialog.showModal();
 
   await waitForDialogToBeClosed(dialog);
@@ -56,12 +34,6 @@ export async function showDialog(dialog: HTMLDialogElement): Promise<void> {
   dialog.classList.remove("closing");
 
   dialog.close();
-
-  if (history.state?.dialog == true) {
-    history.back();
-  } else {
-    history.replaceState({}, "", ".");
-  }
 }
 
 const toastTemplate = document.getElementById("toast-template") as HTMLTemplateElement;
