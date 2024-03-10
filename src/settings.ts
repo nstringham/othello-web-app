@@ -17,7 +17,7 @@ difficultySelector.addEventListener("input", updateDifficultyDisplay);
 
 const difficultyString = localStorage.getItem("difficulty");
 
-difficultySelector.value = difficultyString ?? "2";
+difficultySelector.value = difficultyString ?? "1";
 
 updateDifficultyDisplay();
 
