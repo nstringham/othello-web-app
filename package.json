@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@mdi/js": "^7.4.47",
+    "@types/dom-close-watcher": "^1.0.0",
     "comlink": "^4.4.1",
     "rust-othello": "file:rust-othello/pkg"
   }
