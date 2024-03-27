@@ -20,13 +20,6 @@ label {
   gap: 10%;
 }
 
-/* Detect Safari and use workaround */
-@supports (-webkit-hyphens: none) {
-  label {
-    aspect-ratio: 1.332; /* I have no clue why 1.332 works */
-  }
-}
-
 input:checked + label {
   outline: 2px solid var(--on-surface);
 }
