@@ -169,6 +169,7 @@ button.cell {
 }
 
 .cell #cursor {
+  position: relative; /* ensures cursor stays on top */
   --outline-color: white;
   border: 2px solid var(--outline-color);
 }
