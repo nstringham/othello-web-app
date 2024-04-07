@@ -117,12 +117,6 @@ body {
   border-radius: var(--gutter-width);
 }
 
-@supports not (height: 100dvmin) {
-  #board {
-    --size: calc(100vmin - 4 * var(--gutter-width));
-  }
-}
-
 button.cell {
   height: unset;
   padding: 0;
