@@ -36,7 +36,7 @@ const difficultySelector = settingsDialog.querySelector("#difficulty-input") as 
 
 const difficultyString = localStorage.getItem("difficulty");
 
-difficultySelector.value = difficultyString ?? "2";
+difficultySelector.value = difficultyString ?? "1";
 
 const difficultyBroadcastChannel = new BroadcastChannel("difficulty");
 
