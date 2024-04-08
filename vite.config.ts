@@ -20,7 +20,17 @@ export default defineConfig(({ command }) => ({
           BASE_URL: "https://othello-rust.web.app",
         },
       },
-      minify: { keepClosingSlash: false },
+      minify: {
+        collapseWhitespace: true,
+        collapseInlineTagWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeOptionalTags: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        minifyCSS: true,
+        minifyJS: true,
+      },
     }),
     VitePWA({
       manifest,
