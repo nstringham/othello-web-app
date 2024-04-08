@@ -19,7 +19,17 @@ export default defineConfig(({ mode, command }) => ({
           TITLE: manifest.name,
         },
       },
-      minify: { keepClosingSlash: false },
+      minify: {
+        collapseWhitespace: true,
+        collapseInlineTagWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeOptionalTags: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        minifyCSS: true,
+        minifyJS: true,
+      },
     }),
     generateFile([
       {
