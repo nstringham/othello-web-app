@@ -19,6 +19,7 @@ export default defineConfig(({ mode, command }) => ({
           TITLE: manifest.name,
         },
       },
+      minify: { keepClosingSlash: false },
     }),
     generateFile([
       {
