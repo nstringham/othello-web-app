@@ -20,6 +20,7 @@ export default defineConfig(({ command }) => ({
           BASE_URL: "https://othello-rust.web.app",
         },
       },
+      minify: { keepClosingSlash: false },
     }),
     VitePWA({
       manifest,
