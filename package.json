@@ -29,6 +29,7 @@
   "dependencies": {
     "@mdi/js": "^7.4.47",
     "comlink": "^4.4.1",
+    "idb": "^8.0.0",
     "rust-othello": "file:rust-othello/pkg"
   }
 }
