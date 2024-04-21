@@ -437,7 +437,7 @@ dialog h1 {
   }
 
   #board {
-    --ai: CanvasText;
+    --ai: Mark;
     --player: LinkText;
   }
 
