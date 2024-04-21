@@ -442,12 +442,16 @@ dialog h1 {
   }
 
   .hints-enabled.player-turn .cell[tabindex="0"]:not(:focus-visible)::before {
-    outline: 1px solid;
+    outline: 1px solid CanvasText;
     outline-offset: -1px;
   }
 
   .player-turn .cell:focus-visible::before {
     outline-width: 8px;
     outline-offset: -6px;
+  }
+
+  .player-turn .cell:not(.black):not(.white):focus-visible::before {
+    outline-color: CanvasText;
   }
 }
