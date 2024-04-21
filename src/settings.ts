@@ -9,8 +9,12 @@ const DIFFICULTY_NAMES = ["Very Easy", "Easy", "Normal", "Hard", "Very Hard"] as
 const difficultySelector = settingsDialog.querySelector("#difficulty-input") as HTMLInputElement;
 const difficultyDisplay = settingsDialog.querySelector("#difficulty-output") as HTMLOutputElement;
 
+export function getDifficulty() {
+  return parseInt(difficultySelector.value);
+}
+
 function updateDifficultyDisplay() {
-  difficultyDisplay.value = DIFFICULTY_NAMES[parseInt(difficultySelector.value)];
+  difficultyDisplay.value = DIFFICULTY_NAMES[getDifficulty()];
 }
 
 difficultySelector.addEventListener("input", updateDifficultyDisplay);
@@ -25,7 +29,7 @@ const difficultyBroadcastChannel = new BroadcastChannel("difficulty");
 
 function sendDifficulty() {
   localStorage.setItem("difficulty", difficultySelector.value);
-  difficultyBroadcastChannel.postMessage(parseInt(difficultySelector.value));
+  difficultyBroadcastChannel.postMessage(getDifficulty());
 }
 
 difficultySelector.addEventListener("change", sendDifficulty);

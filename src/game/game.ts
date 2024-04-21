@@ -25,13 +25,15 @@ export interface Player {
 
   notifyBoardChanged(board: Board): void | Promise<void>;
 
-  notifyGameOver(board: Board): void | Promise<void>;
+  notifyGameOver(board: Board, moves: Uint8Array): void | Promise<void>;
 }
 
 export class Game {
   private board: Board;
 
   private gameOver = false;
+
+  private moves: number[] = [];
 
   constructor(
     private player1: Player,
@@ -69,6 +71,7 @@ export class Game {
       const move = await player.getTurn(this.board);
       await otherPlayer.notifyOpponentTurn(move);
       if (doMove(this.board, move, color)) {
+        this.moves.push(move);
         await this.notifyBoardChanged();
       } else {
         await this.endGame();
@@ -88,6 +91,7 @@ export class Game {
 
   private async endGame() {
     this.gameOver = true;
-    await Promise.all([this.player1.notifyGameOver(this.board), this.player2.notifyGameOver(this.board)]);
+    const moves = new Uint8Array(this.moves);
+    await Promise.all([this.player1.notifyGameOver(this.board, moves), this.player2.notifyGameOver(this.board, moves)]);
   }
 }
