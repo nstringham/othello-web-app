@@ -29,18 +29,16 @@ export interface Player {
 }
 
 export class Game {
-  board: Board;
+  private board: Board;
 
-  gameOver = false;
+  private gameOver = false;
 
-  player1: Player;
-  player2: Player;
-
-  constructor(player1: Player, player2: Player) {
+  constructor(
+    private player1: Player,
+    private player2: Player,
+  ) {
     player1.setColor(BLACK);
     player2.setColor(WHITE);
-    this.player1 = player1;
-    this.player2 = player2;
 
     this.board = new Int8Array(64);
     this.board[27] = WHITE;
@@ -65,7 +63,7 @@ export class Game {
     }
   }
 
-  async doTurn(player: Player, color: Color, otherPlayer: Player, otherColor: Color) {
+  private async doTurn(player: Player, color: Color, otherPlayer: Player, otherColor: Color) {
     if (moveExists(this.board, color)) {
       await otherPlayer.notifyBeforeOpponentTurn();
       const move = await player.getTurn(this.board);
@@ -84,11 +82,11 @@ export class Game {
     }
   }
 
-  async notifyBoardChanged() {
+  private async notifyBoardChanged() {
     await Promise.all([this.player1.notifyBoardChanged(this.board), this.player2.notifyBoardChanged(this.board)]);
   }
 
-  async endGame() {
+  private async endGame() {
     this.gameOver = true;
     await Promise.all([this.player1.notifyGameOver(this.board), this.player2.notifyGameOver(this.board)]);
   }
