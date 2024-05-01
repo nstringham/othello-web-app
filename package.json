@@ -24,7 +24,7 @@
     "typescript": "^5.4.5",
     "vite": "^5.2.10",
     "vite-plugin-html": "^3.2.2",
-    "vite-plugin-pwa": "^0.19.7"
+    "vite-plugin-pwa": "^0.20.0"
   },
   "dependencies": {
     "@mdi/js": "^7.4.47",
