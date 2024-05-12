@@ -8,4 +8,4 @@ ci:
     assertions:
       csp-xss: "off"
       bf-cache: "warn"
-      total-byte-weight: ["error", {"maxNumericValue": 1677721600}] # TODO: remove this when this bug is fixed: https://github.com/GoogleChrome/lighthouse-ci/issues/994
+      total-byte-weight: ["error", { "maxNumericValue": 1677721600 }] # TODO: remove this when this bug is fixed: https://github.com/GoogleChrome/lighthouse-ci/issues/994
