@@ -15,5 +15,5 @@ opt-level = 3
 crate-type = ["cdylib"]
 
 [dependencies]
-lol_alloc = "0.4.0"
-wasm-bindgen = "0.2.82"
+lol_alloc = "0.4.1"
+wasm-bindgen = "0.2.92"
