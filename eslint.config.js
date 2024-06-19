@@ -7,7 +7,7 @@ export default ts.config(
   js.configs.recommended,
   ...ts.configs.strict,
   ...ts.configs.stylistic,
-  { ignores: ["dist/", "rust-othello/"] },
+  { ignores: ["dist/", "rust-othello/", "**/*.min.js"] },
   {
     rules: {
       "@typescript-eslint/no-empty-function": "off",
