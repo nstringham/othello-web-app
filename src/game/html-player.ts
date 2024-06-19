@@ -1,4 +1,4 @@
-import { enableAds } from "../settings";
+import { enableAds, getDifficulty } from "../settings";
 import { showDialog, showToast, waitForMilliseconds } from "../utils";
 import { Board, Color, Player, BLACK, WHITE, EMPTY, Cell } from "./game";
 
@@ -121,15 +121,26 @@ export const htmlPlayer: Player = {
     animationDone = updateBoard(board);
   },
 
-  async notifyGameOver(board: Board) {
+  async notifyGameOver(board: Board, moves: Uint8Array) {
     gameInProgress = false;
 
     const adPromise = enableAds ? import("../ads").then(({ getAd }) => getAd()) : undefined;
 
+    const { black, white } = countBoard(board);
+
+    import("../database").then(({ logGame }) =>
+      logGame({
+        difficulty: getDifficulty(),
+        playerMovedFirst: true,
+        player: black,
+        ai: white,
+        moves,
+        date: new Date(),
+      }),
+    );
+
     await animationDone;
     await waitForMilliseconds(250);
-
-    const { black, white } = countBoard(board);
 
     if (black > white) {
       gameOverDialogTitle.textContent = "You won!";

@@ -40,7 +40,7 @@ export const consolePlayer: Player = {
     console.log("notifyBoardChanged", board);
   },
 
-  notifyGameOver(board: Board) {
-    console.log("notifyGameOver", board);
+  notifyGameOver(board: Board, moves: Uint8Array) {
+    console.log("notifyGameOver", board, moves);
   },
 };

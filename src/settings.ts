@@ -34,6 +34,10 @@ document.addEventListener("keydown", (event) => {
 
 const difficultySelector = settingsDialog.querySelector("#difficulty-input") as HTMLSelectElement;
 
+export function getDifficulty() {
+  return parseInt(difficultySelector.value);
+}
+
 const difficultyString = localStorage.getItem("difficulty");
 
 difficultySelector.value = difficultyString ?? "1";
@@ -42,7 +46,7 @@ const difficultyBroadcastChannel = new BroadcastChannel("difficulty");
 
 function sendDifficulty() {
   localStorage.setItem("difficulty", difficultySelector.value);
-  difficultyBroadcastChannel.postMessage(parseInt(difficultySelector.value));
+  difficultyBroadcastChannel.postMessage(getDifficulty());
 }
 
 difficultySelector.addEventListener("change", sendDifficulty);
