@@ -16,7 +16,7 @@ interface OthelloSchema extends DBSchema {
   };
 }
 
-const db = await openDB<OthelloSchema>("othello", 1, {
+const db = openDB<OthelloSchema>("othello", 1, {
   upgrade(db) {
     db.createObjectStore("game-results", {
       keyPath: "id",
@@ -26,5 +26,5 @@ const db = await openDB<OthelloSchema>("othello", 1, {
 });
 
 export async function logGame(result: GameResult) {
-  db.add("game-results", result);
+  (await db).add("game-results", result);
 }
