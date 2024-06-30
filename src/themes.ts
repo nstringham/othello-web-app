@@ -31,14 +31,12 @@ export function applyTheme({
     "fab-foreground": useLightAccent ? "#000000" : "#ffffff",
   } as const;
 
-  const styles: string[] = [];
-  for (const [key, value] of Object.entries(variables)) {
-    styles.push(`--${key}: ${value}`);
-  }
-  const style = styles.join(";\n");
+  const styles = Object.entries(variables)
+    .map(([key, value]) => `--${key}: ${value}`)
+    .join(";\n");
 
   themeDisplay.value = name;
 
-  document.documentElement.style.cssText = style;
-  localStorage.setItem("theme-styles", style);
+  document.documentElement.style.cssText = styles;
+  localStorage.setItem("theme-styles", styles);
 }
