@@ -1,6 +1,6 @@
 import { getValidMoves, alphaBeta, Heuristic } from "rust-othello";
 import * as Comlink from "comlink";
-import { Board, Color, Player, WHITE } from "./game";
+import { type Board, type Color, type Player, WHITE } from "./game";
 import type { AlphaBetaFunction } from "./alpha-beta-worker";
 
 export type Depth = 0 | 1 | 2 | 3 | 4;

@@ -1,7 +1,7 @@
 import { preventRestart } from "../pwa";
 import { getDifficulty } from "../settings";
 import { showDialog, showToast, waitForMilliseconds } from "../utils";
-import { Board, Color, Player, BLACK, WHITE, EMPTY, Cell } from "./game";
+import { type Board, type Color, type Player, BLACK, WHITE, EMPTY, type Cell } from "./game";
 
 const boardElement = document.getElementById("board") as HTMLDivElement;
 
