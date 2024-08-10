@@ -1,5 +1,5 @@
 import { getValidMoves, alphaBeta, Heuristic } from "rust-othello";
-import * as Comlink from "comlink";
+import { wrap } from "comlink";
 import { type Board, type Color, type Player, WHITE } from "./game";
 import type { AlphaBetaFunction } from "./alpha-beta-worker";
 
@@ -20,7 +20,7 @@ const workers: AlphaBetaFunction[] = [];
 if (typeof Worker !== "undefined") {
   for (let i = 0; i < navigator.hardwareConcurrency; i++) {
     const worker = new Worker(new URL("./alpha-beta-worker.ts", import.meta.url), { type: "module" });
-    const alphaBeta = Comlink.wrap<AlphaBetaFunction>(Comlink.proxy(worker));
+    const alphaBeta = wrap<AlphaBetaFunction>(worker);
     workers.push(alphaBeta);
   }
 } else {
