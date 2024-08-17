@@ -10,8 +10,8 @@ export type Difficulty = { depth: Depth; heuristic: Heuristic; standardDeviation
 
 const DIFFICULTIES: readonly Difficulty[] = [
   { depth: 0, heuristic: Heuristic.Score, standardDeviation: 1.5 },
-  { depth: 1, heuristic: Heuristic.Coroners, standardDeviation: 1 },
-  { depth: 3, heuristic: Heuristic.Coroners, standardDeviation: 0.7 },
+  { depth: 1, heuristic: Heuristic.Corners, standardDeviation: 1 },
+  { depth: 3, heuristic: Heuristic.Corners, standardDeviation: 0.7 },
   { depth: 3, heuristic: Heuristic.Weights, standardDeviation: 0.6 },
   { depth: 4, heuristic: Heuristic.Weights, standardDeviation: 0.5 },
 ];

@@ -6,7 +6,7 @@ use crate::Board;
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Heuristic {
     Score,
-    Coroners,
+    Corners,
     Weights,
 }
 
@@ -14,7 +14,7 @@ impl From<Heuristic> for fn(Board) -> i8 {
     fn from(heuristic: Heuristic) -> Self {
         match heuristic {
             Heuristic::Score => score,
-            Heuristic::Coroners => coroners_heuristic,
+            Heuristic::Corners => corners_heuristic,
             Heuristic::Weights => weighted_heuristic,
         }
     }
@@ -40,7 +40,7 @@ fn weighted_heuristic(board: Board) -> i8 {
         .sum()
 }
 
-fn coroners_heuristic(board: Board) -> i8 {
+fn corners_heuristic(board: Board) -> i8 {
     score(board) + board[0] + board[7] + board[56] + board[63]
 }
 
