@@ -2,17 +2,18 @@ import { getValidMoves, alphaBeta, Heuristic } from "rust-othello";
 import { wrap } from "comlink";
 import { type Board, type Color, type Player, WHITE } from "./game";
 import type { AlphaBetaFunction } from "./alpha-beta-worker";
+import { randomNormal } from "./random";
 
 export type Depth = 0 | 1 | 2 | 3 | 4;
 
-export type Difficulty = { depth: Depth; heuristic: Heuristic };
+export type Difficulty = { depth: Depth; heuristic: Heuristic; standardDeviation: number };
 
 const DIFFICULTIES: readonly Difficulty[] = [
-  { depth: 0, heuristic: Heuristic.Score },
-  { depth: 1, heuristic: Heuristic.Coroners },
-  { depth: 3, heuristic: Heuristic.Coroners },
-  { depth: 3, heuristic: Heuristic.Weights },
-  { depth: 4, heuristic: Heuristic.Weights },
+  { depth: 0, heuristic: Heuristic.Score, standardDeviation: 1.5 },
+  { depth: 1, heuristic: Heuristic.Coroners, standardDeviation: 1 },
+  { depth: 3, heuristic: Heuristic.Coroners, standardDeviation: 0.7 },
+  { depth: 3, heuristic: Heuristic.Weights, standardDeviation: 0.6 },
+  { depth: 4, heuristic: Heuristic.Weights, standardDeviation: 0.5 },
 ];
 
 const workers: AlphaBetaFunction[] = [];
@@ -53,26 +54,21 @@ export const alphaBetaPlayer: Player = {
 
     for (const [i, move] of validMoves.entries()) {
       const alphaBeta = workers[i % workers.length];
-      const { depth, heuristic } = DIFFICULTIES[difficulty];
-      const heuristicPromise = alphaBeta(board, move, depth, heuristic);
+      const { depth, heuristic, standardDeviation } = DIFFICULTIES[difficulty];
+      const heuristicPromise = alphaBeta(board, move, depth, heuristic).then((value) =>
+        randomNormal(value, standardDeviation),
+      );
       heuristics.set(move, heuristicPromise);
     }
 
     let bestMove = 0;
     let bestHeuristic = Number.MIN_SAFE_INTEGER;
-    let numberOfMatches = 0;
 
     for (const [move, heuristic] of heuristics) {
       const value = await heuristic;
       if (value > bestHeuristic) {
         bestHeuristic = value;
         bestMove = move;
-        numberOfMatches = 1;
-      } else if (value === bestHeuristic) {
-        numberOfMatches++;
-        if (Math.random() < 1 / numberOfMatches) {
-          bestMove = move;
-        }
       }
     }
 
