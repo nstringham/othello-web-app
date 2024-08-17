@@ -124,8 +124,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: "npm"
-      - name: install wasm-pack
-        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
       - run: npm ci
       - name: Download dist
         uses: actions/download-artifact@v4
