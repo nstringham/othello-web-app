@@ -1,7 +1,7 @@
 import init from "rust-othello";
-import * as Comlink from "comlink";
+import { expose } from "comlink";
 import { alphaBetaPlayer } from "./game/alpha-beta";
-import { Game, Player } from "./game/game";
+import { Game, type Player } from "./game/game";
 
 const wasmPromise = init();
 
@@ -11,6 +11,6 @@ async function play(player: Player) {
   await game.play();
 }
 
-Comlink.expose(play);
+expose(play);
 
 export type PlayFunction = typeof play;

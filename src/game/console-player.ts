@@ -1,4 +1,4 @@
-import { Board, Color, Player, BLACK } from "./game";
+import { type Board, type Color, type Player, BLACK } from "./game";
 
 declare global {
   interface Window {

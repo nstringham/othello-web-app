@@ -15,7 +15,7 @@ export class Color {
     if (this.a < 1) {
       parts.push(Math.round(this.a * 255));
     }
-    return "#" + parts.map((x) => x.toString(16).padStart(2, "0")).join("");
+    return `#${parts.map((x) => x.toString(16).padStart(2, "0")).join("")}`;
   }
 }
 
@@ -96,7 +96,7 @@ const themeConfigs = {
   } satisfies ThemeConfig,
 } as const;
 
-export type Hex = string;
+export type Hex = `#${string}`;
 
 export type Theme = {
   name: string;

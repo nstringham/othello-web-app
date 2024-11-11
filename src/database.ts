@@ -1,4 +1,4 @@
-import { openDB, DBSchema } from "idb";
+import { openDB, type DBSchema } from "idb";
 
 export type GameResult = {
   difficulty: number;
