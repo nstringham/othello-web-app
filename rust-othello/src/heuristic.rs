@@ -10,12 +10,12 @@ pub enum Heuristic {
     Weights,
 }
 
-impl From<Heuristic> for fn(Board) -> i8 {
-    fn from(heuristic: Heuristic) -> Self {
-        match heuristic {
-            Heuristic::Score => score,
-            Heuristic::Corners => corners_heuristic,
-            Heuristic::Weights => weighted_heuristic,
+impl Heuristic {
+    pub fn compute(self, board: Board) -> i8 {
+        match self {
+            Heuristic::Score => score(board),
+            Heuristic::Corners => corners_heuristic(board),
+            Heuristic::Weights => weighted_heuristic(board),
         }
     }
 }

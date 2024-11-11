@@ -59,19 +59,19 @@ pub fn alphaBeta(input_board: &[i8], location: usize, depth: u8, heuristic: Heur
 
     let new_board = do_move(&board, location, 1).unwrap();
 
-    ab_min(new_board, depth, heuristic.into(), false, i8::MIN, i8::MAX)
+    ab_min(new_board, depth, heuristic, false, i8::MIN, i8::MAX)
 }
 
 fn ab_min(
     board: Board,
     depth: u8,
-    heuristic: fn(Board) -> i8,
+    heuristic: Heuristic,
     was_skip: bool,
     alpha: i8,
     mut beta: i8,
 ) -> i8 {
     if depth == 0 {
-        return heuristic(board);
+        return heuristic.compute(board);
     }
 
     let mut min = i8::MAX;
@@ -108,7 +108,7 @@ fn ab_min(
 fn ab_max(
     board: Board,
     depth: u8,
-    heuristic: fn(Board) -> i8,
+    heuristic: Heuristic,
     was_skip: bool,
     mut alpha: i8,
     beta: i8,
