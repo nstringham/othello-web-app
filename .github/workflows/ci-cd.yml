@@ -90,7 +90,7 @@ jobs:
           cache: "npm"
       - run: npm ci
       - name: Download pkg
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: pkg
           path: rust-othello/pkg
@@ -106,7 +106,7 @@ jobs:
         with:
           cache: "npm"
       - name: Download dist
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: dist
           path: dist
@@ -130,7 +130,7 @@ jobs:
           cache: "npm"
       - run: npm ci
       - name: Download dist
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: dist
           path: dist
