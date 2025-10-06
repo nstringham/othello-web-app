@@ -1,3 +1,5 @@
+import { fileURLToPath, URL } from "node:url";
+
 import { Plugin, defineConfig } from "vite";
 
 import { createHtmlPlugin } from "vite-plugin-html";
@@ -50,6 +52,11 @@ export default defineConfig(({ command }) => ({
   },
   define: {
     __THEME_DATA__: JSON.stringify(themes, undefined, 2),
+  },
+  resolve: {
+    alias: {
+      "rust-othello": fileURLToPath(new URL("./rust-othello/pkg/rust_othello", import.meta.url)),
+    },
   },
 }));
 

@@ -15,7 +15,10 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "rust-othello": ["./rust-othello/pkg/rust_othello"]
+    }
   },
   "include": ["src"]
 }
