@@ -4,7 +4,8 @@ ci:
   upload:
     target: "temporary-public-storage"
   assert:
-    preset: "lighthouse:recommended"
     assertions:
-      csp-xss: "off"
-      bf-cache: "warn"
+      categories:performance: error
+      categories:accessibility: error
+      categories:best-practices: error
+      categories:seo: error
