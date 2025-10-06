@@ -1,4 +1,4 @@
-export class Color {
+class Color {
   constructor(
     public r: number,
     public g: number,
