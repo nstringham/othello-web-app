@@ -99,7 +99,7 @@ body {
 
 #lcp {
   position: absolute;
-  color: transparent;
+  opacity: 0.00000000001;
   pointer-events: none;
 }
 
