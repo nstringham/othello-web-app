@@ -23,9 +23,8 @@ fn convert_board(input_board: &[i8]) -> Board {
     board
 }
 
-#[allow(non_snake_case)]
-#[wasm_bindgen]
-pub fn doMove(board: &mut [i8], origin: usize, color: i8) -> bool {
+#[wasm_bindgen(js_name = doMove)]
+pub fn do_move_in_place(board: &mut [i8], origin: usize, color: i8) -> bool {
     match do_move(&convert_board(board), origin, color) {
         Ok(new_board) => {
             board.copy_from_slice(&new_board);
@@ -35,16 +34,14 @@ pub fn doMove(board: &mut [i8], origin: usize, color: i8) -> bool {
     }
 }
 
-#[allow(non_snake_case)]
-#[wasm_bindgen]
-pub fn moveExists(board: &[i8], color: i8) -> bool {
+#[wasm_bindgen(js_name=moveExists)]
+pub fn move_exists(board: &[i8], color: i8) -> bool {
     let board = convert_board(board);
     (0..64).any(|i| do_move(&board, i, color).is_ok())
 }
 
-#[allow(non_snake_case)]
-#[wasm_bindgen]
-pub fn getValidMoves(input_board: &[i8]) -> Vec<u8> {
+#[wasm_bindgen(js_name=getValidMoves)]
+pub fn get_valid_moves(input_board: &[i8]) -> Vec<u8> {
     let board = convert_board(input_board);
     (0..64)
         .filter(|&location| do_move(&board, location, 1).is_ok())
@@ -52,9 +49,8 @@ pub fn getValidMoves(input_board: &[i8]) -> Vec<u8> {
         .collect()
 }
 
-#[allow(non_snake_case)]
-#[wasm_bindgen]
-pub fn alphaBeta(input_board: &[i8], location: usize, depth: u8, heuristic: Heuristic) -> i8 {
+#[wasm_bindgen(js_name=alphaBeta)]
+pub fn alpha_beta(input_board: &[i8], location: usize, depth: u8, heuristic: Heuristic) -> i8 {
     let board = convert_board(input_board);
 
     let new_board = do_move(&board, location, 1).unwrap();
