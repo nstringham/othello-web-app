@@ -1,6 +1,6 @@
 mod heuristic;
 
-use heuristic::{score, Heuristic};
+use heuristic::{Heuristic, score};
 use std::cmp::min;
 use wasm_bindgen::prelude::*;
 
@@ -276,11 +276,7 @@ fn do_move(board: &Board, origin: usize, placing: i8) -> Result<Board, ()> {
         }
     }
 
-    if valid {
-        Ok(board)
-    } else {
-        Err(())
-    }
+    if valid { Ok(board) } else { Err(()) }
 }
 
 const WIN_VALUE: i8 = i8::MAX - 1;
