@@ -1,6 +1,9 @@
 import { applyTheme, themes } from "../themes";
 import ThemeSelectorCSS from "./theme-selector.css?inline";
 
+const styleSheet = new CSSStyleSheet();
+styleSheet.replaceSync(ThemeSelectorCSS);
+
 const themeBroadcastChannel = new BroadcastChannel("theme");
 
 export class ThemeSelectorElement extends HTMLElement {
@@ -9,9 +12,7 @@ export class ThemeSelectorElement extends HTMLElement {
 
     const shadow = this.attachShadow({ mode: "open" });
 
-    const style = document.createElement("style");
-    style.innerText = ThemeSelectorCSS;
-    shadow.appendChild(style);
+    shadow.adoptedStyleSheets.push(styleSheet);
 
     const template = document.createElement("template");
 
