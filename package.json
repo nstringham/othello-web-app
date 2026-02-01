@@ -20,7 +20,7 @@
     "@types/html-minifier-terser": "^7.0.2",
     "@types/node": "^25.0.3",
     "eslint": "^9.39.2",
-    "prettier": "^3.7.4",
+    "prettier": "^3.8.1",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.54.0",
     "vite": "^7.3.0",
