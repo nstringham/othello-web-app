@@ -18,7 +18,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/html-minifier-terser": "^7.0.2",
-    "@types/node": "^25.3.3",
+    "@types/node": "^25.5.0",
     "eslint": "^10.0.2",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3",
