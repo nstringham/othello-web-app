@@ -44,7 +44,7 @@ export default defineConfig(({ command }) => ({
         globPatterns: ["**/*.{html,js,css,wasm,woff2}"],
       },
     }),
-    modulepreloadPlugin({ regex: /worker-[0-9a-f]+\.js$/ }),
+    modulepreloadPlugin({ regex: /worker-\w+\.js$/ }),
   ],
   build: {
     target: "esnext",
