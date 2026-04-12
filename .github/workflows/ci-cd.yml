@@ -68,8 +68,8 @@ jobs:
           name: pkg
           path: rust-othello/pkg
 
-  prettier:
-    name: Prettier
+  oxfmt:
+    name: Oxfmt
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -77,7 +77,7 @@ jobs:
         with:
           cache: "npm"
       - run: npm ci
-      - run: npm run prettier
+      - run: npm run fmt:check
 
   eslint:
     name: ESLint
