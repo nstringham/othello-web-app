@@ -51,6 +51,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
+          node-version: 24
           cache: "npm"
       - name: install wasm-pack
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
@@ -75,6 +76,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
+          node-version: 24
           cache: "npm"
       - run: npm ci
       - run: npm run fmt:check
@@ -87,6 +89,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
+          node-version: 24
           cache: "npm"
       - run: npm ci
       - name: Download pkg
@@ -104,6 +107,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
+          node-version: 24
           cache: "npm"
       - name: Download dist
         uses: actions/download-artifact@v8
@@ -127,6 +131,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
+          node-version: 24
           cache: "npm"
       - run: npm ci
       - name: Download dist
@@ -149,6 +154,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
+          node-version: 24
           cache: "npm"
       - name: run Lighthouse CI
         run: |
