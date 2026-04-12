@@ -1,7 +1,7 @@
 {
   "name": "othello-web-app",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "npm run wasm-dev && vite",
@@ -15,6 +15,11 @@
     "wasm-dev": "wasm-pack build ./rust-othello --target web --dev --debug",
     "wasm-release": "wasm-pack build ./rust-othello --target web --release"
   },
+  "dependencies": {
+    "@mdi/js": "^7.4.47",
+    "comlink": "^4.4.2",
+    "idb": "^8.0.3"
+  },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/html-minifier-terser": "^7.0.2",
@@ -26,10 +31,5 @@
     "vite": "^7.3.2",
     "vite-plugin-html": "^3.2.2",
     "vite-plugin-pwa": "^1.2.0"
-  },
-  "dependencies": {
-    "@mdi/js": "^7.4.47",
-    "comlink": "^4.4.2",
-    "idb": "^8.0.3"
   }
 }
