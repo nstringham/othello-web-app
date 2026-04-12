@@ -9,7 +9,8 @@
     "build": "npm run wasm-release && tsc && vite build",
     "preview": "vite preview",
     "preview:host": "vite preview --host",
-    "lint": "eslint .",
+    "lint": "oxlint --deny-warnings",
+    "lint:fix": "oxlint --fix",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
     "wasm-dev": "wasm-pack build ./rust-othello --target web --dev --debug",
@@ -21,13 +22,11 @@
     "idb": "^8.0.3"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
     "@types/html-minifier-terser": "^7.0.2",
     "@types/node": "^25.5.0",
-    "eslint": "^10.1.0",
     "oxfmt": "^0.44.0",
+    "oxlint": "^1.59.0",
     "typescript": "^6.0.2",
-    "typescript-eslint": "^8.58.0",
     "vite": "^7.3.2",
     "vite-plugin-html": "^3.2.2",
     "vite-plugin-pwa": "^1.2.0"

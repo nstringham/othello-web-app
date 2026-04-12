@@ -32,11 +32,11 @@ let difficulty = 0;
 
 const difficultyBroadcastChannel = new BroadcastChannel("difficulty");
 
-difficultyBroadcastChannel.onmessage = (event) => {
+difficultyBroadcastChannel.addEventListener("message", (event) => {
   if (typeof event.data == "number") {
-    difficulty = event.data as number;
+    difficulty = event.data;
   }
-};
+});
 
 difficultyBroadcastChannel.postMessage(null);
 
@@ -65,6 +65,7 @@ export const alphaBetaPlayer: Player = {
     let bestHeuristic = Number.MIN_SAFE_INTEGER;
 
     for (const [move, heuristic] of heuristics) {
+      // oxlint-disable-next-line no-await-in-loop -- these are already running in parallel
       const value = await heuristic;
       if (value > bestHeuristic) {
         bestHeuristic = value;

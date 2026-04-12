@@ -81,8 +81,8 @@ jobs:
       - run: npm ci
       - run: npm run fmt:check
 
-  eslint:
-    name: ESLint
+  oxlint:
+    name: Oxlint
     runs-on: ubuntu-latest
     needs: build
     steps:

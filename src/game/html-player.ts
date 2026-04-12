@@ -165,6 +165,7 @@ async function updateBoard(board: Board) {
     const originY = Math.floor(rippleOrigin / 8);
     rippleOrigin = undefined;
     for (let i = 1; i < 8; i++) {
+      // oxlint-disable-next-line no-await-in-loop -- this is intentionally delayed for the ripple effect
       await waitForMilliseconds(100);
       let updatedCells = 0;
       for (const [xOffset, yOffset] of DIRECTIONS) {

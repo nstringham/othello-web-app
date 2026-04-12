@@ -56,11 +56,13 @@ export class Game {
       if (this.gameOver) {
         return;
       }
+      // oxlint-disable-next-line no-await-in-loop -- this is intentionally sequential for the turn-based gameplay
       await this.doTurn(this.player1, BLACK, this.player2, WHITE);
 
       if (this.gameOver) {
         return;
       }
+      // oxlint-disable-next-line no-await-in-loop -- this is intentionally sequential for the turn-based gameplay
       await this.doTurn(this.player2, WHITE, this.player1, BLACK);
     }
   }
