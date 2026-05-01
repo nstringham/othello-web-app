@@ -11,5 +11,6 @@ export default defineConfig({
     curly: "warn",
     "no-shadow": "off",
     "unicorn/require-post-message-target-origin": "off",
+    "no-underscore-dangle": ["warn", { allow: ["__THEME_DATA__"] }],
   },
 });
