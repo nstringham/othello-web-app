@@ -8,19 +8,20 @@ You can play Othello in your browser at [othello-rust.web.app](https://othello-r
 
 1. install Node.js from [nodejs.org](https://nodejs.org/en/download)
 1. install Rust from [rustup.rs](https://rustup.rs/)
+1. install pnpm from [pnpm.io](https://pnpm.io/installation)
 1. install node dependencies
    ```bash
-   npm ci
+   pnpm ci
    ```
 1. run the development server
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 1. build for production
    ```bash
-   npm run build
+   pnpm run build
    ```
 1. preview build
    ```bash
-   npm run preview
+   pnpm run preview
    ```
