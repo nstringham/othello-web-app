@@ -49,14 +49,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v6
         with:
           node-version: 26
-          cache: "npm"
+          cache: "pnpm"
       - name: install wasm-pack
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-      - run: npm ci
-      - run: npm run build
+      - run: pnpm ci
+      - run: pnpm run build
       - name: Upload dist
         uses: actions/upload-artifact@v7
         with:
@@ -74,24 +75,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v6
         with:
           node-version: 26
-          cache: "npm"
-      - run: npm ci
-      - run: npm run fmt:check
+          cache: "pnpm"
+      - run: pnpm ci
+      - run: pnpm run fmt:check
 
   oxlint:
     name: Oxlint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v6
         with:
           node-version: 26
-          cache: "npm"
-      - run: npm ci
-      - run: npm run lint
+          cache: "pnpm"
+      - run: pnpm ci
+      - run: pnpm run lint
 
   lhci-file:
     name: Lighthouse (file)
@@ -99,10 +102,11 @@ jobs:
     needs: build
     steps:
       - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v6
         with:
           node-version: 26
-          cache: "npm"
+          cache: "pnpm"
       - name: Download dist
         uses: actions/download-artifact@v8
         with:
@@ -110,7 +114,7 @@ jobs:
           path: dist
       - name: run Lighthouse CI
         run: |
-          npm install -g @lhci/cli@latest
+          pnpm install -g @lhci/cli@latest
           lhci autorun
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
@@ -123,11 +127,12 @@ jobs:
     concurrency: firebase-deploy
     steps:
       - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v6
         with:
           node-version: 26
-          cache: "npm"
-      - run: npm ci
+          cache: "pnpm"
+      - run: pnpm ci
       - name: Download dist
         uses: actions/download-artifact@v8
         with:
@@ -146,13 +151,14 @@ jobs:
     needs: deploy
     steps:
       - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v6
         with:
           node-version: 26
-          cache: "npm"
+          cache: "pnpm"
       - name: run Lighthouse CI
         run: |
-          npm install -g @lhci/cli@latest
+          pnpm install -g @lhci/cli@latest
           lhci autorun --collect.url=https://othello-rust.web.app/
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
