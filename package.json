@@ -24,7 +24,7 @@
   "devDependencies": {
     "@types/html-minifier-terser": "^7.0.2",
     "@types/node": "^26.1.0",
-    "oxfmt": "^0.47.0",
+    "oxfmt": "^0.64.0",
     "oxlint": "^1.72.0",
     "typescript": "^7.0.2",
     "vite": "^8.1.2",
