@@ -95,6 +95,13 @@ body {
   place-content: center;
 }
 
+/* Workaround for an Android Chrome bug where page is scrollable in an installed app after a reload */
+@media (display-mode: standalone) {
+  body {
+    height: 100svh;
+  }
+}
+
 #lcp {
   position: absolute;
   opacity: 0.00000000001;
