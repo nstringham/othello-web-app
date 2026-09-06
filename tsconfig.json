@@ -2,12 +2,10 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "lib": ["ESNext", "DOM"],
     "moduleResolution": "Bundler",
-    "strict": true,
     "sourceMap": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "verbatimModuleSyntax": true,
     "esModuleInterop": true,
     "noEmit": true,
