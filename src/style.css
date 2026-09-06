@@ -62,16 +62,16 @@ button {
   height: 40px;
   padding-inline: 12px;
   border-radius: 100vmax;
-}
 
-button:hover {
-  background-color: var(--button-hover);
-}
+  &:hover {
+    background-color: var(--button-hover);
+  }
 
-button:focus-visible,
-button:active {
-  background-color: var(--button-focus);
-  outline: none;
+  &:focus-visible,
+  &:active {
+    background-color: var(--button-focus);
+    outline: none;
+  }
 }
 
 .icon-button {
@@ -80,11 +80,11 @@ button:active {
   display: inline-grid;
   place-content: center;
   place-items: center;
-}
 
-.icon-button svg {
-  width: 24px;
-  height: 24px;
+  & svg {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 body {
@@ -215,37 +215,39 @@ button.cell {
   }
 }
 
-#settings .body > * {
-  margin-top: 8px;
-  margin-inline: -24px;
-  padding: 8px 32px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-areas:
-    "label value"
-    "control control";
-  align-items: center;
-}
+#settings {
+  & .body > * {
+    margin-top: 8px;
+    margin-inline: -24px;
+    padding: 8px 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "label value"
+      "control control";
+    align-items: center;
 
-#settings .body > * input[type="range"],
-#settings .body > * theme-selector {
-  grid-area: control;
-}
+    & input[type="range"],
+    & theme-selector {
+      grid-area: control;
+    }
+  }
 
-#settings #difficulty {
-  gap: 8px 0;
-}
+  & #difficulty {
+    gap: 8px 0;
+  }
 
-#settings #color-theme {
-  gap: 16px 0;
-}
+  & #color-theme {
+    gap: 16px 0;
+  }
 
-#settings .label {
-  font-weight: 500;
-}
+  & .label {
+    font-weight: 500;
+  }
 
-#settings output {
-  font-weight: 300;
+  & output {
+    font-weight: 300;
+  }
 }
 
 #close-settings {
@@ -274,15 +276,6 @@ button.cell {
   }
 }
 
-dialog::backdrop {
-  background-color: rgb(0 0 0 / 0.5);
-  animation: fade-in 0.2s ease-out;
-}
-
-dialog.closing::backdrop {
-  animation: fade-out 0.2s ease-out;
-}
-
 dialog {
   min-width: 320px;
   max-width: min(600px, calc(100vw - 96px));
@@ -298,31 +291,40 @@ dialog {
   color: var(--on-surface);
   animation: grow 0.2s ease-out;
   overscroll-behavior: contain;
-}
 
-dialog.closing {
-  animation: shrink 0.2s ease-in forwards;
-}
+  &::backdrop {
+    background-color: rgb(0 0 0 / 0.5);
+    animation: fade-in 0.2s ease-out;
+  }
 
-dialog .title {
-  margin: 0;
-  margin-bottom: 16px;
-}
+  &.closing {
+    animation: shrink 0.2s ease-in forwards;
 
-dialog .body {
-  margin: 0;
-}
+    &::backdrop {
+      animation: fade-out 0.2s ease-out;
+    }
+  }
 
-dialog .buttons {
-  margin-top: 24px;
-  display: flex;
-  justify-content: flex-end;
-}
+  & .title {
+    margin: 0;
+    margin-bottom: 16px;
+  }
 
-dialog h1 {
-  margin: 0;
-  margin-bottom: 16px;
-  font-weight: 400;
+  & .body {
+    margin: 0;
+  }
+
+  & .buttons {
+    margin-top: 24px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  & h1 {
+    margin: 0;
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
 }
 
 #game-over table {
@@ -357,10 +359,10 @@ dialog h1 {
   border: solid 1px var(--on-surface-30);
   background-color: var(--surface);
   color: var(--on-surface);
-}
 
-.toast > .text {
-  line-height: 48px;
+  & > .text {
+    line-height: 48px;
+  }
 }
 
 .fab {
@@ -381,31 +383,31 @@ dialog h1 {
     0 3px 4px 0 rgba(0, 0, 0, 0.14),
     0 3px 3px -2px rgba(0, 0, 0, 0.12),
     0 1px 8px 0 rgba(0, 0, 0, 0.2);
-}
 
-.fab:hover {
-  background-color: var(--fab-background);
-  filter: brightness(108%);
-}
+  &:hover {
+    background-color: var(--fab-background);
+    filter: brightness(108%);
+  }
 
-.fab:focus-visible,
-.fab:active {
-  background-color: var(--fab-background);
-  filter: brightness(112%);
-}
+  &:focus-visible,
+  &:active {
+    background-color: var(--fab-background);
+    filter: brightness(112%);
+  }
 
-.fab:active {
-  border-radius: 8px;
+  &:active {
+    border-radius: 8px;
+  }
 }
 
 #new-game {
   display: none;
-}
 
-#new-game.show {
-  display: grid;
-  animation: grow 0.2s ease-out;
-  transform-origin: 100% 100%;
+  &.show {
+    display: grid;
+    animation: grow 0.2s ease-out;
+    transform-origin: 100% 100%;
+  }
 }
 
 @media (forced-colors: active) {
