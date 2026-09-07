@@ -16,8 +16,10 @@ const ariaLabels: { [key in Cell]: string } = {
 let doTurn: ((move: number) => void) | undefined;
 
 for (const [i, cell] of cells.entries()) {
-  cell.addEventListener("click", () => {
-    boardElement.classList.remove("arrow-navigation");
+  cell.addEventListener("click", (event) => {
+    if (event.detail > 0) {
+      boardElement.classList.remove("arrow-navigation");
+    }
     doTurn?.(i);
   });
 
