@@ -188,15 +188,15 @@ button.cell {
   outline-offset: -1px;
 }
 
-.player-turn .cell:not(.black):not(.white):focus-visible::before {
+.player-turn .cell:focus-visible::before {
   outline-color: white;
 }
 
-.player-turn .arrow-navigation .cell.white:focus-visible::before {
+.player-turn .cell.white:focus-visible::before {
   outline-color: var(--player);
 }
 
-.player-turn .arrow-navigation .cell.black:focus-visible::before {
+.player-turn .cell.black:focus-visible::before {
   outline-color: var(--ai);
 }
 
