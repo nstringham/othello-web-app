@@ -22,11 +22,7 @@ export function applyTheme({
     ai,
     hint,
     "accent-dark": accentDark,
-    "accent-dark-20": accentDark + "20",
-    "accent-dark-30": accentDark + "30",
     "accent-light": accentLight,
-    "accent-light-20": accentLight + "20",
-    "accent-light-30": accentLight + "30",
     "fab-background": useLightAccent ? accentLight : accentDark,
     "fab-foreground": useLightAccent ? "#000000" : "#ffffff",
   } as const;
