@@ -43,8 +43,8 @@ input[type="checkbox"] {
 
 button {
   --button-text: var(--accent-on-surface);
-  --button-hover: color-mix(var(--accent-on-surface) 8%);
-  --button-focus: color-mix(var(--accent-on-surface) 12%);
+  --button-hover: color-mix(var(--accent-on-surface) 8%, transparent);
+  --button-focus: color-mix(var(--accent-on-surface) 12%, transparent);
   appearance: none;
   border: none;
   background: transparent;
@@ -195,8 +195,8 @@ button.cell {
 #settings-button,
 #close-settings {
   --button-text: var(--on-surface);
-  --button-hover: color-mix(var(--on-surface) 8%);
-  --button-focus: color-mix(var(--on-surface) 12%);
+  --button-hover: color-mix(var(--on-surface) 8%, transparent);
+  --button-focus: color-mix(var(--on-surface) 12%, transparent);
 }
 
 #settings-button {
