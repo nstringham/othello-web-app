@@ -6,9 +6,9 @@ import { createHtmlPlugin } from "vite-plugin-html";
 import { VitePWA } from "vite-plugin-pwa";
 
 import * as mdi from "@mdi/js";
-import { manifest } from "./manifest";
+import { manifest } from "./manifest.ts";
 
-import { themes } from "./src/theme-data";
+import { themes } from "./src/theme-data.ts";
 
 export default defineConfig(({ command }) => ({
   plugins: [
